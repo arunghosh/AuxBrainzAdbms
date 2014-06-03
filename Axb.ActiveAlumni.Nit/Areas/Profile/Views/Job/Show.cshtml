@@ -1,0 +1,29 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Job
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<div class="edit-ctnr">
+    <div class="prof-summ">
+        <div><span class="des-head">@Model.CompanyName</span>, @Model.Location</div>
+        <div class="des-ctnt">@Model.Position</div>
+        <div class="des-ctnt">@Model.Domain</div>
+        @if (Model.IsCurrentEmployer)
+        {
+            <em>Current Job</em>
+        }
+    </div>
+    @if ((bool)ViewData[Constants.ProfileEditKey])
+    {
+        <div class="span ft-r">
+            <a class="edit-icon">
+                <i class="icon-edit"></i> Edit
+            </a>
+        </div>
+        <script>
+            $(function () {
+                new ListProfile("Job", '@Model.JobId');
+            });
+        </script>
+    }
+</div>
+
+

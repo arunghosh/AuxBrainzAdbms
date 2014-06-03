@@ -1,0 +1,81 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.User>
+<ul id="profBanner">
+    @foreach (var item in Model)
+    {
+        <li data-id="@item.UserId">
+            <a href="@Routes.Profile(@item.UserId)" target="_blank" title="@item.FullName">
+                <img src="@Routes.SearchPic(@item.UserId)" />
+            </a>
+        </li>    
+    }
+</ul>
+@foreach (var item in Model)
+{
+    <div class="prof-info" id="prof_@item.UserId">
+        <div class="left">
+            <div class="bld">@item.FullName</div>
+            @if (item.Jobs.Any())
+            {
+                <div>@((item.Jobs[0].CompanyName + " | " + @item.Jobs[0].Position).LetterLimited(80))</div>
+            }
+            else
+            {
+                <div>--</div>
+            }
+        </div>
+        <div class="right">
+            @if (item.UserCourses.Any())
+            {
+                var uc = item.UserCourses[0];
+                <div>@uc.Batch | @uc.BranchName | @item.UserCourses[0].CourseName</div>
+            }
+            else
+            {
+                <div>--</div>
+            }
+            <div>@item.CurrentCity | @item.CurrentCountry</div>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        initProf();
+        function initProf() {
+            var lis = $('#profBanner li');
+            var cnt = lis.length;
+            for (var i = 0; i < cnt; i++) {
+                dispProfile();
+            }
+        }
+        var profileTimer = setInterval(function () { dispProfile() }, 4000);
+        function dispProfile() {
+            var lis = $('#profBanner li');
+            var last = lis.last();
+            last.remove();
+            last.css('margin','-23px');
+            $('#profBanner').prepend(last);
+            lis = $('#profBanner li');
+            var cnt = lis.length;
+            var maxW = 65;
+            var minW = 44;
+            var mid = (cnt - 1) / 2;
+            for (var i = 1; i < cnt; i++) {
+                var wid = maxW * (1 - (Math.abs(mid - i) / mid) / 1.5);
+                $lisi = $(lis[i]);
+                var opac = wid == maxW ? 1 : wid/70 - .3;
+                $lisi.css('opacity',  opac < .1 ? .1 : opac);
+                $lisi.css('width', wid > minW ? wid : minW);
+                $lisi.removeClass('ban-sel');
+                $lisi.addClass('ban-un');
+            }
+            last.animate({'margin':'2px'});
+            $mid = $(lis[mid])
+            var id = $mid.attr('data-id');
+            //$mid.css('opacity', 1);
+            $mid.removeClass('ban-un');
+            $mid.addClass('ban-sel');
+            $('.prof-info').hide();
+            $('#prof_' + id).show();
+        }
+    });
+</script>

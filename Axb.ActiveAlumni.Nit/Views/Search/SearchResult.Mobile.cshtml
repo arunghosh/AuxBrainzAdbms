@@ -1,0 +1,51 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.UserSearchBase
+@{var hasFilters = Model.HasFilters;}
+<div>
+    <br />
+    <ul id="filter-summ">
+        @{var isAnyFil = false;}
+        @if (!string.IsNullOrEmpty(Model.UserName))
+        {
+            <li class="item"><span>@Model.UserName</span><span class="close">&times;</span></li>
+        }
+        @foreach (var grp in Model.Filters.Where(f => f.IsList))
+        {
+            foreach (var item in grp.MasterFilters.Where(i => i.IsChecked))
+            {
+                isAnyFil = true;
+                var id = grp.CkboxName + grp.MasterFilters.IndexOf(item);
+            <li class="item"><span>@item.DisplayText</span><span class="close" data-id="@id">&times;</span></li>
+            }
+        }
+        @if (isAnyFil)
+        {
+            <li>
+                <button class="reset-btn">Reset</button></li>
+        }
+    </ul>
+
+    @if (hasFilters)
+    {
+        <hr />
+        <div>
+            @Html.Partial("UserList.Mobile", Model)
+        </div>
+        <div>
+            @SearchHelper.PageControl(Model.TotalPages, Model.PageIndex)
+        </div>
+    }
+    else
+    {
+        <h6>No filter selected</h6>
+    }
+</div>
+@*@if (hasFilters)
+{
+    <div id="srchStat">
+        <div class="sub-head">Result Statistics</div>
+        @foreach (var grp in Model.Filters.Where(f => f.IsList && f.FilterItems.Any()))
+        {
+            @SearchHelper.DispayGroupStat(grp)
+        }
+    </div>
+}*@

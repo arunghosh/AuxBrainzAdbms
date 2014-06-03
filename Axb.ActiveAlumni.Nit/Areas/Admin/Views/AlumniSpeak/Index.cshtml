@@ -1,0 +1,90 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.AlumniSpeak>
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.AlumniSpeaks);
+    if (System.Web.HttpContext.Current.Request.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+<style>
+    .alum-li
+    {
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        padding: 5px 0;
+        border-bottom: 1px solid #ddd;
+        line-height:17px;
+    }
+
+    .alum-img
+    {
+display: inline-block;
+float: left;
+padding: 6px 6px 2px 13px;
+    }
+
+    .alum-info .name
+    {
+        font-size:13px;
+        font-weight:bold;
+        color:#111;
+    }
+
+    .alum-info
+    {
+        display: inline-block;
+        width: 75%;
+        margin:2px;
+        font-family:Segoe UI
+    }
+</style>
+<div class="left-lst w-brdr" style="width: 300px;">
+    @if ((bool)ViewData[Constants.IsAuthKey] && (bool)ViewData[Constants.IsAdminKey])
+    {
+        <div>
+            <a class="new-obj btn" data-method="get" data-title="Alumni To Know" data-url='/Admin/AlumniSpeak/Edit'><i class="icon-plus"></i>Alumni To Know</a>
+        </div>
+    }
+    @if (Model == null)
+    {
+        <h5>No items to display</h5>
+    }
+    else
+    {
+        <div class="avail-ht">
+            <ul>
+                @foreach (var item in Model.Items)
+                {
+                    <li class="alum-li a-sele-item @(item.AlumniToKnowId == Model.SelectedId ? "seleted" : "")" data-id="@item.AlumniToKnowId">
+                        <div class="alum-img">
+                            <img src="@Routes.Img40Pic(item.AlumniId)" />
+                        </div>
+                        <div class="alum-info">
+                            <a class="name" href="@Routes.Profile(item.AlumniId)">@item.AlumniName</a>
+                            <div>
+                                @item.Course
+                            </div>
+                            <div>
+                                @item.Batch Batch
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+@if (Model != null)
+{
+    <div class="a-frm-ctnr right-lstSele lazy-load" data-id="@Model.SelectedId" data-url="/Admin/AlumniSpeak/Show/" style="padding: 7px 0 0 35px; width:550px;">
+    </div>
+}
+@section Scripts
+    {
+}

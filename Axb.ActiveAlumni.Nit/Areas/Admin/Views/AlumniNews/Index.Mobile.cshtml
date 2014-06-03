@@ -1,0 +1,17 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.News);
+    ViewData[Constants.HomeTitleKey] = "News";
+    Layout = Routes.Layout;
+}
+
+<div style="padding:7px;">
+    @if (Model != null)
+    {
+        @Html.Action("Show", "AlumniNews", new { area = "Admin", id=Model.SelectedId })
+    }
+</div>
+@section Scripts
+    {
+}

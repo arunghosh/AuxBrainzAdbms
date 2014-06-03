@@ -1,0 +1,58 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.Event>
+
+@{
+    ViewBag.Title = @Routes.GetTitile(PageTypes.Events);
+    ViewData[Constants.HomeTitleKey] = "Events";
+    ViewData[Constants.HomeImgKey] = "/Content/images/calendar.png";
+    Layout = Routes.Layout;
+}
+
+<div class="left-lst w-brdr" style="width: 330px;">
+    @if (System.Web.HttpContext.Current.Request.IsAuthenticated)
+    {
+        <div>
+            <a class="new-obj add-btn-big" data-title="New Event" data-url='/Event/New'><div class="icon"><i class="icon-plus"></i></div>  <div class="text">Create New Event</div></a>
+        </div>
+    }
+    @if (Model == null)
+    {
+        <h5>No Events</h5>
+    }
+    else
+    {
+        <div class="avail-ht-">
+            <ul>
+                @foreach (var item in Model.Items.OrderByDescending(m => m.FromDate))
+                {
+                    <li class="evt-li a-sele-item @(item.EventId == Model.SelectedId ? "seleted" : "") @item.Status" data-id="@item.EventId">
+                        <div class="evt-date">
+                            <div class="day">@DisplayHelper.DateTime(item.FromDate, DateTypes.DayOnly)</div>
+                            <div class="date">@DisplayHelper.DateTime(item.FromDate, DateTypes.DateOnly)</div>
+                        </div>
+                        <div class="evt-info">
+                            <div class="evt-name fs-l">
+                                @item.EventName
+                            </div>
+@*                            <div>
+                                @item.Location
+                            </div>
+                            <div class="span">
+                                @DisplayHelper.DateTime(item.FromDate, DateTypes.Normal)
+                                <div class="d-ib bld">to </div>
+                                @DisplayHelper.DateTime(item.ToDate, DateTypes.Normal)
+                            </div>*@
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+@if (Model != null)
+{
+    <div class="a-frm-ctnr right-lstSele lazy-load" data-id="@Model.SelectedId" data-url="/Event/Show/" style="padding: 15px 0 0 20px;width: 580px;border-left: 1px solid #ddd;">
+    </div>
+}
+@section Scripts
+    {
+}

@@ -1,0 +1,29 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.SendToEmailVm
+@{
+    ViewBag.Title = "Confirm Email | NITCAA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model == null)
+{
+    @Html.Partial(Routes.ViewDataMsgView);
+}
+else
+{
+    <div class="p20" style="width: 500px;">
+        <h4>Email verification failed</h4>
+        @using (Html.BeginForm("ResedEmailToken", "Register"))
+        {
+            <p>
+                Enter your email below and we will send instructions to verify your email.
+            </p>
+            @Html.AntiForgeryToken()
+            @Html.EditorForModel()
+            @Html.Bootstrap().SubmitButton().Text("Send Instructions").HtmlAttributes(new { @class = "btn-primary" })
+            <br />
+            <br />
+            @Html.ValidationSummary()
+        }
+    </div>}
+@section Scripts
+{}

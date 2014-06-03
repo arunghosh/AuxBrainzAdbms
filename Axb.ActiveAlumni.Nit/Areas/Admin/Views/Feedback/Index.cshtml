@@ -1,0 +1,63 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Feedback>
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.Feedbacks);
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    #feedback li
+    {
+        padding: 5px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .head
+    {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    #feedback .time
+    {
+        color:#888;
+    }
+    #feedback
+    {
+        list-style-type: none;
+    }
+</style>
+<div class="m10">
+
+    <h4>Feedbacks</h4>
+    <ul id="feedback">
+        @foreach (var item in Model)
+        {
+            <li>
+                @if (item.UserId != 0)
+                {
+                    <a class="head" href="@Routes.Profile(item.UserId)">@item.UserName</a>
+                }
+                else
+                {
+                    <div class="d-ib head">@item.Email</div>
+                }
+                <div class="d-ib"> | @item.IPAddress</div>
+                <div class="d-ib"> | @DisplayHelper.DateTime(item.Date, DateTypes.Normal)</div>
+                <div class="d-ib ft-r">
+                    <form method="post" action="/Feedback/ReadStatus" class="replace-txt-frm">
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("id", item.EntityKey)
+                        <button class="btn-gray rep-txt">@(item.IsRead ? "Mark as Unread" : "Mark as Read")</button>
+                    </form>
+                </div>
+                <pre class="read">@Html.Raw(item.Message.Replace(Environment.NewLine, "<br/>"))</pre>
+            </li>
+        }
+    </ul>
+</div>
+
+@section Scripts
+    {
+<script src="~/Scripts/_ajax-form.js"></script>
+    }

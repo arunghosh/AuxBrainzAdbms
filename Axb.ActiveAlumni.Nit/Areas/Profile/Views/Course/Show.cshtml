@@ -1,0 +1,22 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.UserCourse
+
+<div class="edit-ctnr">
+    <div class="prof-summ">
+        <div class="des-head">@Model.Batch Batch</div>
+        <div class="des-ctnt">@string.Format("{0}, {1}", ViewBag.Course, ViewBag.Branch)</div>
+    </div>
+    @if ((bool)ViewData[Constants.ProfileEditKey])
+    {
+        <div class="span ft-r">
+            <a class="edit-icon">
+                <i class="icon-edit"></i> Edit
+            </a>
+        </div>
+        <script>
+            $(function () {
+                new ListProfile("Course", '@Model.UserCourseId');
+            });
+        </script>
+    }
+</div>
+

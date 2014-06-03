@@ -1,0 +1,81 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.UserSearchBase
+
+@{
+    ViewBag.Title = "Search Alumni";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div id="searchCtnr">
+    <div id="filterCtnr">
+        @*        <div class="avail-ht">*@
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.UserName)
+            @Html.HiddenFor(m => m.PageIndex)
+            @Html.Hidden("output", "default")
+            foreach (var grp in Model.Filters.Where(f => f.IsList))
+            {
+            @SearchHelper.DispayGroup(grp, Url.Action(grp.AutoComplete), Model.HasFilters)
+            }
+        }
+        @*</div>*@
+    </div>
+    <div id="srchRslt">
+        @Html.Partial("SearchResult", Model)
+    </div>
+</div>
+@{
+    var userIds = string.Join(",", Model.TotalUsers.Select(u => u.UserId.ToString()));
+}
+@section Scripts
+{
+    <script>
+        $(function () {
+            $('#filter-summ .reset-btn').each(function () {
+                var $this = $(this);
+                $this.unbind('click');
+                $this.click(function () {
+                    $('#filterCtnr #UserName').val('');
+                    $('#filterCtnr input[type="checkbox"]').prop('checked', false);
+                    $("#searchCtnr").css({ opacity: 0.5 });
+                    $("#filterCtnr form").submit();
+                });
+            });
+
+            $('#filter-summ .close').each(function () {
+                var $this = $(this);
+                $this.unbind('click');
+                $this.click(function () {
+                    var id = $this.attr('data-id');
+                    if (id === undefined) {
+                        $('#filterCtnr #UserName').val('');
+                    }
+                    else {
+                        $('#' + id).prop('checked', false);
+                    }
+                    $("#searchCtnr").css({ opacity: 0.5 });
+                    $("#filterCtnr form").submit();
+                });
+            });
+
+            var uids = [@userIds];
+
+            $('.btn-dialog-act').each(function () {
+                var $this = $(this);
+                $this.unbind('click');
+                $this.click(function () {
+                    showDialog($this, uids);
+                })
+            });
+
+            $('.btn-download').each(function () {
+                var $this = $(this);
+                $this.unbind('click');
+                $this.click(function () {
+                    $("#filterCtnr #output").val("excel");
+                    $("#filterCtnr form").submit();
+                })
+            });
+        });
+    </script>
+    <script src="~/Scripts/_search.js"></script>
+}

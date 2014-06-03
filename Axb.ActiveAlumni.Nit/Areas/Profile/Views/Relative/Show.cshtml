@@ -1,0 +1,32 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Relative
+
+<div class="edit-ctnr">
+    <div class="prof-summ">
+        <div class="des-head">@Model.Name (@Model.RelationShip)</div>
+        @if (!string.IsNullOrEmpty(Model.Location))
+        {
+            <div class="des-ctnt">@Model.Location</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Education))
+        {
+            <div class="des-ctnt">Job: <em>@Model.Work</em></div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Education))
+        {
+            <div class="des-ctnt">Education: <em>@Model.Education</em></div>
+        }
+    </div>
+    @if ((bool)ViewData[Constants.ProfileEditKey])
+    {
+        <div class="span ft-r">
+            <a class="edit-icon">
+                <i class="icon-edit"></i>Edit
+            </a>
+        </div>
+        <script>
+            $(function () {
+                new ListProfile("Relative", '@Model.RelativeId');
+            });
+        </script>
+    }
+</div>

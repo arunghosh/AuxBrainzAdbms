@@ -1,0 +1,64 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Admin.Models.RegisterSearchVm
+@using Axb.ActiveAlumni.Nit.Entities;
+
+@using Axb.ActiveAlumni.Nit.Infrastructure
+<div class="avail-ht">
+    <ul class="ltype-none">
+        <li class="bld">@Model.FilteredItems.Count() matches found</li>
+        @{var currUser = Axb.ActiveAlumni.Nit.UserSession.CurrentUserId;}
+        @foreach (var user in Model.PagedItems)
+        {
+            <li class="user-info">
+                <div class="ft-l span">
+                    <img src='@Url.Action("ProfileImage", new { id = user.UserId })' class="user-img"/>
+                </div>
+                <ul class="reg-srch-times">
+                    <li>joined on <b>@DisplayHelper.DateTime(user.JoinedOn, DateTypes.Short)</b>
+                    </li>
+                    <li>
+                        @if(user.EmailConfirmedOn != null)
+                        {   <span>emailv on</span>
+                            <b>@DisplayHelper.DateTime(user.EmailConfirmedOn.Value, DateTypes.Short)</b> 
+                        }
+                        else
+                        {
+                            <div><form action="/Register/ResedEmailToken" method="post">
+                                    @Html.AntiForgeryToken()
+                                     @Html.Hidden("Email", user.Email)
+                                    <button type="submit" class="btn-gray">Send Email Confirmation</button> 
+                                 </form>
+                            </div>
+                        }
+                    </li>
+                </ul>
+
+                <div class="reg-srch-text-info">
+                    @Html.ActionLink(@user.FullName, "Index", "FullProfile", new { area = "Profile", id = user.UserId }, null)
+                    @if (user.UserCourses != null && user.UserCourses.Any())
+                    {
+                        var crse = user.UserCourses.Last();
+                        <div class="dim">@string.Format("{0}, {1}", crse.Batch, crse.BranchName)</div>
+                    }
+                    <div class="a-frm-ctnr joinlst-frm-ctnr">
+                        @if (user.AccountStatus == UserRegisterStatus.Pending)
+                        {
+                            using (Html.BeginForm("UpdateStatus", "JoinRequest", FormMethod.Post, new { @class = "replace-stat-frm" }))
+                            {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("Id", user.UserId)
+                            @Html.Hidden("Status", user.AccountStatus)
+                            <a class="status-btn btn btn-gray btn-thin" data-status="@UserRegisterStatus.Approved">Approve</a>
+                            <a class="status-btn btn btn-reject"  data-status="@UserRegisterStatus.Rejected">Reject</a>
+                            }
+                        }
+                        else
+                        {
+                            @user.AccountStatus
+                        }
+                    </div>
+                </div>
+
+            </li>
+        }
+    </ul>
+</div>

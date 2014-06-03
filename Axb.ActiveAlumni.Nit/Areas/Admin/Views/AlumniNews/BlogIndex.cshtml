@@ -1,0 +1,90 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.AlumniStory);
+    ViewData[Constants.HomeTitleKey] = "Blog";
+    ViewData[Constants.HomeImgKey] = "/Content/images/news.png";
+    Layout = Routes.Layout;
+}
+
+<style>
+    .news-li .time-ctnr
+    {
+color: #aaa;
+font-size: 11px;
+display: inline-block;
+width: 100%;
+    }
+
+
+    .news-li .title
+    {
+        font-weight: bold;
+        display:inline-block;
+        width:100%;
+        font-size:13px;
+    }
+
+    .news-li .summ
+    {
+        color:#aaa;
+        font-size:12px;
+    }
+    .news-li
+    {
+        padding: 10px 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+        line-height: 15px;
+        color: #888;
+    }
+</style>
+@{var isAdmin = (bool)ViewData[Constants.IsAdminKey];}
+@*<div class="left-lst w-brdr" style="width: 200px;">
+    @if ((bool)ViewData[Constants.IsAuthKey] && (bool)ViewData[Constants.IsAdminKey])
+    {
+        <div style="margin: 1px;">
+            <a class="add-btn-big d-blk" href='/Admin/AlumniNews/BlogEdit'><i class="icon-plus"></i>Add Blog (ADM)</a>
+        </div>
+    }
+    else
+    {
+    }
+    @if (Model == null)
+    {
+        <h5>No items to display</h5>
+    }
+    else
+    {
+        <div class="avail-ht-">
+            <ul class="news-lst">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="news-li a-sele-item @(item.EntityKey == Model.SelectedId ? "seleted" : "")" data-id="@item.EntityKey">
+                        <div class="title trim">@item.Title</div>
+                        <div>
+                            <div class="time-ctnr">
+                                Posted on: @DisplayHelper.DateTime(item.Date, DateTypes.DateOnly)
+                                @if (isAdmin)
+                                {
+                                    <div class="d-ib ft-r">@item.Status</div>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>*@
+<div class="right-lstSele" style="padding: 10px 0 0 19px; width: 600px;border:0">
+    @{Html.RenderPartial(Routes.CloseNote);}
+    @if (Model != null)
+    {   
+        <div class="a-frm-ctnr lazy-load" data-id="@Model.SelectedId" data-url="/Admin/AlumniNews/Show/" >
+        </div>
+    }
+</div>
+@section Scripts
+    {
+}

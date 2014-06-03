@@ -1,0 +1,16 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.Event>
+
+@{
+    ViewBag.Title = @Routes.GetTitile(PageTypes.Events);
+    ViewData[Constants.HomeTitleKey] = "Events";
+    ViewData[Constants.HomeImgKey] = "/Content/images/calendar.png";
+    Layout = Routes.Layout;
+}
+
+@if (Model != null)
+{
+        @Html.Action("Show", "Event", new { area = "", id=Model.SelectedId })
+}
+@section Scripts
+    {
+}

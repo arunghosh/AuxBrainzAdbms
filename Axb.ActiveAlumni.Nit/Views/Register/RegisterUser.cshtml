@@ -1,0 +1,33 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.RegisterUserVm
+
+<div class="clmn-head"><span style="color: #888;">Not yet a member of NIT Alumni Network? </span>Join Now!!!</div>
+<div class="reg-type">
+    <ul>
+        <li id="regAlumni" class="selected">Alumni
+        </li>
+        <li id="regStudent">Student
+        </li>
+        <li id="regStaff">Staff
+        </li>
+    </ul>
+</div>
+<div style="padding:15px 0 0 0">
+    <div class="span">
+        @using (Html.BeginForm("RegisterUser", "Register", FormMethod.Post, new { @class = "form-horizontal replace-frm" }))
+        {
+            @Html.HiddenFor(m => m.Role)
+            @Html.Partial("Common", Model)
+            <div id="regStdOnly">
+                @Html.Partial("StudentOnly", Model)
+            </div>
+            @Html.Partial("Footer")
+        }
+    </div>
+    <div class="d-ib ft-l" style="width: 320px;margin: 0 0 0 10px">
+        <div style="color: #999; border: 1px solid #ddd; padding: 10px 0 10px 33px; border-width: 1px 0px 1px 1px; margin: 74px 0 0 0;">
+            @Html.Partial(Routes.PswdRulesView)
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/_ajax-form.js"></script>

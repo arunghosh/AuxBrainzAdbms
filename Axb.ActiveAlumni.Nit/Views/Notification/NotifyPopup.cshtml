@@ -1,0 +1,37 @@
+﻿@model Axb.ActiveAlumni.Nit.Services.NotifyPopupData
+<div class="arrow"></div>
+<div class="ntfy-pop" data-url='@String.Format("/{0}s/", Model.Name)'>
+    <div class="ntfy-head">@Model.Name
+        <div class="ft-r">
+            @if(Model.IsCreate)
+            {
+                <a class="new-obj" data-title="New @Model.Name" data-url='/@Model.Name/New'>New @Model.Name</a>
+            }
+            <a class="ntfy-lnk">View all</a>
+        </div>
+    </div>
+    <ul class="ntfy-lst">
+        @foreach (var item in Model.UnreadItems)
+        {
+            <li class="unread">
+                <a class="ntfy-lnk" data-id="@item.ItemId">
+                    @NotifyHelper.DisplayMsg(item)
+                </a>
+            </li>
+        }
+
+        @foreach (var item in Model.ReadItems)
+        {
+            <li>
+                <a class="ntfy-lnk" data-id="@item.ItemId">
+                    @NotifyHelper.DisplayMsg(item)
+                </a>
+            </li>
+        }
+    </ul>
+    <hr />
+    @*    <div class="txt-c" style="padding: 0 0px 7px 0;">
+    </div>*@
+</div>
+<script src="~/Scripts/_notifypop.js"></script>
+<script src="~/Scripts/_time.js"></script>

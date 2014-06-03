@@ -1,0 +1,104 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.SearchCircleVm
+
+@{
+    ViewBag.Title = "Circles | NIT Calicut Alumni";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    #filterCtnr label
+    {
+        width: 79%;
+    }
+
+    #filterCtnr .icon-edit:hover
+    {
+        opacity: .8;
+    }
+
+    #filterCtnr .icon-edit
+    {
+        opacity: .4;
+        padding: 0 5px;
+        margin-left: 5px;
+    }
+
+    #filterCtnr
+    {
+        width: 260px;
+    }
+
+    .new-crcle
+    {
+        width: 94%;
+        margin: 0px 8px;
+    }
+</style>
+
+<div id="searchCtnr">
+    <div id="filterCtnr">
+        <div>
+            <button class="new-crcle btn" data-title="New Circle" data-url="@Routes.EditCircle"><span class="icon-plus"></span> Add Circle</button>
+        </div>
+        <hr />
+        @using (Html.BeginForm("Index", "Circle"))
+        {
+            @Html.HiddenFor(m => m.PageIndex)
+            foreach (var grp in Model.Filters.Where(f => f.IsList))
+            {
+            @SearchHelper.DispayGroup(grp, Url.Action(grp.AutoComplete))
+            <hr />
+            }
+        }
+
+    </div>
+    <div class="span" style="width: 480px; margin: 0 0 0 10px;">
+        <div class="ctrl-panel">
+            <i data-url="/Message/New" data-title="New Message" title="Message" class="btn-dialog-act icon-envelope"></i>
+            <i data-url="/Discussion/New" data-title="New Discussion" title="Discussion" class="btn-dialog-act icon-comment"></i>
+            <i data-url="/Event/New" data-title="New Event" title="Event" class="btn-dialog-act icon-calendar"></i>
+        </div>
+        <hr />
+        <div id="searchResult">
+            @Html.Partial("UserList", Model)
+        </div>
+        <div>
+            @SearchHelper.PageControl(Model.TotalPages, Model.PageIndex)
+        </div>
+    </div>
+</div>
+@{
+    var userIds = string.Join(",", Model.TotalUsers.Select(u => u.UserId.ToString()));
+}
+
+@section Scripts
+{
+    <script>
+
+        $(function () {
+            $('.btn-dialog-act').each(function () {
+                var $this = $(this);
+                $this.unbind('click');
+                $this.click(function () {
+                    showDialog($this, [@userIds]);
+            })
+        });
+
+        $('#filterCtnr .new-crcle').each(function () {
+            editCircle($(this));
+        });
+
+        $('#filterCtnr .icon-edit').each(function () {
+            editCircle($(this));
+        });
+
+        function editCircle($this) {
+            $this.unbind('click');
+            $this.click(function () {
+                showDialog($this);
+            });
+        }
+    });
+    </script>
+    <script src="~/Scripts/_search.js"></script>
+}

@@ -1,0 +1,72 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.MessageThread
+
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit
+@using Axb.ActiveAlumni.Nit.Infrastructure
+
+
+@{var userId = UserSession.CurrentUserId;
+  Model.Messages.Reverse();}
+<ul class="sender-lst">
+    <li>
+        <h6>Recipients : </h6>
+    </li>
+    @foreach (var item in Model.MessageUserMaps)
+    {
+        if (item.UserId != userId)
+        {
+        <li>
+            <a href="@Routes.Profile(item.UserId)">@item.UserName</a> | 
+        </li>
+        }
+    }
+</ul>
+<div id="threadNewMsg">
+    @using (Html.BeginForm("AddMessage", "Message", FormMethod.Post, new { @class = "refresh-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("ThreadId", Model.MessageThreadId)
+        <textarea name="Message" placeholder="Type your messsage"></textarea>
+        <div>
+            <a class="btn-primary hide">Send</a>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+    }
+</div>
+<br />
+<div class="msg-thread">
+    <ul>
+        @foreach (var msg in Model.Messages)
+        {
+            <li>
+                <div class="span">
+                    <a href="@Routes.Profile(msg.SenderId)">
+                        <img src='@Routes.Img35Pic(msg.SenderId)' alt="Pic"/>
+                    </a>
+                </div>
+                <div class="span msg">
+                    <div>
+                        <a href="@Routes.Profile(msg.SenderId)" class="bld" >@msg.SenderName</a>
+                        @DisplayHelper.DateTime(msg.Date, DateTypes.Medium)
+                    </div>
+                    <pre>@Html.Raw(msg.Text.Replace(Environment.NewLine, "<br/>"))</pre>
+                </div>
+            </li>
+
+        }
+    </ul>
+</div>
+<script>
+    $(function () {
+        $('#threadNewMsg a').click(function () {
+            $('#threadNewMsg form').submit();
+        });
+
+        $('#threadNewMsg textarea').click(function () {
+            $(this).css('height', '60px');
+            $('#threadNewMsg a').show();
+        });
+    });
+</script>
+<script src="~/Scripts/_ajax-form.js"></script>
+<script src="~/Scripts/_time.js"></script>

@@ -1,0 +1,54 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.JobOpening>
+
+@{
+    ViewBag.Title = "Job Posts | NIT Calicut Alumni";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="left-lst">
+    <div class="message">
+        <a class="new-obj btn" data-method="get" data-title="New Job Post" data-url='/JobPost/Edit'><i class="icon-plus"></i>Job Post</a>
+    </div>
+    @if (Model == null)
+    {
+        <h5>No job posts</h5>
+    }
+    else
+    {
+        <div class="avail-ht">
+            <ul class="job-summ">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="a-sele-item @(item.JobPostId == Model.SelectedId ? "seleted" : "")" data-id="@item.JobPostId">
+                        <div class="title">@item.Title</div>
+                        <div>@item.Organisation</div>
+                        <div class="desc">
+                            @item.Description
+                        </div>
+                        <div>
+                            @if (item.IsActive)
+                            {
+                                <div class="js-active">active</div>
+                            }
+                            else
+                            {
+                                <div class="js-inactive">inactive</div>
+                            }
+                            @DisplayHelper.DateTime(item.PostedOn, DateTypes.Medium)
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+@if (Model != null)
+{
+    <div class="a-frm-ctnr right-lstSele lazy-load" data-id="@Model.SelectedId" data-url="/JobPost/Show/" style="padding: 0 0 0 9px;">
+    </div>
+}
+
+@section Scripts
+{
+
+}

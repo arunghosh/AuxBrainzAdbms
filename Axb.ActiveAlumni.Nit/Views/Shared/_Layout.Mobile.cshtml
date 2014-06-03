@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="title" content="Official Online Portal for NIT Calicut Alumni Association" />
+    <meta name="description" content="Official Online Portal of NIT/REC Calicut Alumni Association. NITC Alumni Association is the organisation of the old students of NIT/REC Calicut. This is an online platform to reach out to all the alumni members." />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="NIT Calicut Alumni Association, NIT Alumni, NIT Calicut, NIT, Calicut, Alumni, NITCAA, REC, RECAA, National Institute of Technology, Kozhikode, Regional Engineering College, REC Calicut" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Mobile/css", "~/Content/jquerymobile/css")
+    <script>
+        $(document).ready(function () {
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
+</head>
+<body>
+
+    <div data-role="page" data-theme="a">
+        @Html.Partial("_ViewSwitcher")
+        <div style="padding: 0 0 5px 0">
+            <img src="~/Content/images/icon_mobile.png" id="iconMenu" />
+
+            <a href="/" id="companyNamel">
+                <div class="d-ib">
+                    <span>NITCAA</span>
+                </div>
+            </a>
+            <div id="mobMenu" class="hide">
+                @{Html.RenderAction("Mobile", "Navigation", new { area = "" });}
+            </div>
+            <div id="hme-title">
+                @{var hmeTitle = ViewData[Constants.HomeTitleKey];}
+                @if (hmeTitle != null)
+                {
+                    <div class="d-ib">@hmeTitle</div>
+                }
+                else
+                {
+                    <div class="d-ib">
+                        Connect with your Alumni
+                    </div>
+                }
+            </div>
+        </div>
+        <div data-role="content">
+            @RenderSection("featured", false)
+            @RenderBody()
+            @{Html.RenderPartial("DialogView");}
+        </div>
+        <div class="footer">
+            &copy; 2013-2014 Copyright NITCAA
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jqueryAndAxb")
+    @RenderSection("Scripts")
+    <script>
+        $(function () {
+            var $menu = $('#mobMenu');
+            $('#iconMenu').click(function () {
+                $menu.show();
+            });
+            //$('body').click(function () {
+            //    if ($menu.is(':visible')) {
+            //        $menu.hide();
+            //    }
+            //});
+        });
+    </script>
+</body>
+</html>

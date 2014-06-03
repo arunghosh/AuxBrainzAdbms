@@ -1,0 +1,58 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Admin.Models.DashboardVm
+
+@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<style>
+    #adminNotfy a
+    {
+        display: block;
+    }
+
+    #adminNotfy .name
+    {
+width: 170px;
+display: inline-block;
+text-align: right;
+background: #e0e0e0;
+float: left;
+padding: 0 4px;
+color: #444;
+    }
+
+        #adminNotfy .cnt
+    {
+width: 20px;
+display: inline-block;
+text-align: left;
+background: #e9e9e9;
+color: #888;
+padding: 0 7px 0 4px;
+font-size: 11px;
+font-weight: bold;
+    }
+    #adminNotfy .cnt.emph
+    {
+        color:#d72;
+    }
+    #adminNotfy li
+    {
+        border-bottom: 1px solid #fff;
+    }
+    #adminNotfy
+    {
+        list-style-type: none;
+    }
+</style>
+<ul id="adminNotfy">
+    @foreach (var item in Model.DashItems)
+    {
+        <li><a href="@item.Url">
+            <div class="name">@item.Name</div>
+            <div class='cnt @(item.Count > 0 ? "emph" : "")'>@item.Count</div>
+        </a></li>    
+    }
+</ul>
+
+@section Scripts{}

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.News);
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="p20">
+    <div>
+        <a class="btn" href='/Admin/AlumniNews/Edit'><i class="icon-plus"></i>Add News</a>
+    </div>
+    <hr />
+    @if (Model == null)
+    {
+        <h5>No News Found</h5>
+    }
+    else
+    {
+        <div>
+            <ul style="list-style-type:none;">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <div class="bld fs-l">@item.Title</div>
+                        <div>@item.SubTitle</div>
+                        <a class="btn" href="/Admin/AlumniNews/Edit/@item.AlumniNewsId"><i class="icon-edit"></i>Edit</a>
+                        <hr />
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+
+@section Scripts{}

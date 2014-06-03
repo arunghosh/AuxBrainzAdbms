@@ -1,0 +1,81 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.SignInRequest
+@{
+    ViewBag.Title = "Login | NIT Calicut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .input-prepend input
+    {
+        height: 22px;
+    }
+
+    .control-group
+    {
+    }
+
+    .control-label
+    {
+        line-height: 25px;
+    }
+</style>
+<div class="jumbotron" style="text-align: center">
+    <div style="text-align: left; margin: 5% auto 12px auto; width: 550px; border: 1px solid #ddd; border-radius: 1px;">
+        @{Html.RenderPartial(Routes.CloseNote);}
+        @using (Html.BeginForm("Login", "Authentication", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div style="font-size: 16px; padding: 10px 20px 5px 20px; color: #888; border-bottom: 1px solid #eee; background: #f9f9f9; letter-spacing: 1px; font-family: bebasregular; word-spacing: 7px; }">
+                Login <span style="color: #28c">Credentials</span>
+            </div>
+            <div class="p20">
+                <div id="fb-root"></div>
+                @*<img src="~/Content/images/fb-login.png" id="fbBtn" style="height: 80px; float: right;" />*@
+                <div class="d-ib ft-r">
+                    <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="inputIcon">Email address</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-envelope"></i></span>
+                            @Html.Bootstrap().TextBoxFor(m => m.Email).ShowValidationMessage(false)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="inputIcon">Password</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-lock"></i></span>
+                            @Html.Bootstrap().PasswordFor(m => m.Password).ShowValidationMessage(false)
+                        </div>
+                    </div>
+                </div>
+                @Html.Bootstrap().SubmitButton().Text("Log In").HtmlAttributes(new { @class = "btn-primary" })
+                <p>
+                    @Html.ValidationSummary()
+                </p>
+            </div>
+        }
+        <div class="ft-l">
+            @Html.ActionLink("New user? Register!!!", "Index", "Register", new { area = "" }, null)
+        </div>
+        <div class="ft-r">
+            @Html.ActionLink("Forgot your password?", "ForgotPassword", "Settings", new { area = "" }, null)
+        </div>
+    </div>
+    
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/_fbOAuth.js"></script>
+    <script>
+        $(function () {
+            $('#fbBtn').click(function () {
+                fetchProfileFB();
+            });
+        });
+    </script>
+}

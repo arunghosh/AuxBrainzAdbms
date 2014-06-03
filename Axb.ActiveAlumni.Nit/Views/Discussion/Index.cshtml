@@ -1,0 +1,85 @@
+﻿@model int?
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit.Services
+
+<style>
+    #mainContent
+    {
+        background: transparent;
+        box-shadow: none;
+        border:none;
+    }
+</style>
+@{
+    ViewBag.Title = "Discussions | NIT Calicut Alumni";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@if (Model != null)
+{
+    Html.RenderAction("Show", new { id = Model });
+}
+<div id="discLinksCtnr">
+    <div class="disc-r-ctnr">
+        <a class="new-obj add-btn-big" data-title="New Discussion" data-url='/Discussion/New'>
+            <div class="icon"><i class="icon-plus"></i></div>
+            <div class="text">New Discussion</div>
+        </a>
+    </div>
+    <div class="disc-r-ctnr">
+        <div class="disc-lnk-head">Recent Discussions</div>
+        <div class="lazy-load" data-url="/Discussion/Recent"></div>
+    </div>
+    <div class="disc-r-ctnr">
+        <div class="disc-lnk-head">Most Commented</div>
+        <div class="lazy-load" data-url="/Discussion/MostCommented"></div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/_ajax-form.js"></script>
+
+    <script>
+        $(function () {
+            getComments();
+
+            $('#newCmnt textarea').click(function () {
+                $(this).css('height', '60px');
+                $('#newCmnt button').show();
+            });
+
+            $('#newCmnt').each(function () {
+                var $this = $(this);
+
+                $this.unbind('submit');
+                $this.submit(function () {
+                    showFrmBusy($this);
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            if (result.errMsg === undefined || result.errMsg === null) {
+                                $('#dis-cmts-ctnr').html(result);
+                                $this.find('textarea').val('');
+                            }
+                            hideFrmBusy($this);
+                        }
+                    });
+                    return false;
+                });
+            });
+        });
+
+        function getComments() {
+            $.ajax({
+                url: '/Discussion/Comments',
+                type: 'GET',
+                data: { id: '@Model' },
+                success: function (result) {
+                    $('#dis-cmts-ctnr').html(result);
+                }
+            });
+        }
+    </script>
+}

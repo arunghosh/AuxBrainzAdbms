@@ -1,0 +1,66 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.User>
+
+@{
+    ViewBag.Title = "UserRegistration";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div style="padding: 0 0 0 10px;">
+    <form action="/Admin/UserStatistics/UserRegistration" method="post">
+        <h5>List users joined</h5>
+        <table>
+            <tr>
+                <td>
+                    <div class="bld">From</div> <input type="text" name="from" id="from"  value="@ViewBag.From"/>
+                </td>
+                <td>
+                    <div class="bld">To</div><input type="text" name="to" id="to"  value="@ViewBag.To"/>
+                </td>
+            </tr>
+        </table>
+        <div><button type="submit" class="btn-primary">Search</button></div> 
+    </form>
+</div>
+<br />
+@if (Model != null)
+{
+<div style="padding: 0 0 0 10px;">
+    <h6>@Model.Count users</h6>
+    </div>
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Batch</th>
+            <th>Branch</th>
+            <th>Degree</th>
+            <th>Date</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(Model.IndexOf(item) + 1)</td>
+                <td>@item.FullName</td>
+                <td>@item.UserCourses[0].Batch</td>
+                <td>@item.UserCourses[0].BranchName</td>
+                <td>@item.UserCourses[0].CourseName</td>
+                <td>@item.JoinedOn.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </table>
+}
+
+
+
+@section Scripts{
+    <script src="~/Scripts/_timePicker.js"></script>
+    <script>
+        $(function () {
+            $("#from").datepicker();
+            $("#from").datepicker("option", "dateFormat", "dd/mm/yy");
+            $("#to").datepicker();
+            $("#to").datepicker("option", "dateFormat", "dd/mm/yy");
+        });
+    </script>
+}

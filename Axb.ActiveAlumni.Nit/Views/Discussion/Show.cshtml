@@ -1,0 +1,96 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Discussion
+
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit
+@using Axb.ActiveAlumni.Nit.Infrastructure
+
+@if (Model == null)
+{
+    <h4 class="p20">Requested article not found or removed</h4>
+}
+else
+{
+    var userId = UserSession.CurrentUserId;
+    var firstCmt = Model.Comments.First();
+
+    <div id="disc-thread">
+        <div class="head">
+            <div class="title">
+                @Model.Title
+                @if ((bool)ViewData[Constants.IsAdminKey] || UserSession.CurrentUserId == Model.Comments[0].SenderId)
+                {
+                    if(Model.DiscusionType == DiscusionTypes.Discussion)
+                    {
+                        <a class="new-obj btn-gray ft-r" data-method="get" data-title="Edit Discussion" data-url='/Discussion/Edit/@Model.DiscussionId'><i class="icon-edit"></i>Edit</a>
+                    }
+                    else
+                    {
+                        <a class="btn-gray ft-r" href="/Discussion/BlogEdit/@Model.DiscussionId" ><i class="icon-edit"></i>Edit</a>
+                    }
+                }
+            </div>
+            <div class="fir-cmt">
+                <img src='@Routes.Img35Pic(firstCmt.SenderId)' alt="" class="ft-l"/>
+                <div>
+                    <a href="@Routes.Profile(firstCmt.SenderId)" class="bld" >@firstCmt.SenderName</a>
+                    @DisplayHelper.DateTime(firstCmt.Date, DateTypes.WithTime)
+                    <pre>@Html.Raw(Model.Content.Replace(Environment.NewLine, "<br/>"))</pre>
+                </div>
+            </div>
+            @*        <div class="ctrl-pnl">
+            <form class="afnty-frm">
+                @Html.AntiForgeryToken()
+                @Html.Hidden("Status")
+                @Html.Hidden("DiscussionCommentId", firstCmt.DiscussionCommentId)
+                <a class="agree" data-cnt="@firstCmt.AgreeCnt" />
+                <a class="disagree" data-cnt="@firstCmt.DisagreeCnt" />
+                <a class="offensive" data-cnt="@firstCmt.OffensiveCnt" />
+            </form>
+        </div>*@
+
+            <div class="disc-foot">
+                @if (Model.Tags != null && Model.Tags.Trim().Length > 1)
+                {
+                    <div><b>Tags</b> : @Model.Tags.Replace(",", " # ")</div>
+                }
+                @if (Model.GetCrowd().Any())
+                {
+                    <span class="bld">Groups : </span> <span>@string.Join(" | ", Model.GetCrowd())</span>
+                }
+                @if (Model.UserMap.Count > 1)
+                {
+                    <div>
+                        <span class="bld">Users : </span>
+                        @foreach (var item in Model.UserMap)
+                        {
+                            if (item.UserId != userId)
+                            {
+                            <a class="discft-a" href="@Routes.Profile(item.UserId)" >@item.UserName</a>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+            <br />
+            @using (Html.BeginForm("AddComment", "Discussion", FormMethod.Post, new { id = "newCmnt" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("id", Model.DiscussionId)
+                <textarea name="msg" placeholder="Type your comment"></textarea>
+                <div>
+                    <button type="submit" class="btn-primary hide">Post Comment</button>
+                    <img src="~/Content/images/busy.gif" class="frm-busy" />
+                </div>
+            }
+
+        </div>
+
+        <br />
+        <div id="dis-cmts-ctnr">
+            <img src="~/Content/images/busy.gif" class="m10" />
+        </div>
+    </div>
+    <script>
+        window.location.hash = '@Model.Slug';
+    </script>
+}

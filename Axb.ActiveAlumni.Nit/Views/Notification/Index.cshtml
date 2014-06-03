@@ -1,0 +1,76 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.NotificationVm
+@using Axb.ActiveAlumni.Nit.Entities
+
+<div id="notifyCtnr">
+
+    <div class="notify-icon" data-url="/Notification/Event">
+        <span class="ntfy-view ntfy-trig" title="Events">
+            <i class="icon-calendar icon-white"></i>
+            @if (Model.EventsCnt > 0)
+            {
+                <span class="notify-cnt">
+                    @Model.EventsCnt</span>
+            }
+        </span>
+        <div class="ntfy-ctnr">
+        </div>
+    </div>
+
+    <div class="notify-icon" data-url="/Notification/Mentor">
+        <span class="ntfy-view ntfy-trig" title="Mentoring Activities">
+            <i class="icon-bookmark icon-white"></i>
+            @*<span>M</span>*@
+            @if (Model.MentorshipCnt > 0)
+            {
+                <span class="notify-cnt">
+                    @Model.MentorshipCnt</span>
+            }
+        </span>
+        <div class="ntfy-ctnr">
+        </div>
+    </div>
+
+    <div class="notify-icon" data-url="/Notification/Messages">
+        <span class="ntfy-view ntfy-trig" title="Messages">
+            <i class="icon-envelope icon-white"></i>
+            @if (Model.MessagesCnt > 0)
+            {
+                <span class="notify-cnt">
+                    @Model.MessagesCnt</span>
+            }
+        </span>
+        <div class="ntfy-ctnr">
+        </div>
+    </div>
+
+    <div class="notify-icon" data-url="/Notification/Connect">
+        <span class="ntfy-view ntfy-trig" title="Connection Requests">
+            <i class="icon-user icon-white"></i>
+            @*<img src="~/Content/images/link.png" style="height: 17px;" />*@
+            @if (Model.ConnectReqCnt > 0)
+            {
+                <span class="notify-cnt">
+                    @Model.ConnectReqCnt</span>
+            }
+        </span>
+        <div class="ntfy-ctnr">
+        </div>
+    </div>
+
+    <div class="notify-icon" data-url="/Notification/Discussion">
+        <span class="ntfy-view ntfy-trig" title="Discussions">
+            <i class="icon-comment icon-white"></i>
+            @if (Model.DiscussionCnt > 0)
+            {
+                <span class="notify-cnt">
+                    @Model.DiscussionCnt</span>
+            }
+        </span>
+        <div class="ntfy-ctnr">
+        </div>
+    </div>
+</div>
+@if (!Model.IsDummy)
+{
+    <script src="~/Scripts/_ajax-pop.js"></script>
+}

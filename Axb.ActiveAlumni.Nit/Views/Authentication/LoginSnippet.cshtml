@@ -1,0 +1,51 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.SignInRequest
+
+<style>
+    #loginSnpt input[type="text"], #loginSnpt input[type="password"]
+    {
+        width: 140px;
+        height: 18px;
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0;
+    }
+
+    #loginSnpt td
+    {
+        padding: 1px 4px;
+    }
+
+    #loginSnpt .ckb
+    {
+        padding: 0 0 0 23px;
+    }
+
+    #loginSnpt input[type="checkbox"]
+    {
+        opacity:.7;
+    }
+    #loginSnpt label, #loginSnpt a
+    {
+        color: #bbb;
+    }
+</style>
+@using (Html.BeginForm("Login", "Authentication", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.Bootstrap().TextBoxFor(m => m.Email).Placeholder("Email Address")</td>
+            <td>@Html.Bootstrap().PasswordFor(m => m.Password).Placeholder("Password")</td>
+            <td>@Html.Bootstrap().SubmitButton().Text("Log In").HtmlAttributes(new { @class = "btn btn" })</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.CheckBoxFor(m => m.IsPresistant)
+                @Html.LabelFor(m => m.IsPresistant)
+            </td>
+            <td>
+                @Html.ActionLink("Forgot Password", "ForgotPassword", "Settings", new { area = "" }, null)
+            </td>
+        </tr>
+    </table>
+}
+

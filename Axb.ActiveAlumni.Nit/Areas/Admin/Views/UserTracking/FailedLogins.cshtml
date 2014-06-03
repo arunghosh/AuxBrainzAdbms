@@ -1,0 +1,30 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.FailedLogin>
+
+@{
+    ViewBag.Title = "Failed Login Attempts";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h5 style="padding: 0 0 0 10px;">Failed Logins</h5>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Email Address</th>
+        <th>Time</th>
+        <th>Message</th>
+        <th>IP Address</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(Model.IndexOf(item) + 1)</td>
+            <td>@item.Email</td>
+            <td>@DisplayHelper.DateTime(item.Time, DateTypes.Normal)</td>
+            <td>@item.Message</td>
+            <td>@item.IPAddress</td>
+        </tr>
+    }
+</table>
+
+@section Scripts{}

@@ -1,0 +1,14 @@
+﻿@using Axb.ActiveAlumni.Nit;
+<div class="ft-r">
+    <a href="/User" class="head-username">@UserSession.CurrentUserName</a>
+    @*@Html.ActionLink(UserSession.CurrentUserName, "Index", "FullProfile", new { area = "Profile", id = UserSession.CurrentUserId }, new { @class = "head-username" })*@
+    <div class="notify-icon" data-url="/Settings/HeaderMenu">
+        <span class="ntfy-trig ntfy-view">
+            <i class="icon-cog icon-white"></i>
+            @*<img src="~/Content/images/setting.png" />*@
+        </span>
+        <div class="ntfy-ctnr setting">
+        </div>
+    </div>
+    <a href="/User" id="editProf">(Edit Profile)</a>
+</div>

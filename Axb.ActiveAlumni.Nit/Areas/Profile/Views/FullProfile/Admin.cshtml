@@ -1,0 +1,62 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.ProfileIdVm
+
+@{
+    Layout = "/Views/Shared/_UserLayout.cshtml";
+}
+@if (Model.CurrUserId == Model.ReqUserId)
+{
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+}
+<div id="prfLeft">
+    <div>
+        <div id="pictureInfoCtnr" class="span">
+            @Html.Partial("PictureView", Model)
+        </div>
+        <div id="basicprofileCtnr">
+            @{Html.RenderAction("Show", "BasicProfile", new { area = "Profile", id = Model.ReqUser.UserId });}
+        </div>
+    </div>
+    <div style="clear: both; padding-top: 1px;">
+        <hr class="clrb" />
+    </div>
+    <div id="addressListCtnr">
+        @{Html.RenderAction("List", "Address", new { area = "Profile", id = Model.ReqUser.UserId });}
+    </div>
+    <div style="clear: both; padding-top: 1px;">
+        <hr class="clrb" />
+    </div>
+    <div id="contactprofileCtnr">
+        @{Html.RenderAction("Show", "ContactProfile", new { area = "Profile", id = Model.ReqUser.UserId });}
+    </div>
+    <div class="clrb" style="padding-top: 1px;">
+        <hr />
+    </div>
+    <div id="relativeListCtnr" class="lazy-load" data-url="\Profile\Relative\List\@Model.ReqUserId"></div>
+    <hr />
+</div>
+
+<div id="prfRight">
+    @{Html.RenderPartial("ActionButtons");}
+
+    <div id="jobListCtnr" class="pl20">
+        @{Html.RenderAction("List", "Job", new { area = "Profile", id = Model.ReqUserId });}
+    </div>
+    <div class="clrb" style="padding-top: 1px;">
+        <hr />
+    </div>
+    <div id="skillprofileCtnr" class="pl20">
+        @{Html.RenderAction("Show", "SkillProfile", new { area = "Profile", id = Model.ReqUser.UserId });}
+    </div>
+    <div class="clrb" style="padding-top: 1px;">
+        <hr />
+    </div>
+    <div id="educationListCtnr" class="pl20 lazy-load" data-url="\Profile\Education\List\@Model.ReqUserId" >
+        <h4>Education</h4>
+        <br />
+    </div>
+    <hr />
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/_profile.js"></script>
+}

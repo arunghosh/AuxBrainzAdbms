@@ -1,0 +1,23 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Event
+<div style="width: 500px;">
+    @using (Html.BeginForm("SmsNotify", "Event", FormMethod.Post, new { @class = "save-clse-frm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.EventId)
+        <div style="background: #f0f3f9; padding: 8px; color: #111; border-radius: 2px;margin:5px 0 0 0">
+            <pre class="read">@Html.Raw(Model.SmsMessage.Replace(Environment.NewLine, "<br/>"))</pre>
+        </div>
+        <hr />
+        <div>
+            <a class="btn btn-cancel">Cancel</a>
+            <button type="submit" class="btn-primary">Send SMS Notification</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+        <p>
+            @Html.ValidationSummary()
+        </p>
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>  
+    }
+</div>
+<script src="~/Scripts/_save-clse-frm.js"></script>

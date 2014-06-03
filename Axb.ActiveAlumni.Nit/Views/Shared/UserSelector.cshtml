@@ -1,0 +1,132 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.User>
+
+<style>
+    .ui-autocomplete img
+    {
+        width: 35px;
+        min-height: 25px;
+        display: inline-block;
+        float: left;
+    }
+
+    .ba-info
+    {
+        font-size: 11px;
+        margin: 0px 0 8px 5px;
+        font-weight:bold;
+    }
+
+    .ac-info
+    {
+        display: inline-block;
+        width: 250px;
+        font-size: 11px;
+        margin: 0px 0 8px 5px;
+    }
+</style>
+
+
+<div>
+    <ul class="a-user-sele user-lst">
+        <li class="ac-inp">
+            <input type="text" class="user-srch-txt" name="UserName" placeholder="User Name" />
+        </li>
+    </ul>
+</div>
+
+<script>
+    $(function () {
+        $('.user-srch-txt').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Home/GetUserByName",
+                    data: { term: request.term },
+                    dataType: "json",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                name: item.Name,
+                                id: item.Id,
+                                batch: item.Batch,
+                                course: item.Course
+                            };
+                        }))
+                    }
+                })
+            },
+            select: function (event, ui) {
+                if (ui.item.id == 0) {
+                    addCourse(ui.item.name);
+                } else {
+                    addUser(ui.item.id, ui.item.name);
+                }
+                this.value = '';
+                return false;
+            }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            if (item.id == 0) {
+                var inner_html = '<a><div class="ba-info">' + item.name + '</div></a>';
+            }
+            else {
+
+                var imgSrc = 'src="/Home/SmallImage/' + item.id + '"';
+                var inner_html = '<a><img class="image" ' + imgSrc + '/><div class="ac-info"><div class="bld">' + item.name + '</div><div class="dim">' + item.batch + ' | ' + item.course + '</div></div></a>';
+            }
+            return $("<li></li>")
+                        .data("item.autocomplete", item)
+                        .append(inner_html)
+                        .appendTo(ul);
+
+        };
+
+        @foreach (var item in Model)
+        {
+            <text>addUser('@item.UserId', '@item.FullName');</text>    
+        }
+    });
+
+    function addUser(userId, userName) {
+        var $ctnr = $('<li>')
+        $inp = $('.a-user-sele .ac-inp');
+        $ctnr.insertBefore('.a-user-sele .ac-inp');
+        $('<span>')
+            .addClass('value')
+            .text(userName)
+            .appendTo($ctnr);
+        $('<input>')
+            .attr({ type: 'hidden', value: userId, name: 'AcSeleUserIds' })
+            .appendTo($ctnr);
+        $('<span>')
+            .addClass('close')
+            .text('X')
+            .click(function () {
+                $(this).parent().remove();
+            })
+            .appendTo($ctnr);
+        $inp.val('');
+        $inp.focus();
+    }
+
+
+    function addCourse(userName) {
+        var $ctnr = $('<li>')
+        $inp = $('.a-user-sele .ac-inp');
+        $ctnr.insertBefore('.a-user-sele .ac-inp');
+        $('<span>')
+            .addClass('value')
+            .text(userName)
+            .appendTo($ctnr);
+        $('<input>')
+            .attr({ type: 'hidden', value: userName, name: 'AcCourses' })
+            .appendTo($ctnr);
+        $('<span>')
+            .addClass('close')
+            .text('X')
+            .click(function () {
+                $(this).parent().remove();
+            })
+            .appendTo($ctnr);
+        $inp.val('');
+        $inp.focus();
+    }
+</script>

@@ -1,0 +1,78 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.AlumniNews
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.News);
+    Layout = Routes.Layout;
+}
+
+<div class="new-frm" id="newOffer" style="">
+    <h3>Add News</h3>
+    @using (Html.BeginForm("Edit", "AlumniNews", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.AlumniNewsId)
+
+        if (!(bool)ViewData[Constants.IsAuthKey])
+        {
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+
+        @Html.LabelFor(m => m.EmailAddress)
+        @Html.TextBoxFor(m => m.EmailAddress)
+        }
+        
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title)
+
+        @Html.LabelFor(m => m.SubTitle)
+        @Html.TextBoxFor(m => m.SubTitle)
+
+        @Html.LabelFor(m => m.NewsLink)
+        @Html.TextBoxFor(m => m.NewsLink)
+        
+        @Html.LabelFor(m => m.News)
+        @Html.TextAreaFor(m => m.News, new { style = "height:120px;" })
+
+        <div style="display: inline-block; width: 100%;">
+            <div class="span">
+                <br />
+                <input type="file" name="profile" onchange="showPreview(this)" class="dim" />
+                <div class="dim">*** You can upload a JPG, GIF or PNG file</div>
+                <div class="dim">*** Maximum allowed file size is 700kB</div>
+                <br />
+            </div>
+
+
+            <div id="previewCtnr" class="span p20 hide">
+                <div class="dim">Display Picture</div>
+                <img id="preview" src="/Admin/AlumniNews/NewsImage/@Model.AlumniNewsId" alt="image" />
+            </div>
+        </div>
+        if ((bool)ViewData[Constants.IsAdminKey])
+        {
+            @Html.LabelFor(m => m.Status)
+            @Html.DropDownList("Status")
+        }
+        <div>
+            <div>
+                <a class="submit btn" href="@Routes.NavigationItems[PageTypes.News].TinyUrl">Cancel</a>
+                @if (Model.AlumniNewsId == 0)
+                {
+                    <button class="submit btn-primary">Add News</button>
+                }
+                else
+                {
+                    <button class="submit btn-primary">Update News</button>
+                }
+            </div>
+        </div>
+        
+        @Html.ValidationSummary()
+    }
+</div>
+@section Scripts
+    {
+    <script src="~/Scripts/_photoPre.js"></script>
+    <script src="~/Scripts/_save-clse-frm.js"></script>
+}

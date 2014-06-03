@@ -1,0 +1,55 @@
+﻿<style>
+    #mainBk
+    {
+        background: #fff;
+    }
+
+    #mainContent
+    {
+        padding-bottom: 0px;
+        box-shadow: none;
+    }
+</style>
+<div id="logReg">
+    <a href="/login" style="background: #999;">Login</a>
+    <a href="/Register">Register</a>
+</div>
+@{Html.RenderPartial(Routes.CloseNote);}
+<div>
+    <a href="/home/ragam">
+        <img src="~/Content/images/invi.jpg" class="w100" />
+    </a>
+    <br />
+    <div class="box-sd">
+        <a class="home-sp-h6" href="/News">News</a>
+        <div class="hme-cover">
+            @{Html.RenderAction("Summary", "AlumniNews", new { area = "Admin" });}
+        </div>
+    </div>
+    <br class="hme-br" />
+    <div class="box-sd">
+        <a class="home-sp-h6" href="/Events">Upcoming Events</a>
+        <div class="hme-cover">
+            @{Html.RenderAction("Upcoming", "Event", null);}
+        </div>
+    </div>
+    <br />
+    <a class="home-sp-h6" href="/AlumniSpeaks">Alumni Speak</a>
+    @{Html.RenderAction("Summary", "AlumniSpeak", new { area = "Admin" });}
+    <br />
+    <a class="home-sp-h6" href="/AlumniToKnow">Alumni Tweets</a>
+    @{Html.RenderAction("Summary", "AlumniKnow", new { area = "Admin" });}
+    <br />
+    <div id="advt" class="box-sd">
+        <a href="http://suviregroup.com/" target="_blank">
+            <span class="ft-r fs-s dim-v">advt</span>
+            <img src="~/Content/images/advt.png" />
+            <p>
+                Manufacturers of LV & MV Switch gear products
+            </p>
+            <div>www.suviregroup.com</div>
+        </a>
+    </div>
+    <br />
+</div>
+

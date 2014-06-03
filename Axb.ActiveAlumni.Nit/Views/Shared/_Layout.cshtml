@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    @if (ViewBag.Meta == null)
+    {
+        <title>@ViewBag.Title</title>
+        <meta name="title" content="Official Online Portal for NIT Calicut Alumni Association" />
+        <meta name="description" content="Official Online Portal of NIT Calicut Alumni Association. NITC Alumni Association is the organisation of the old students of NIT/REC Calicut. This is an online platform to reach out to all the alumni members." />
+    }
+    else
+    {
+        <title>@ViewBag.Meta</title>
+        <meta name="title" content="@ViewBag.Meta" />
+        <meta name="description" content="@ViewBag.MetaD" />
+        <meta name="og:image" content="@ViewBag.OgImg" />
+    }
+    <meta name="keywords" content="NIT Calicut Alumni Association, NIT, Calicut, Alumni, NITCAA, REC, RECAA, National Institute of Technology, Kozhikode, Regional Engineering College" />
+    <meta name="viewport" content="width=device-width">
+    @Styles.Render("~/Content/guestcss")
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-46725260-1', 'nitcalumni.com');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    @Html.Partial("_ViewSwitcher")
+    <div id="headerl">
+        <div class="main-align" id="headCenter">
+            <div style="text-align: left; display: inline-block; width: 100%;">
+                <a href="/" id="companyNamel">
+                    <img src="~/Content/images/logo_w.jpg" />
+                    <div class="d-ib">
+                        <span>NIT Calicut</span>
+                        <div id="companySubH">
+                            alumni association
+                        </div>
+                    </div>
+                </a>
+                <div class="span ft-r" id="guestNav">
+                    <div style="display: inline-block; width: 100%;">
+                        <div id="topNavCtnr">
+                            @{Html.RenderAction("Top", "Navigation", new { area = "" });}
+                        </div>
+                    </div>
+                    <div>
+                        @{Html.RenderAction("Guest", "Navigation", new { area = "" });}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="hmeCtnr">
+        <div id="guestHeadCvr">
+            <div class="main-align" id="head-title">
+                @{var hmeTitle = ViewData[Constants.HomeTitleKey];}
+                <div id="hme-title">
+                    @if (hmeTitle != null)
+                    {
+                        <img src="@ViewData[Constants.HomeImgKey]" alt="" />
+                        <div class="d-ib">@hmeTitle</div>
+                    }
+                    else
+                    {
+                        <img src="~/Content/images/net.png" alt="" />
+                        <div class="d-ib">
+                            Connect with your Alumni
+                        </div>
+                    }
+
+                    <div class="d-ib ft-r">
+                        <div class="d-ib">
+                            Connect with your Alumni
+                        </div>
+                        <img src="~/Content/images/net.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mainBk" style="padding: 2px 0;">
+            <div class="main-align" id="mainContent" style="text-align: left; min-height: 600px;">
+                @RenderBody()
+            </div>
+            @{Html.RenderPartial("DialogView");}
+        </div>
+        <div class="footer-bk">
+            <div class="main-align footer">
+                <span class="ft-l">&copy; 2013-2014 Copyright NIT Calicut Alumni Association
+                </span>
+                @{Html.RenderPartial("FeedButton");}
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jqueryAndAxb")
+    @RenderSection("Scripts")
+</body>
+</html>

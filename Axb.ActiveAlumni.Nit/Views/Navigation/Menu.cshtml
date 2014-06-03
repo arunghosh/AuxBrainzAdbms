@@ -1,0 +1,36 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.NavigationVm
+@using Axb.ActiveAlumni.Nit.Infrastructure
+<ul class="span nav nav-tabs">
+    @foreach (var ni in Model.TextItems)
+    {
+        var drops = ni.NavivationItems;
+        if (drops != null && drops.Any())
+        {
+            var isSelected = ni.PageType == Model.SelectePage || drops.Any(d => d.PageType == Model.SelectePage);
+            <li class="@(isSelected ? "menu-drop active" : "menu-drop")">
+                <a href="@ni.TinyUrl">@ni.DisplayText</a>
+                <ul class="dropdown-menu drop-ctnt">
+                    @foreach (var drop in drops)
+                    {
+                        <li><a href="@drop.TinyUrl" >@drop.DisplayText</a></li>
+                    }
+                </ul>
+            </li>
+        }
+        else
+        {
+        <li class="@(ni.PageType == Model.SelectePage ? "active" : "")">
+            <a href="@ni.TinyUrl">@ni.DisplayText</a>
+        </li>
+        }
+    }
+</ul>
+<ul class="span nav nav-tabs ft-r">
+    @foreach (var ni in Model.ImageItems)
+    {
+        <li class="@(ni.PageType == Model.SelectePage ? "active" : "")">
+            <a href="@ni.TinyUrl">
+                <img src="@ni.ImageUrl" /></a>
+        </li>
+    }
+</ul>

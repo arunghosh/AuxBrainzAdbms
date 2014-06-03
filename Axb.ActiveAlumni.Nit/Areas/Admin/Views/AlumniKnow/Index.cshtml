@@ -1,0 +1,71 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.AlumniToKnow>
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.AlumniToKnow);
+    Layout = Routes.Layout;
+    ViewData[Constants.HomeTitleKey] = "Alumni To Know";
+    ViewData[Constants.HomeImgKey] = "/Content/images/trophy.png";
+
+}
+<div style="width: 550px; padding: 0px 19px 10px 15px; border-right: 1px dashed #999;"
+    class="d-ib ft-l">
+
+    @if (Model != null)
+    {
+        var userid = UserSession.CurrentUserId;
+        <hr />
+        <ul class="alm-know-summ">
+            @foreach (var item in Model.Items)
+            {
+                <li style="border-bottom: 1px solid #e0e0e0; padding: 8px 0 12px 0;">
+                    <img src="@Routes.ProfilePic(item.AlumniId)" alt=""/>
+
+                    <div class="alm-know-full">
+                        <div>
+                            <a class="fs-l bld" href="@Routes.Profile(item.AlumniId)">@item.AlumniName</a> |
+                            <span>
+                                @item.Course
+                            </span>| 
+                            <span>
+                                @item.Batch Batch
+                            </span>
+                            <div class="d-ib ft-r">
+                                @if ((bool)ViewData[Constants.IsAdminKey] || item.UserId == userid)
+                                { 
+                                    <a class="new-obj btn-gray" data-method="get" data-title="Edit Tweet" data-url='/Admin/AlumniKnow/Edit/@item.AlumniToKnowId'><i class="icon-edit"></i>Edit</a>
+                                }
+                                else
+                                {
+                                    @DisplayHelper.DateTime(item.CreatedOn, DateTypes.DateOnly)
+                                }
+                            </div>
+                        </div>
+                        <p class="read">@item.About</p>
+                    </div>
+                </li>    
+            }
+        </ul>
+    }
+</div>
+<div class="d-ib ft-r" style="width: 350px; line-height: 30px; display:none;">
+    <hr />
+    <img src="~/Content/images/drophy.jpg" />
+    <div class="clmn-head" style="color: #999">Stories of <span style="color: rgb(39,174,97)">success</span>, <span style="color: #19f">awards</span>, <span style="color: rgb(193,53,46)">recognition</span>, commentable acts...</div>
+    @if ((bool)ViewData[Constants.IsAdminKey])
+    {
+        <div>
+            <a class="new-obj btn" data-method="get" data-title="Alumni To Know" data-url='/Admin/AlumniKnow/Edit'><i class="icon-plus"></i>Alumni To Know (ADM)</a>
+        </div>
+    }
+
+    <hr />
+    <div>
+        <span class="clmn-head" style="color: #777">...and if you have <span class="title-em">news</span> to share about <span class="title-em">self</span> or <span class="title-em">friends...</span></span>
+    </div>
+    <a class="new-obj btn btn-spl" data-method="get" data-title="Alumni To Know" data-url='/Admin/AlumniKnow/NonAdmin'>Click here to  <i class="icon-share icon-white"></i><b>SHARE</b> !!!</a>
+    <hr />
+</div>
+
+@section Scripts
+    {
+}

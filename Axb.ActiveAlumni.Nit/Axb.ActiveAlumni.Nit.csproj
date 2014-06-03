@@ -1,0 +1,2058 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{106A0946-1C80-4C52-89B8-AE16717A510C}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Axb.ActiveAlumni.Nit</RootNamespace>
+    <AssemblyName>Axb.ActiveAlumni.Nit</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.4.2\lib\net45\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\T4MVCExtensions.3.7.3\lib\net40\T4MVCExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="TwitterBootstrapMVC">
+      <HintPath>..\packages\TwitterBootstrapMVC.2.6.3\lib\net40\TwitterBootstrapMVC.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleMobileConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminControllerBase.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdvertiseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AlumniKnowController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AlumniNewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AlumniSpeakController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CrowdFundingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeedbackController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FundAlumniController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JoinRequestController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageUserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsLetterController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SpecialFormController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserTrackingController.cs" />
+    <Compile Include="Services\AuthenticationSrvBase.cs" />
+    <Compile Include="Services\AuthFacebookSrv.cs" />
+    <Compile Include="ViewModels\AdminSearchVm.cs" />
+    <Compile Include="Areas\Admin\Models\DashboardVm.cs" />
+    <Compile Include="Areas\Admin\Models\ManualUserRegVm.cs" />
+    <Compile Include="Areas\Admin\Models\NewsletterVm.cs" />
+    <Compile Include="Areas\Admin\Models\RegisterSearchVm.cs" />
+    <Compile Include="Areas\Admin\Controllers\SpecialOfferController.cs" />
+    <Compile Include="Areas\Admin\Models\SimpleUserSearchVm.cs" />
+    <Compile Include="Areas\Admin\Models\StatSearchVm.cs" />
+    <Compile Include="Areas\Admin\Models\TweekSummary.cs" />
+    <Compile Include="Areas\Admin\Models\UserStatVm.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserStatisticsController.cs" />
+    <Compile Include="Areas\Alumni\AlumniAreaRegistration.cs" />
+    <Compile Include="Areas\Alumni\Controllers\AlumniHomeController.cs" />
+    <Compile Include="Areas\Profile\Controllers\AddressController.cs" />
+    <Compile Include="Areas\Profile\Controllers\BasicProfileController.cs" />
+    <Compile Include="Areas\Profile\Controllers\CourseController.cs" />
+    <Compile Include="Areas\Profile\Controllers\EducationController.cs" />
+    <Compile Include="Areas\Profile\Controllers\InterestProfileController.cs" />
+    <Compile Include="Areas\Profile\Controllers\JobController.cs" />
+    <Compile Include="Areas\Profile\Controllers\RelativeController.cs" />
+    <Compile Include="Areas\Profile\Controllers\ServiceController.cs" />
+    <Compile Include="Areas\Profile\Controllers\SkillProfileController.cs" />
+    <Compile Include="Areas\Profile\Models\BasicProfileVm.cs" />
+    <Compile Include="Areas\Profile\Models\IntrestProfileVm.cs" />
+    <Compile Include="Areas\Profile\Models\IProfileUpdate.cs" />
+    <Compile Include="Areas\Profile\Controllers\FullProfileController.cs" />
+    <Compile Include="Areas\Profile\Controllers\ContactProfileController.cs" />
+    <Compile Include="Areas\Profile\Controllers\ProfileControllerBase.cs" />
+    <Compile Include="Areas\Profile\Models\ContactProfileVm.cs" />
+    <Compile Include="Areas\Profile\Models\ProfileIdVm.cs" />
+    <Compile Include="Areas\Profile\Models\SkillVm.cs" />
+    <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
+    <Compile Include="Controllers\AlumniOrgController.cs" />
+    <Compile Include="Controllers\BackCampusController.cs" />
+    <Compile Include="Controllers\BloodSearchController.cs" />
+    <Compile Include="Controllers\CircleController.cs" />
+    <Compile Include="Controllers\ConnectController.cs" />
+    <Compile Include="Controllers\DiscussionController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\MentorController.cs" />
+    <Compile Include="Controllers\JobPostController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\ViewSwitcherController.cs" />
+    <Compile Include="Entities\Activity.cs" />
+    <Compile Include="Entities\ActivityComment.cs" />
+    <Compile Include="Entities\ActivityTask.cs" />
+    <Compile Include="Entities\AlumniArticleBase.cs" />
+    <Compile Include="Entities\AlumniNews.cs" />
+    <Compile Include="Entities\AlumniSpeak.cs" />
+    <Compile Include="Entities\CommentAffinity.cs" />
+    <Compile Include="Entities\DiscussionComment.cs" />
+    <Compile Include="Entities\Discussion.cs" />
+    <Compile Include="Entities\DiscussionUserMap.cs" />
+    <Compile Include="Entities\EntityUserMap.cs" />
+    <Compile Include="Entities\Enum\AffinityStatus.cs" />
+    <Compile Include="Entities\AlumniToKnow.cs" />
+    <Compile Include="Entities\Enum\DiscusionTypes.cs" />
+    <Compile Include="Entities\Enum\NewsType.cs" />
+    <Compile Include="Entities\Enum\DisucssionCrowdType.cs" />
+    <Compile Include="Entities\Enum\InviteStatusTypes.cs" />
+    <Compile Include="Entities\Enum\PostStatusType.cs" />
+    <Compile Include="Entities\Enum\TaskStatus.cs" />
+    <Compile Include="Entities\Enum\UserCreateTypes.cs" />
+    <Compile Include="Entities\EventInvitee.cs" />
+    <Compile Include="Entities\Enum\JobTypes.cs" />
+    <Compile Include="Entities\Enum\LogTypes.cs" />
+    <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\EventComment.cs" />
+    <Compile Include="Entities\FailedLogin.cs" />
+    <Compile Include="Entities\FeedBack.cs" />
+    <Compile Include="Entities\GuestPost.cs" />
+    <Compile Include="Entities\GuestPostBase.cs" />
+    <Compile Include="Entities\IDigestEntity.cs" />
+    <Compile Include="Entities\IReadEntity.cs" />
+    <Compile Include="Entities\JobPost.cs" />
+    <Compile Include="Entities\Log.cs" />
+    <Compile Include="Entities\MentorUserMap.cs" />
+    <Compile Include="Entities\ServiceInfo.cs" />
+    <Compile Include="Entities\SpecialOffer.cs" />
+    <Compile Include="Entities\ThreadBase.cs" />
+    <Compile Include="Entities\ThreadItemBase.cs" />
+    <Compile Include="Entities\TweetAffinity.cs" />
+    <Compile Include="Entities\UnauthorisedExcpetion.cs" />
+    <Compile Include="Entities\UserLog.cs" />
+    <Compile Include="Entities\UserRole.cs" />
+    <Compile Include="Entities\UserSession.cs" />
+    <Compile Include="Infrastructure\DateExtension.cs" />
+    <Compile Include="Infrastructure\HtmlHelperExtension.cs" />
+    <Compile Include="Infrastructure\StringExtension.cs" />
+    <Compile Include="Migrations\201310281421292_added_notify_user.cs" />
+    <Compile Include="Migrations\201310281421292_added_notify_user.Designer.cs">
+      <DependentUpon>201310281421292_added_notify_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310281436231_added_notify_user_01.cs" />
+    <Compile Include="Migrations\201310281436231_added_notify_user_01.Designer.cs">
+      <DependentUpon>201310281436231_added_notify_user_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310290601199_added_discussion.cs" />
+    <Compile Include="Migrations\201310290601199_added_discussion.Designer.cs">
+      <DependentUpon>201310290601199_added_discussion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310291220490_updated_user_ts.cs" />
+    <Compile Include="Migrations\201310291220490_updated_user_ts.Designer.cs">
+      <DependentUpon>201310291220490_updated_user_ts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310291223430_updated_user_ts_01.cs" />
+    <Compile Include="Migrations\201310291223430_updated_user_ts_01.Designer.cs">
+      <DependentUpon>201310291223430_updated_user_ts_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310300935283_user_removed_pswd.cs" />
+    <Compile Include="Migrations\201310300935283_user_removed_pswd.Designer.cs">
+      <DependentUpon>201310300935283_user_removed_pswd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310301201186_updated_user_pswdTS.cs" />
+    <Compile Include="Migrations\201310301201186_updated_user_pswdTS.Designer.cs">
+      <DependentUpon>201310301201186_updated_user_pswdTS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310310512542_updated_db.cs" />
+    <Compile Include="Migrations\201310310512542_updated_db.Designer.cs">
+      <DependentUpon>201310310512542_updated_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310310742572_common_threadIte.cs" />
+    <Compile Include="Migrations\201310310742572_common_threadIte.Designer.cs">
+      <DependentUpon>201310310742572_common_threadIte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310310937410_updated_user_disc_ts.cs" />
+    <Compile Include="Migrations\201310310937410_updated_user_disc_ts.Designer.cs">
+      <DependentUpon>201310310937410_updated_user_disc_ts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310311049359_updated_user_mentor_ts.cs" />
+    <Compile Include="Migrations\201310311049359_updated_user_mentor_ts.Designer.cs">
+      <DependentUpon>201310311049359_updated_user_mentor_ts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311010641096_generalised_mentorships.cs" />
+    <Compile Include="Migrations\201311010641096_generalised_mentorships.Designer.cs">
+      <DependentUpon>201311010641096_generalised_mentorships.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311021218559_added_affnity.cs" />
+    <Compile Include="Migrations\201311021218559_added_affnity.Designer.cs">
+      <DependentUpon>201311021218559_added_affnity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311021342020_updated_aff.cs" />
+    <Compile Include="Migrations\201311021342020_updated_aff.Designer.cs">
+      <DependentUpon>201311021342020_updated_aff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311031511498_affni_update_cnt.cs" />
+    <Compile Include="Migrations\201311031511498_affni_update_cnt.Designer.cs">
+      <DependentUpon>201311031511498_affni_update_cnt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311050426029_added_log.cs" />
+    <Compile Include="Migrations\201311050426029_added_log.Designer.cs">
+      <DependentUpon>201311050426029_added_log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311050740159_crowrd_type_disc.cs" />
+    <Compile Include="Migrations\201311050740159_crowrd_type_disc.Designer.cs">
+      <DependentUpon>201311050740159_crowrd_type_disc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311050831421_crowrd_type_disc_01.cs" />
+    <Compile Include="Migrations\201311050831421_crowrd_type_disc_01.Designer.cs">
+      <DependentUpon>201311050831421_crowrd_type_disc_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311050926452_discussion_tag.cs" />
+    <Compile Include="Migrations\201311050926452_discussion_tag.Designer.cs">
+      <DependentUpon>201311050926452_discussion_tag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311060640264_updated_user_emailConfirm.cs" />
+    <Compile Include="Migrations\201311060640264_updated_user_emailConfirm.Designer.cs">
+      <DependentUpon>201311060640264_updated_user_emailConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311071518236_updated_user_token.cs" />
+    <Compile Include="Migrations\201311071518236_updated_user_token.Designer.cs">
+      <DependentUpon>201311071518236_updated_user_token.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311100614339_updated_user_pswd_tkn_exp.cs" />
+    <Compile Include="Migrations\201311100614339_updated_user_pswd_tkn_exp.Designer.cs">
+      <DependentUpon>201311100614339_updated_user_pswd_tkn_exp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311111205494_added_userrolecode.cs" />
+    <Compile Include="Migrations\201311111205494_added_userrolecode.Designer.cs">
+      <DependentUpon>201311111205494_added_userrolecode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311111254563_added_userrole_tble.cs" />
+    <Compile Include="Migrations\201311111254563_added_userrole_tble.Designer.cs">
+      <DependentUpon>201311111254563_added_userrole_tble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311111256046_added_userrole_tble_01.cs" />
+    <Compile Include="Migrations\201311111256046_added_userrole_tble_01.Designer.cs">
+      <DependentUpon>201311111256046_added_userrole_tble_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311111300067_added_userrole_tble_02.cs" />
+    <Compile Include="Migrations\201311111300067_added_userrole_tble_02.Designer.cs">
+      <DependentUpon>201311111300067_added_userrole_tble_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311130531513_added_session.cs" />
+    <Compile Include="Migrations\201311130531513_added_session.Designer.cs">
+      <DependentUpon>201311130531513_added_session.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311130548100_added_session_01.cs" />
+    <Compile Include="Migrations\201311130548100_added_session_01.Designer.cs">
+      <DependentUpon>201311130548100_added_session_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311130641082_added_session_02.cs" />
+    <Compile Include="Migrations\201311130641082_added_session_02.Designer.cs">
+      <DependentUpon>201311130641082_added_session_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311130721006_updated_email.cs" />
+    <Compile Include="Migrations\201311130721006_updated_email.Designer.cs">
+      <DependentUpon>201311130721006_updated_email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311130721418_updated_email_01.cs" />
+    <Compile Include="Migrations\201311130721418_updated_email_01.Designer.cs">
+      <DependentUpon>201311130721418_updated_email_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311130729034_added_failedloginsd.cs" />
+    <Compile Include="Migrations\201311130729034_added_failedloginsd.Designer.cs">
+      <DependentUpon>201311130729034_added_failedloginsd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311130732277_added_failedloginsd_01.cs" />
+    <Compile Include="Migrations\201311130732277_added_failedloginsd_01.Designer.cs">
+      <DependentUpon>201311130732277_added_failedloginsd_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311140607223_added_jobOpening.cs" />
+    <Compile Include="Migrations\201311140607223_added_jobOpening.Designer.cs">
+      <DependentUpon>201311140607223_added_jobOpening.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311140628213_added_jobOpening_01.cs" />
+    <Compile Include="Migrations\201311140628213_added_jobOpening_01.Designer.cs">
+      <DependentUpon>201311140628213_added_jobOpening_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311140709251_added_jobOpening_02.cs" />
+    <Compile Include="Migrations\201311140709251_added_jobOpening_02.Designer.cs">
+      <DependentUpon>201311140709251_added_jobOpening_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311170914317_jobPost_update_desiredSkill.cs" />
+    <Compile Include="Migrations\201311170914317_jobPost_update_desiredSkill.Designer.cs">
+      <DependentUpon>201311170914317_jobPost_update_desiredSkill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311171225239_update_jobOpen_Skills_01.cs" />
+    <Compile Include="Migrations\201311171225239_update_jobOpen_Skills_01.Designer.cs">
+      <DependentUpon>201311171225239_update_jobOpen_Skills_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311190449430_updated_joOpen_expNUll.cs" />
+    <Compile Include="Migrations\201311190449430_updated_joOpen_expNUll.Designer.cs">
+      <DependentUpon>201311190449430_updated_joOpen_expNUll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311190727453_updated_msgLength.cs" />
+    <Compile Include="Migrations\201311190727453_updated_msgLength.Designer.cs">
+      <DependentUpon>201311190727453_updated_msgLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311191118553_updated_jobPost_userName.cs" />
+    <Compile Include="Migrations\201311191118553_updated_jobPost_userName.Designer.cs">
+      <DependentUpon>201311191118553_updated_jobPost_userName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311191121587_updated_jobPost_userName_01.cs" />
+    <Compile Include="Migrations\201311191121587_updated_jobPost_userName_01.Designer.cs">
+      <DependentUpon>201311191121587_updated_jobPost_userName_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311200701308_jobPost_updateTime.cs" />
+    <Compile Include="Migrations\201311200701308_jobPost_updateTime.Designer.cs">
+      <DependentUpon>201311200701308_jobPost_updateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311211110534_updated_jobpost_resume.cs" />
+    <Compile Include="Migrations\201311211110534_updated_jobpost_resume.Designer.cs">
+      <DependentUpon>201311211110534_updated_jobpost_resume.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311220721436_add_event.cs" />
+    <Compile Include="Migrations\201311220721436_add_event.Designer.cs">
+      <DependentUpon>201311220721436_add_event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311230712445_updated_event_googleMap.cs" />
+    <Compile Include="Migrations\201311230712445_updated_event_googleMap.Designer.cs">
+      <DependentUpon>201311230712445_updated_event_googleMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311230741140_updated_event_location_mndt.cs" />
+    <Compile Include="Migrations\201311230741140_updated_event_location_mndt.Designer.cs">
+      <DependentUpon>201311230741140_updated_event_location_mndt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311230849362_updated_event_cretedtime.cs" />
+    <Compile Include="Migrations\201311230849362_updated_event_cretedtime.Designer.cs">
+      <DependentUpon>201311230849362_updated_event_cretedtime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311250459144_updated_event_01.cs" />
+    <Compile Include="Migrations\201311250459144_updated_event_01.Designer.cs">
+      <DependentUpon>201311250459144_updated_event_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311250514308_updated_event_02.cs" />
+    <Compile Include="Migrations\201311250514308_updated_event_02.Designer.cs">
+      <DependentUpon>201311250514308_updated_event_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311250637013_updated_event_03.cs" />
+    <Compile Include="Migrations\201311250637013_updated_event_03.Designer.cs">
+      <DependentUpon>201311250637013_updated_event_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311250945049_added_alumnitoKnow.cs" />
+    <Compile Include="Migrations\201311250945049_added_alumnitoKnow.Designer.cs">
+      <DependentUpon>201311250945049_added_alumnitoKnow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311251012056_update_alumnitoKnow.cs" />
+    <Compile Include="Migrations\201311251012056_update_alumnitoKnow.Designer.cs">
+      <DependentUpon>201311251012056_update_alumnitoKnow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311251224283_updated_alumniknow_Speak.cs" />
+    <Compile Include="Migrations\201311251224283_updated_alumniknow_Speak.Designer.cs">
+      <DependentUpon>201311251224283_updated_alumniknow_Speak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311251239068_update_alumnitoKnow_02.cs" />
+    <Compile Include="Migrations\201311251239068_update_alumnitoKnow_02.Designer.cs">
+      <DependentUpon>201311251239068_update_alumnitoKnow_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311261156134_updatedUser_IsAdminCreated.cs" />
+    <Compile Include="Migrations\201311261156134_updatedUser_IsAdminCreated.Designer.cs">
+      <DependentUpon>201311261156134_updatedUser_IsAdminCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311270653336_added_altoknow-01.cs" />
+    <Compile Include="Migrations\201311270653336_added_altoknow-01.Designer.cs">
+      <DependentUpon>201311270653336_added_altoknow-01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311271509110_added_specialOffers.cs" />
+    <Compile Include="Migrations\201311271509110_added_specialOffers.Designer.cs">
+      <DependentUpon>201311271509110_added_specialOffers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311271656332_udpate_specialOffers_01.cs" />
+    <Compile Include="Migrations\201311271656332_udpate_specialOffers_01.Designer.cs">
+      <DependentUpon>201311271656332_udpate_specialOffers_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311280447294_update_specialOffer_01.cs" />
+    <Compile Include="Migrations\201311280447294_update_specialOffer_01.Designer.cs">
+      <DependentUpon>201311280447294_update_specialOffer_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311281310547_update_news.cs" />
+    <Compile Include="Migrations\201311281310547_update_news.Designer.cs">
+      <DependentUpon>201311281310547_update_news.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311290526409_update_alumniNews_02.cs" />
+    <Compile Include="Migrations\201311290526409_update_alumniNews_02.Designer.cs">
+      <DependentUpon>201311290526409_update_alumniNews_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311290548563_update_user_roleStr.cs" />
+    <Compile Include="Migrations\201311290548563_update_user_roleStr.Designer.cs">
+      <DependentUpon>201311290548563_update_user_roleStr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311290740456_update_alumniNews_03.cs" />
+    <Compile Include="Migrations\201311290740456_update_alumniNews_03.Designer.cs">
+      <DependentUpon>201311290740456_update_alumniNews_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311291449190_updated_user_role-notReq.cs" />
+    <Compile Include="Migrations\201311291449190_updated_user_role-notReq.Designer.cs">
+      <DependentUpon>201311291449190_updated_user_role-notReq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312011313199_updated_reltion_withUser.cs" />
+    <Compile Include="Migrations\201312011313199_updated_reltion_withUser.Designer.cs">
+      <DependentUpon>201312011313199_updated_reltion_withUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312011445597_revert_reltion_withUser.cs" />
+    <Compile Include="Migrations\201312011445597_revert_reltion_withUser.Designer.cs">
+      <DependentUpon>201312011445597_revert_reltion_withUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312020450565_updated_relative_location.cs" />
+    <Compile Include="Migrations\201312020450565_updated_relative_location.Designer.cs">
+      <DependentUpon>201312020450565_updated_relative_location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312021050451_added_feedback.cs" />
+    <Compile Include="Migrations\201312021050451_added_feedback.Designer.cs">
+      <DependentUpon>201312021050451_added_feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312021130210_udpate_feedback.cs" />
+    <Compile Include="Migrations\201312021130210_udpate_feedback.Designer.cs">
+      <DependentUpon>201312021130210_udpate_feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312030417247_updated_user_contact_01.cs" />
+    <Compile Include="Migrations\201312030417247_updated_user_contact_01.Designer.cs">
+      <DependentUpon>201312030417247_updated_user_contact_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312050542234_updated_user_tseventView.cs" />
+    <Compile Include="Migrations\201312050542234_updated_user_tseventView.Designer.cs">
+      <DependentUpon>201312050542234_updated_user_tseventView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312060651167_update_news_anonymos.cs" />
+    <Compile Include="Migrations\201312060651167_update_news_anonymos.Designer.cs">
+      <DependentUpon>201312060651167_update_news_anonymos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312060725205_update_news_anonymos_10.cs" />
+    <Compile Include="Migrations\201312060725205_update_news_anonymos_10.Designer.cs">
+      <DependentUpon>201312060725205_update_news_anonymos_10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312060735377_update_news_anonymos_02.cs" />
+    <Compile Include="Migrations\201312060735377_update_news_anonymos_02.Designer.cs">
+      <DependentUpon>201312060735377_update_news_anonymos_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312060948220_added_guestPost.cs" />
+    <Compile Include="Migrations\201312060948220_added_guestPost.Designer.cs">
+      <DependentUpon>201312060948220_added_guestPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312071358495_updated_toknow_ip.cs" />
+    <Compile Include="Migrations\201312071358495_updated_toknow_ip.Designer.cs">
+      <DependentUpon>201312071358495_updated_toknow_ip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312071410375_updated_toknow_ip_01.cs" />
+    <Compile Include="Migrations\201312071410375_updated_toknow_ip_01.Designer.cs">
+      <DependentUpon>201312071410375_updated_toknow_ip_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312110736065_added_userlog.cs" />
+    <Compile Include="Migrations\201312110736065_added_userlog.Designer.cs">
+      <DependentUpon>201312110736065_added_userlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312110754274_update_userlog_01.cs" />
+    <Compile Include="Migrations\201312110754274_update_userlog_01.Designer.cs">
+      <DependentUpon>201312110754274_update_userlog_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312111640021_updated_specialOffer_11.cs" />
+    <Compile Include="Migrations\201312111640021_updated_specialOffer_11.Designer.cs">
+      <DependentUpon>201312111640021_updated_specialOffer_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312120457394_updated_offer.cs" />
+    <Compile Include="Migrations\201312120457394_updated_offer.Designer.cs">
+      <DependentUpon>201312120457394_updated_offer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312130618414_user_bloodgrp.cs" />
+    <Compile Include="Migrations\201312130618414_user_bloodgrp.Designer.cs">
+      <DependentUpon>201312130618414_user_bloodgrp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312131216390_user_digest.cs" />
+    <Compile Include="Migrations\201312131216390_user_digest.Designer.cs">
+      <DependentUpon>201312131216390_user_digest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312150357493_updated_disc_deletion.cs" />
+    <Compile Include="Migrations\201312150357493_updated_disc_deletion.Designer.cs">
+      <DependentUpon>201312150357493_updated_disc_deletion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312150541314_updated_discCmt_deletion.cs" />
+    <Compile Include="Migrations\201312150541314_updated_discCmt_deletion.Designer.cs">
+      <DependentUpon>201312150541314_updated_discCmt_deletion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312151205594_added_serviceinfo.cs" />
+    <Compile Include="Migrations\201312151205594_added_serviceinfo.Designer.cs">
+      <DependentUpon>201312151205594_added_serviceinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312151250196_added_serviceinfo_01.cs" />
+    <Compile Include="Migrations\201312151250196_added_serviceinfo_01.Designer.cs">
+      <DependentUpon>201312151250196_added_serviceinfo_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312151257238_added_serviceinfo_02.cs" />
+    <Compile Include="Migrations\201312151257238_added_serviceinfo_02.Designer.cs">
+      <DependentUpon>201312151257238_added_serviceinfo_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312161356364_updated_event_cnts.cs" />
+    <Compile Include="Migrations\201312161356364_updated_event_cnts.Designer.cs">
+      <DependentUpon>201312161356364_updated_event_cnts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312170530272_updated_event_picsurl.cs" />
+    <Compile Include="Migrations\201312170530272_updated_event_picsurl.Designer.cs">
+      <DependentUpon>201312170530272_updated_event_picsurl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312201039488_updated_user_TP.cs" />
+    <Compile Include="Migrations\201312201039488_updated_user_TP.Designer.cs">
+      <DependentUpon>201312201039488_updated_user_TP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312201714176_updated_dashboard.cs" />
+    <Compile Include="Migrations\201312201714176_updated_dashboard.Designer.cs">
+      <DependentUpon>201312201714176_updated_dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312211218529_updated_user_creatype.cs" />
+    <Compile Include="Migrations\201312211218529_updated_user_creatype.Designer.cs">
+      <DependentUpon>201312211218529_updated_user_creatype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312211439052_updated_user_volunteer.cs" />
+    <Compile Include="Migrations\201312211439052_updated_user_volunteer.Designer.cs">
+      <DependentUpon>201312211439052_updated_user_volunteer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401080420114_updated_edu_batch.cs" />
+    <Compile Include="Migrations\201401080420114_updated_edu_batch.Designer.cs">
+      <DependentUpon>201401080420114_updated_edu_batch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401230445530_added_termCheck.cs" />
+    <Compile Include="Migrations\201401230445530_added_termCheck.Designer.cs">
+      <DependentUpon>201401230445530_added_termCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401230514079_updated_event_tentative.cs" />
+    <Compile Include="Migrations\201401230514079_updated_event_tentative.Designer.cs">
+      <DependentUpon>201401230514079_updated_event_tentative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401270535287_tweet_aff.cs" />
+    <Compile Include="Migrations\201401270535287_tweet_aff.Designer.cs">
+      <DependentUpon>201401270535287_tweet_aff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402021431170_update_disc_content.cs" />
+    <Compile Include="Migrations\201402021431170_update_disc_content.Designer.cs">
+      <DependentUpon>201402021431170_update_disc_content.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402021527576_update_disc_content_req.cs" />
+    <Compile Include="Migrations\201402021527576_update_disc_content_req.Designer.cs">
+      <DependentUpon>201402021527576_update_disc_content_req.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402040647030_Blog_added.cs" />
+    <Compile Include="Migrations\201402040647030_Blog_added.Designer.cs">
+      <DependentUpon>201402040647030_Blog_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AlumniArticleSrv.cs" />
+    <Compile Include="Services\AlumniKnowSrv.cs" />
+    <Compile Include="Services\ArticleSrvBase.cs" />
+    <Compile Include="Services\CircleSrv.cs" />
+    <Compile Include="Services\DigestService.cs" />
+    <Compile Include="Services\DiscussionSrv.cs" />
+    <Compile Include="Services\EventSrv.cs" />
+    <Compile Include="Services\Filter\BloodFilter.cs" />
+    <Compile Include="Services\Filter\EmailVerifyFilter.cs" />
+    <Compile Include="Services\Filter\JobPostFilter.cs" />
+    <Compile Include="Services\Filter\RoleFilter.cs" />
+    <Compile Include="Services\Filter\ServiceCtgryFilter.cs" />
+    <Compile Include="Services\Filter\SkillFilter.cs" />
+    <Compile Include="Services\HtmlComposer.cs" />
+    <Compile Include="Services\IDigestService.cs" />
+    <Compile Include="Services\ImageSrv.cs" />
+    <Compile Include="Services\NewEventInfo.cs" />
+    <Compile Include="Services\NewsSrv.cs" />
+    <Compile Include="Services\SmsSrv.cs" />
+    <Compile Include="Services\ThreadSrvBase.cs" />
+    <Compile Include="Services\UserDigest.cs" />
+    <Compile Include="ViewModels\AutoComUserInfo.cs" />
+    <Compile Include="ViewModels\BloodSearchVm.cs" />
+    <Compile Include="ViewModels\ChangePasswordVm.cs" />
+    <Compile Include="ViewModels\CircleEdit.cs" />
+    <Compile Include="ViewModels\DbCacheItem.cs" />
+    <Compile Include="ViewModels\IUserListDisp.cs" />
+    <Compile Include="ViewModels\JobSearchVm.cs" />
+    <Compile Include="ViewModels\ProfessionalSearchVm.cs" />
+    <Compile Include="ViewModels\SendToEmailVm.cs" />
+    <Compile Include="ViewModels\MentorStatusUpdateVm.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Entities\Circle.cs" />
+    <Compile Include="Entities\Connection.cs" />
+    <Compile Include="Entities\Enum\ConnectStatusType.cs" />
+    <Compile Include="Entities\Enum\MentorStatusType.cs" />
+    <Compile Include="Entities\MentorMessage.cs" />
+    <Compile Include="Entities\MentorShip.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\MessageThread.cs" />
+    <Compile Include="Entities\MessageUserMap.cs" />
+    <Compile Include="Entities\UserCourse.cs" />
+    <Compile Include="Infrastructure\Attributes.cs" />
+    <Compile Include="Infrastructure\NavigationItem.cs" />
+    <Compile Include="Infrastructure\RolePagesMap.cs" />
+    <Compile Include="Migrations\201309281638043_addedSkills.cs" />
+    <Compile Include="Migrations\201309281638043_addedSkills.Designer.cs">
+      <DependentUpon>201309281638043_addedSkills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309290701401_updatedSkills.cs" />
+    <Compile Include="Migrations\201309290701401_updatedSkills.Designer.cs">
+      <DependentUpon>201309290701401_updatedSkills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309300957449_batchType.cs" />
+    <Compile Include="Migrations\201309300957449_batchType.Designer.cs">
+      <DependentUpon>201309300957449_batchType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310010619482_testingRevert.cs" />
+    <Compile Include="Migrations\201310010619482_testingRevert.Designer.cs">
+      <DependentUpon>201310010619482_testingRevert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310011327075_UserCouse_Add.cs" />
+    <Compile Include="Migrations\201310011327075_UserCouse_Add.Designer.cs">
+      <DependentUpon>201310011327075_UserCouse_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310011332103_UserCourse_Update.cs" />
+    <Compile Include="Migrations\201310011332103_UserCourse_Update.Designer.cs">
+      <DependentUpon>201310011332103_UserCourse_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310020501241_addedCourseName.cs" />
+    <Compile Include="Migrations\201310020501241_addedCourseName.Designer.cs">
+      <DependentUpon>201310020501241_addedCourseName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310020505434_removedrequired.cs" />
+    <Compile Include="Migrations\201310020505434_removedrequired.Designer.cs">
+      <DependentUpon>201310020505434_removedrequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310030717338_migrationAdded.cs" />
+    <Compile Include="Migrations\201310030717338_migrationAdded.Designer.cs">
+      <DependentUpon>201310030717338_migrationAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310031045458_removedUserBatch.cs" />
+    <Compile Include="Migrations\201310031045458_removedUserBatch.Designer.cs">
+      <DependentUpon>201310031045458_removedUserBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310040602143_update_mentorName.cs" />
+    <Compile Include="Migrations\201310040602143_update_mentorName.Designer.cs">
+      <DependentUpon>201310040602143_update_mentorName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310070437571_added_namesMentor.cs" />
+    <Compile Include="Migrations\201310070437571_added_namesMentor.Designer.cs">
+      <DependentUpon>201310070437571_added_namesMentor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310070551240_addedNameMsg.cs" />
+    <Compile Include="Migrations\201310070551240_addedNameMsg.Designer.cs">
+      <DependentUpon>201310070551240_addedNameMsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310081102040_added_user_intersts.cs" />
+    <Compile Include="Migrations\201310081102040_added_user_intersts.Designer.cs">
+      <DependentUpon>201310081102040_added_user_intersts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310091255252_Connections_Added.cs" />
+    <Compile Include="Migrations\201310091255252_Connections_Added.Designer.cs">
+      <DependentUpon>201310091255252_Connections_Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310091347528_Connections_Updated.cs" />
+    <Compile Include="Migrations\201310091347528_Connections_Updated.Designer.cs">
+      <DependentUpon>201310091347528_Connections_Updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310100412031_updated_Connect_DateNUll.cs" />
+    <Compile Include="Migrations\201310100412031_updated_Connect_DateNUll.Designer.cs">
+      <DependentUpon>201310100412031_updated_Connect_DateNUll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310100809458_updated_Connect_CourseDetails.cs" />
+    <Compile Include="Migrations\201310100809458_updated_Connect_CourseDetails.Designer.cs">
+      <DependentUpon>201310100809458_updated_Connect_CourseDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310131357232_removed_user_contact_visibility.cs" />
+    <Compile Include="Migrations\201310131357232_removed_user_contact_visibility.Designer.cs">
+      <DependentUpon>201310131357232_removed_user_contact_visibility.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310131411082_added_user_contact_visibility.cs" />
+    <Compile Include="Migrations\201310131411082_added_user_contact_visibility.Designer.cs">
+      <DependentUpon>201310131411082_added_user_contact_visibility.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310161135014_added_Msgs.cs" />
+    <Compile Include="Migrations\201310161135014_added_Msgs.Designer.cs">
+      <DependentUpon>201310161135014_added_Msgs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310161407284_updated_Msgs.cs" />
+    <Compile Include="Migrations\201310161407284_updated_Msgs.Designer.cs">
+      <DependentUpon>201310161407284_updated_Msgs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310170506578_added_circle.cs" />
+    <Compile Include="Migrations\201310170506578_added_circle.Designer.cs">
+      <DependentUpon>201310170506578_added_circle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310170522442_added_Circles_DBCxt.cs" />
+    <Compile Include="Migrations\201310170522442_added_Circles_DBCxt.Designer.cs">
+      <DependentUpon>201310170522442_added_Circles_DBCxt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310170610458_update_Circles.cs" />
+    <Compile Include="Migrations\201310170610458_update_Circles.Designer.cs">
+      <DependentUpon>201310170610458_update_Circles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310181447020_updated_msg_receiver.cs" />
+    <Compile Include="Migrations\201310181447020_updated_msg_receiver.Designer.cs">
+      <DependentUpon>201310181447020_updated_msg_receiver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310181653184_updates_msg_totally.cs" />
+    <Compile Include="Migrations\201310181653184_updates_msg_totally.Designer.cs">
+      <DependentUpon>201310181653184_updates_msg_totally.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310200923114_updated_msgUserMap_notify.cs" />
+    <Compile Include="Migrations\201310200923114_updated_msgUserMap_notify.Designer.cs">
+      <DependentUpon>201310200923114_updated_msgUserMap_notify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310201407237_updated_MsgMap_TimeStamp.cs" />
+    <Compile Include="Migrations\201310201407237_updated_MsgMap_TimeStamp.Designer.cs">
+      <DependentUpon>201310201407237_updated_MsgMap_TimeStamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310210718462_updated_userMap_userName.cs" />
+    <Compile Include="Migrations\201310210718462_updated_userMap_userName.Designer.cs">
+      <DependentUpon>201310210718462_updated_userMap_userName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ConnectService.cs" />
+    <Compile Include="Services\Filter\BatchFilter.cs" />
+    <Compile Include="Services\Filter\CircleFilter.cs" />
+    <Compile Include="Services\Filter\CompanyNameFilter.cs" />
+    <Compile Include="Services\Filter\ConnectFilter.cs" />
+    <Compile Include="Services\Filter\InterestFilter.cs" />
+    <Compile Include="Services\Filter\RegisterStatusFilter.cs" />
+    <Compile Include="Services\Filter\SearchFilterBase.cs" />
+    <Compile Include="Services\Filter\FilterItem.cs" />
+    <Compile Include="Services\Filter\MentorFilter.cs" />
+    <Compile Include="Services\Filter\NameFilter.cs" />
+    <Compile Include="Services\Filter\SearchTypes.cs" />
+    <Compile Include="Services\MailService.cs" />
+    <Compile Include="Services\MentorSrv.cs" />
+    <Compile Include="Services\MessageSrv.cs" />
+    <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="ViewModels\AddCircleVm.cs" />
+    <Compile Include="Services\NewDiscussionInfo.cs" />
+    <Compile Include="Services\NotifyPopupData.cs" />
+    <Compile Include="ViewModels\SearchCircleVm.cs" />
+    <Compile Include="ViewModels\ListDisplayVm.cs" />
+    <Compile Include="ViewModels\MentorRequestVm.cs" />
+    <Compile Include="ViewModels\MentorSearchVm.cs" />
+    <Compile Include="Infrastructure\PageTypes.cs" />
+    <Compile Include="ViewModels\NewMessageVm.cs" />
+    <Compile Include="ViewModels\NotificationVm.cs" />
+    <Compile Include="Services\NotifyDispItem.cs" />
+    <Compile Include="Areas\Alumni\Models\ProfileBasicInfoVm.cs" />
+    <Compile Include="Areas\Alumni\Models\ProfileContactInfoVm.cs" />
+    <Compile Include="Areas\Alumni\Models\IProfileVm.cs" />
+    <Compile Include="Areas\Alumni\Models\JobListVm.cs" />
+    <Compile Include="Areas\Alumni\Models\LocationVm.cs" />
+    <Compile Include="Areas\Alumni\Models\ProfileVm.cs" />
+    <Compile Include="Areas\Alumni\Models\RelativeListVm.cs" />
+    <Compile Include="ViewModels\SearchUserVm.cs" />
+    <Compile Include="Areas\Student\Controllers\StudentControllerBase.cs" />
+    <Compile Include="Areas\Student\Controllers\StudentRegisterController.cs" />
+    <Compile Include="Areas\Student\Models\StudentProfileVm.cs" />
+    <Compile Include="Areas\Student\Models\StudentRegisterVm.cs" />
+    <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Alumni\Controllers\AlumniBaseController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\Enum\AddressType.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Company.cs" />
+    <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\Education.cs" />
+    <Compile Include="Infrastructure\EnumExtension.cs" />
+    <Compile Include="Entities\Enum\GenderType.cs" />
+    <Compile Include="Entities\Institution.cs" />
+    <Compile Include="Entities\AlumniDbContext.cs" />
+    <Compile Include="Entities\Branch.cs" />
+    <Compile Include="Entities\Job.cs" />
+    <Compile Include="Entities\JobPosition.cs" />
+    <Compile Include="Entities\Enum\RelationStatusType.cs" />
+    <Compile Include="Entities\Enum\RelationType.cs" />
+    <Compile Include="Entities\Relative.cs" />
+    <Compile Include="Entities\SimpleException.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserRegisterStatus.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Enum\UserRoleType.cs" />
+    <Compile Include="Entities\Enum\VisibilityType.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\AxbAuthorise.cs" />
+    <Compile Include="Infrastructure\Keys.cs" />
+    <Compile Include="Infrastructure\Routes.cs" />
+    <Compile Include="Migrations\201308270541294_initial.cs" />
+    <Compile Include="Migrations\201308270541294_initial.Designer.cs">
+      <DependentUpon>201308270541294_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308270600567_dob.cs" />
+    <Compile Include="Migrations\201308270600567_dob.Designer.cs">
+      <DependentUpon>201308270600567_dob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308270618380_sexEnum.cs" />
+    <Compile Include="Migrations\201308270618380_sexEnum.Designer.cs">
+      <DependentUpon>201308270618380_sexEnum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308290942114_addedJob.cs" />
+    <Compile Include="Migrations\201308290942114_addedJob.Designer.cs">
+      <DependentUpon>201308290942114_addedJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308300838175_jobAddedToContext.cs" />
+    <Compile Include="Migrations\201308300838175_jobAddedToContext.Designer.cs">
+      <DependentUpon>201308300838175_jobAddedToContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309230544001_addedAutoCom.cs" />
+    <Compile Include="Migrations\201309230544001_addedAutoCom.Designer.cs">
+      <DependentUpon>201309230544001_addedAutoCom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309230714552_addCurrentEJob.cs" />
+    <Compile Include="Migrations\201309230714552_addCurrentEJob.Designer.cs">
+      <DependentUpon>201309230714552_addCurrentEJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309230741563_addedEducation.cs" />
+    <Compile Include="Migrations\201309230741563_addedEducation.Designer.cs">
+      <DependentUpon>201309230741563_addedEducation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309230815545_addedBase.cs" />
+    <Compile Include="Migrations\201309230815545_addedBase.Designer.cs">
+      <DependentUpon>201309230815545_addedBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309231008146_eduReqAdded.cs" />
+    <Compile Include="Migrations\201309231008146_eduReqAdded.Designer.cs">
+      <DependentUpon>201309231008146_eduReqAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309240421200_addedFamily.cs" />
+    <Compile Include="Migrations\201309240421200_addedFamily.Designer.cs">
+      <DependentUpon>201309240421200_addedFamily.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309240422378_addedFamily_.cs" />
+    <Compile Include="Migrations\201309240422378_addedFamily_.Designer.cs">
+      <DependentUpon>201309240422378_addedFamily_.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309240424012_relativessUpdated.cs" />
+    <Compile Include="Migrations\201309240424012_relativessUpdated.Designer.cs">
+      <DependentUpon>201309240424012_relativessUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309240532053_addedPic.cs" />
+    <Compile Include="Migrations\201309240532053_addedPic.Designer.cs">
+      <DependentUpon>201309240532053_addedPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309240944218_addedVisibility.cs" />
+    <Compile Include="Migrations\201309240944218_addedVisibility.Designer.cs">
+      <DependentUpon>201309240944218_addedVisibility.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309260405400_addreddupdate.cs" />
+    <Compile Include="Migrations\201309260405400_addreddupdate.Designer.cs">
+      <DependentUpon>201309260405400_addreddupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309260428123_addedAddress.cs" />
+    <Compile Include="Migrations\201309260428123_addedAddress.Designer.cs">
+      <DependentUpon>201309260428123_addedAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309260436448_addressType.cs" />
+    <Compile Include="Migrations\201309260436448_addressType.Designer.cs">
+      <DependentUpon>201309260436448_addressType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309260550593_addressUpdated_req.cs" />
+    <Compile Include="Migrations\201309260550593_addressUpdated_req.Designer.cs">
+      <DependentUpon>201309260550593_addressUpdated_req.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Infrastructure\Constants.cs" />
+    <Compile Include="Infrastructure\UserSession.cs" />
+    <Compile Include="Services\RegisterService.cs" />
+    <Compile Include="Services\AutoHelper.cs" />
+    <Compile Include="Services\ICryptographyService.cs" />
+    <Compile Include="Services\Filter\SearchFilter.cs" />
+    <Compile Include="Services\RNGCryptoService.cs" />
+    <Compile Include="Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ProfileOverviewVmBase.cs" />
+    <Compile Include="ViewModels\ImageResult.cs" />
+    <Compile Include="ViewModels\NavigationVm.cs" />
+    <Compile Include="ViewModels\SearchVmBase.cs" />
+    <Compile Include="ViewModels\ServiceSearchVm.cs" />
+    <Compile Include="ViewModels\SignInRequest.cs" />
+    <Compile Include="ViewModels\RegisterUserVm.cs" />
+    <Compile Include="ViewModels\DbCache.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AutenticationService.cs" />
+    <Compile Include="Services\IAutenticationService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Infrastructure\ActiveAlumniControlFactory.cs" />
+    <Compile Include="ViewModels\UserSearchBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\companies.txt" />
+    <Content Include="App_Data\branches.txt" />
+    <Content Include="App_Data\courses.txt" />
+    <Content Include="App_Data\jobpos.txt" />
+    <Content Include="App_Data\welcome.txt" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\images\alumni_speak.png" />
+    <Content Include="Content\images\event_mail.jpg" />
+    <Content Include="Content\guest.css" />
+    <Content Include="Content\images\22.jpg" />
+    <Content Include="Content\images\accept.png" />
+    <Content Include="Content\images\add.png" />
+    <Content Include="Content\images\advt.png" />
+    <Content Include="Content\images\agree.png" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\ajax-loader.png" />
+    <Content Include="Content\images\ban.jpg" />
+    <Content Include="Content\images\bg.png" />
+    <Content Include="Content\images\bg_dark.jpg" />
+    <Content Include="Content\images\bg_black.png" />
+    <Content Include="Content\images\bg_main.png" />
+    <Content Include="Content\images\bg_n.gif" />
+    <Content Include="Content\images\bg_sm.jpg" />
+    <Content Include="Content\images\bg_small.png" />
+    <Content Include="Content\images\bg_t.png" />
+    <Content Include="Content\images\Blog\V_1.png" />
+    <Content Include="Content\images\Blog\V_2.png" />
+    <Content Include="Content\images\Blog\V_3.png" />
+    <Content Include="Content\images\brdr.jpg" />
+    <Content Include="Content\images\brdr.png" />
+    <Content Include="Content\images\busy.gif" />
+    <Content Include="Content\images\busy2.gif" />
+    <Content Include="Content\images\busy_tw.gif" />
+    <Content Include="Content\images\busy_w.gif" />
+    <Content Include="Content\images\calendar.png" />
+    <Content Include="Content\images\check.png" />
+    <Content Include="Content\images\CollageBanner.jpg" />
+    <Content Include="Content\images\count down.jpg" />
+    <Content Include="Content\images\cp_1.png" />
+    <Content Include="Content\images\delete.png" />
+    <Content Include="Content\images\disagree.png" />
+    <Content Include="Content\images\discussion.png" />
+    <Content Include="Content\images\drophy.jpg" />
+    <Content Include="Content\images\edit.png" />
+    <Content Include="Content\images\event.png" />
+    <Content Include="Content\images\eventFb.jpg" />
+    <Content Include="Content\images\fb-login.png" />
+    <Content Include="Content\images\fb.png" />
+    <Content Include="Content\images\feedbk.png" />
+    <Content Include="Content\images\fshare.jpg" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\home.png" />
+    <Content Include="Content\images\icons-18-black.png" />
+    <Content Include="Content\images\icons-18-white.png" />
+    <Content Include="Content\images\icons-36-black.png" />
+    <Content Include="Content\images\icons-36-white.png" />
+    <Content Include="Content\images\icon_mobile.png" />
+    <Content Include="Content\images\invi.jpg" />
+    <Content Include="Content\images\invi200.jpg" />
+    <Content Include="Content\images\link.jpg" />
+    <Content Include="Content\images\link.png" />
+    <Content Include="Content\images\link_b.png" />
+    <Content Include="Content\images\ln.png" />
+    <Content Include="Content\images\ln_btn.png" />
+    <Content Include="Content\images\lock.png" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo32.png" />
+    <Content Include="Content\images\logo40.png" />
+    <Content Include="Content\images\logos.png" />
+    <Content Include="Content\images\logo_copy.tif" />
+    <Content Include="Content\images\logo_fb.jpg" />
+    <Content Include="Content\images\logo_w.jpg" />
+    <Content Include="Content\images\mbfront.jpg" />
+    <Content Include="Content\images\mentor.jpg" />
+    <Content Include="Content\images\msg.png" />
+    <Content Include="Content\images\net.png" />
+    <Content Include="Content\images\newsFb.jpg" />
+    <Content Include="Content\images\news.png" />
+    <Content Include="Content\images\nit.png" />
+    <Content Include="Content\images\no_img.png" />
+    <Content Include="Content\images\no_profile.jpg" />
+    <Content Include="Content\images\offensive.png" />
+    <Content Include="Content\images\offer.jpg" />
+    <Content Include="Content\images\plus.png" />
+    <Content Include="Content\images\profile.png" />
+    <Content Include="Content\images\ragam_f.png" />
+    <Content Include="Content\images\ragam_hme.jpg" />
+    <Content Include="Content\images\ragam_logo.png" />
+    <Content Include="Content\images\ragam_s1.jpg" />
+    <Content Include="Content\images\ragam_s2.jpg" />
+    <Content Include="Content\images\Rajan.JPG" />
+    <Content Include="Content\images\recclub.png" />
+    <Content Include="Content\images\remove.png" />
+    <Content Include="Content\images\reply.png" />
+    <Content Include="Content\images\sbi_poster.jpg" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\setting.png" />
+    <Content Include="Content\images\sidebar_bg.png" />
+    <Content Include="Content\images\speaker.png" />
+    <Content Include="Content\images\speaker25.png" />
+    <Content Include="Content\images\std.png" />
+    <Content Include="Content\images\trans.png" />
+    <Content Include="Content\images\trophy.png" />
+    <Content Include="Content\images\tw-s.png" />
+    <Content Include="Content\images\offer.png" />
+    <Content Include="Content\images\twitter_2.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\images\under_maintenance.jpg" />
+    <Content Include="Content\jquery.mobile-1.1.2.css" />
+    <Content Include="Content\jquery.mobile-1.1.2.min.css" />
+    <Content Include="Content\jquery.mobile.structure-1.1.2.css" />
+    <Content Include="Content\jquery.mobile.structure-1.1.2.min.css" />
+    <Content Include="Content\jquery.mobile.theme-1.1.2.css" />
+    <Content Include="Content\jquery.mobile.theme-1.1.2.min.css" />
+    <Content Include="Content\Site.Mobile.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Areas\Alumni\Views\Web.config" />
+    <Content Include="Scripts\CKEditor\build-config.js" />
+    <Content Include="Scripts\CKEditor\ckeditor.js" />
+    <Content Include="Scripts\CKEditor\config.js" />
+    <Content Include="Scripts\CKEditor\lang\en.js" />
+    <Content Include="Scripts\CKEditor\plugins\about\dialogs\about.js" />
+    <Content Include="Scripts\CKEditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Scripts\CKEditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Scripts\CKEditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Scripts\CKEditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Scripts\CKEditor\plugins\fakeobjects\images\spacer.gif" />
+    <Content Include="Scripts\CKEditor\plugins\icons.png" />
+    <Content Include="Scripts\CKEditor\plugins\icons_hidpi.png" />
+    <Content Include="Scripts\CKEditor\plugins\imagepaste\docs\install.html" />
+    <Content Include="Scripts\CKEditor\plugins\imagepaste\docs\styles.css" />
+    <Content Include="Scripts\CKEditor\plugins\image\dialogs\image.js" />
+    <Content Include="Scripts\CKEditor\plugins\image\images\noimage.png" />
+    <Content Include="Scripts\CKEditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Scripts\CKEditor\plugins\link\dialogs\link.js" />
+    <Content Include="Scripts\CKEditor\plugins\link\images\anchor.png" />
+    <Content Include="Scripts\CKEditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\dialog.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\dialog_ie.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\dialog_ie7.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\dialog_ie8.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\dialog_iequirks.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\dialog_opera.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\editor.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\editor_gecko.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\editor_ie.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\editor_ie7.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\editor_ie8.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\editor_iequirks.css" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\icons.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\icons_hidpi.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\arrow.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\close.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\hidpi\close.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\hidpi\lock-open.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\hidpi\lock.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\hidpi\refresh.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\lock-open.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\lock.png" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\images\refresh.png" />
+    <Content Include="Scripts\CKEditor\styles.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
+    <Content Include="Scripts\jquery.mobile-1.1.2.js" />
+    <Content Include="Scripts\jquery.mobile-1.1.2.min.js" />
+    <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\_ajax-form.js" />
+    <Content Include="Scripts\_ajax-pop.js" />
+    <Content Include="Scripts\_connect-req.js" />
+    <Content Include="Scripts\_fbOAuth.js" />
+    <Content Include="Scripts\_home-slide.js" />
+    <Content Include="Scripts\_notifypop.js" />
+    <Content Include="Scripts\_photoPre.js" />
+    <Content Include="Scripts\_profile.js" />
+    <Content Include="Scripts\_save-clse-frm.js" />
+    <Content Include="Scripts\_search.js" />
+    <Content Include="Scripts\_time.js" />
+    <Content Include="Scripts\_timePicker.js" />
+    <Content Include="sitemap.xml" />
+    <Content Include="Views\Register\ThankYou.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Alumni\Views\AlumniHome\Index.cshtml" />
+    <Content Include="App_Code\TableHelper.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Shared\UserList.cshtml" />
+    <Content Include="Views\Search\NameSearch.cshtml" />
+    <Content Include="App_Code\SearchHelper.cshtml" />
+    <Content Include="Areas\Student\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Student\Views\StudentProfile\FullProfile.cshtml" />
+    <Content Include="Areas\Profile\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Profile\Views\ContactProfile\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\FullProfile\Student.cshtml" />
+    <Content Include="Areas\Profile\Views\ContactProfile\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\BasicProfile\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\BasicProfile\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\FullProfile\PictureEdit.cshtml" />
+    <Content Include="Areas\Profile\Views\FullProfile\PictureView.cshtml" />
+    <Content Include="Areas\Profile\Views\FullProfile\Alumni.cshtml" />
+    <Content Include="Areas\Profile\Views\Job\List.cshtml" />
+    <Content Include="Areas\Profile\Views\Job\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\Job\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\Address\List.cshtml" />
+    <Content Include="Areas\Profile\Views\Address\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\Address\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\Education\List.cshtml" />
+    <Content Include="Areas\Profile\Views\Education\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\Education\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\Relative\List.cshtml" />
+    <Content Include="Areas\Profile\Views\Relative\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\Relative\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\SkillProfile\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\SkillProfile\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\Course\List.cshtml" />
+    <Content Include="Areas\Profile\Views\Course\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\Course\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\FullProfile\Admin.cshtml" />
+    <Content Include="Areas\Profile\Views\InterestProfile\Show.cshtml" />
+    <Content Include="Areas\Profile\Views\InterestProfile\Edit.cshtml" />
+    <Content Include="App_Code\ProfileHelper.cshtml" />
+    <Content Include="Areas\Admin\Views\JoinRequest\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\JoinRequest\RegisterFilterResult.cshtml" />
+    <Content Include="App_Code\NotifyHelper.cshtml" />
+    <Content Include="Areas\Profile\Views\FullProfile\ConnectBtn.cshtml" />
+    <Content Include="Areas\Admin\Views\UserTracking\Activity.cshtml" />
+    <Content Include="Areas\Admin\Views\UserTracking\FailedLogins.cshtml" />
+    <Content Include="App_Code\DisplayHelper.cshtml" />
+    <Content Include="Content\font\BEBAS___.ttf" />
+    <Content Include="Areas\Admin\Views\AlumniSpeak\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniSpeak\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniSpeak\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniSpeak\Summary.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ArticleEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniKnow\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniKnow\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniKnow\Summary.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUser\AddUser.cshtml" />
+    <Content Include="Areas\Admin\Views\SpecialOffer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SpecialOffer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SpecialOffer\Summary.cshtml" />
+    <Content Include="Areas\Admin\Views\SpecialOffer\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\AdminIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\Summary.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\Show.cshtml" />
+    <Content Include="Content\font\Swiss_721B.ttf" />
+    <Content Include="Content\font\swz.woff" />
+    <Content Include="Content\font\Fran.ttf" />
+    <Content Include="App_Data\cities.txt" />
+    <Content Include="Areas\Admin\Views\CrowdFunding\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Advertise\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FundAlumni\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\New.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniKnow\NonAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUser\SearchResult.cshtml" />
+    <Content Include="Areas\Profile\Views\FullProfile\ActionButtons.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUser\UserPanel.cshtml" />
+    <Content Include="Areas\Admin\Views\UserTracking\Logs.cshtml" />
+    <Content Include="Areas\Profile\Views\Service\List.cshtml" />
+    <Content Include="Areas\Profile\Views\Service\Edit.cshtml" />
+    <Content Include="Areas\Profile\Views\Service\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\SpecialForm\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserStatistics\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserStatistics\Table.cshtml" />
+    <Content Include="Content\font\Roboto-Condensed.ttf" />
+    <Content Include="Areas\Admin\Views\NewsLetter\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsLetter\Email.cshtml" />
+    <Content Include="Areas\Admin\Views\UserStatistics\UserRegistration.cshtml" />
+    <Content Include="Content\font\Franchise-Bold-hinted.ttf" />
+    <Content Include="Areas\Admin\Views\AlumniNews\Index.Mobile.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniSpeak\Index.Mobile.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniSpeak\Show.Mobile.cshtml" />
+    <Content Include="Areas\Profile\Views\FullProfile\Alumni.Mobile.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsLetter\AutoWelcome.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\BlogEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\BlogIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\BlogShow.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\BlogSummary.cshtml" />
+    <Content Include="Areas\Admin\Views\UserStatistics\UserAutoReg.cshtml" />
+    <Content Include="Scripts\CKEditor\plugins\imageresize\LICENSE.md" />
+    <Content Include="Scripts\CKEditor\plugins\imageresize\README.md" />
+    <Content Include="Scripts\CKEditor\skins\moonocolor\readme.md" />
+    <None Include="Properties\PublishProfiles\NIT_WinHost.pubxml" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Content\images\busy_b.gif" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\_common.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="T4MVC.tt.settings.xml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Navigation\Menu.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\Error\Unauthorized.cshtml" />
+    <Content Include="Views\Mentor\MentorRequest.cshtml" />
+    <Content Include="Views\Mentor\MentorSearch.cshtml" />
+    <Content Include="Views\Mentor\Show.cshtml" />
+    <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\Mentor\Index.cshtml" />
+    <Content Include="Views\Mentor\ShowDetails.cshtml" />
+    <Content Include="Views\Search\SearchResult.cshtml" />
+    <Content Include="Views\Connect\ReqButton.cshtml" />
+    <Content Include="Views\Authentication\LoginSnippet.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Message\Popup.cshtml" />
+    <Content Include="Views\Circle\Index.cshtml" />
+    <Content Include="Views\Circle\AddUser.cshtml" />
+    <Content Include="Views\Home\Common.cshtml" />
+    <Content Include="Views\Shared\UserSelector.cshtml" />
+    <Content Include="Views\Notification\NotifyPopup.cshtml" />
+    <Content Include="Views\Notification\Connect.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\Show.cshtml" />
+    <Content Include="Views\Message\New.cshtml" />
+    <Content Include="Views\Discussion\New.cshtml" />
+    <Content Include="Views\Register\Common.cshtml" />
+    <Content Include="Views\Register\StudentOnly.cshtml" />
+    <Content Include="Views\Register\Footer.cshtml" />
+    <Content Include="Views\Settings\HeaderMenu.cshtml" />
+    <Content Include="Views\Register\RegisterUser.cshtml" />
+    <Content Include="Views\Settings\UserSettings.cshtml" />
+    <Content Include="Views\Settings\ChangePassword.cshtml" />
+    <Content Include="Views\Settings\ForgotPassword.cshtml" />
+    <Content Include="Views\Discussion\Show.cshtml" />
+    <Content Include="Views\Discussion\Index.cshtml" />
+    <Content Include="Views\Discussion\Comments.cshtml" />
+    <Content Include="Views\Shared\UnAuth.cshtml" />
+    <Content Include="Views\Connect\DeleteBtn.cshtml" />
+    <Content Include="Views\Register\Confirm.cshtml" />
+    <Content Include="Views\Shared\HeaderLink.cshtml" />
+    <Content Include="Views\Discussion\Links.cshtml" />
+    <Content Include="Views\Settings\ResetPassword.cshtml" />
+    <Content Include="Views\Shared\ViewDataMsg.cshtml" />
+    <Content Include="Views\Shared\TempDataMsg.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Circle\Edit.cshtml" />
+    <Content Include="Views\Shared\PasswordRules.cshtml" />
+    <Content Include="Views\Discussion\FrontPage.cshtml" />
+    <Content Include="Views\JobPost\Edit.cshtml" />
+    <Content Include="Views\JobPost\MyPosts.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\JobPost\Show.cshtml" />
+    <Content Include="Views\JobPost\Search.cshtml" />
+    <Content Include="Views\JobPost\Result.cshtml" />
+    <Content Include="Views\JobPost\Recent.cshtml" />
+    <Content Include="Views\Event\New.cshtml" />
+    <Content Include="Views\Event\Upcoming.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Event\Show.cshtml" />
+    <Content Include="Views\AlumniOrg\Chapters.cshtml" />
+    <Content Include="Views\AlumniOrg\Parent.cshtml" />
+    <Content Include="Views\AlumniOrg\Charter.cshtml" />
+    <Content Include="Views\Mentor\Home.cshtml" />
+    <Content Include="Views\Shared\FeedButton.cshtml" />
+    <Content Include="Views\Shared\DialogView.cshtml" />
+    <Content Include="Views\Event\EmailNotify.cshtml" />
+    <Content Include="Views\Event\SmsNotify.cshtml" />
+    <Content Include="Views\BackCampus\Index.cshtml" />
+    <Content Include="Views\Shared\CloseNote.cshtml" />
+    <Content Include="Views\Shared\Overlay.cshtml" />
+    <Content Include="Views\BloodSearch\Index.cshtml" />
+    <Content Include="Views\Event\InviteStat.cshtml" />
+    <Content Include="Views\Home\ProfileBanner.cshtml" />
+    <Content Include="Views\Shared\_MaintainLayout.cshtml" />
+    <Content Include="Views\Shared\Maintain.cshtml" />
+    <Content Include="Views\Shared\Terms.cshtml" />
+    <Content Include="Views\Discussion\BlogEdit.cshtml" />
+    <Content Include="Views\Discussion\BlogSummary.cshtml" />
+    <Content Include="Views\Home\Sbi.cshtml" />
+    <Content Include="Views\Shared\_ViewSwitcher.cshtml" />
+    <Content Include="Views\Shared\_Layout.Mobile.cshtml" />
+    <Content Include="Views\Home\Common.Mobile.cshtml" />
+    <Content Include="Views\Navigation\Menu.Mobile.cshtml" />
+    <Content Include="Views\Event\Index.Mobile.cshtml" />
+    <Content Include="Views\Event\Show.Mobile.cshtml" />
+    <Content Include="Views\Register\Index.Mobile.cshtml" />
+    <Content Include="Views\Register\RegisterUser.Mobile.cshtml" />
+    <Content Include="Views\Authentication\Login.Mobile.cshtml" />
+    <Content Include="Views\Register\Common.Mobile.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.Mobile.cshtml" />
+    <Content Include="Views\Shared\UserList.Mobile.cshtml" />
+    <Content Include="Views\Search\SearchResult.Mobile.cshtml" />
+    <Content Include="Views\Search\Index.Mobile.cshtml" />
+    <Content Include="Views\Shared\FBInit.cshtml" />
+    <Content Include="Views\Home\Ragam.cshtml" />
+    <Content Include="Views\Home\Ragam-tickets-2014.cshtml" />
+    <Content Include="Views\Home\Rajan-Memorial.cshtml" />
+    <Content Include="Views\Home\ragam-gallery.cshtml" />
+    <Content Include="Views\Home\ragam-invite.cshtml" />
+    <Content Include="Views\Home\Index.Mobile.cshtml" />
+    <Content Include="Views\Navigation\Mobile.cshtml" />
+    <Content Include="Views\Home\Ragam.Mobile.cshtml" />
+    <Content Include="Views\Home\sneha-ragam.cshtml" />
+    <Content Include="Views\Home\about-nit-ragam.cshtml" />
+    <Content Include="Views\Shared\SocialButtons.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Alumni\Views\Shared\" />
+    <Folder Include="Areas\Profile\Views\Shared\" />
+    <Folder Include="Areas\Student\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201308270541294_initial.resx">
+      <DependentUpon>201308270541294_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308270600567_dob.resx">
+      <DependentUpon>201308270600567_dob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308270618380_sexEnum.resx">
+      <DependentUpon>201308270618380_sexEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308290942114_addedJob.resx">
+      <DependentUpon>201308290942114_addedJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308300838175_jobAddedToContext.resx">
+      <DependentUpon>201308300838175_jobAddedToContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309230544001_addedAutoCom.resx">
+      <DependentUpon>201309230544001_addedAutoCom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309230714552_addCurrentEJob.resx">
+      <DependentUpon>201309230714552_addCurrentEJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309230741563_addedEducation.resx">
+      <DependentUpon>201309230741563_addedEducation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309230815545_addedBase.resx">
+      <DependentUpon>201309230815545_addedBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309231008146_eduReqAdded.resx">
+      <DependentUpon>201309231008146_eduReqAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309240421200_addedFamily.resx">
+      <DependentUpon>201309240421200_addedFamily.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309240422378_addedFamily_.resx">
+      <DependentUpon>201309240422378_addedFamily_.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309240424012_relativessUpdated.resx">
+      <DependentUpon>201309240424012_relativessUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309240532053_addedPic.resx">
+      <DependentUpon>201309240532053_addedPic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309240944218_addedVisibility.resx">
+      <DependentUpon>201309240944218_addedVisibility.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309260405400_addreddupdate.resx">
+      <DependentUpon>201309260405400_addreddupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309260428123_addedAddress.resx">
+      <DependentUpon>201309260428123_addedAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309260436448_addressType.resx">
+      <DependentUpon>201309260436448_addressType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309260550593_addressUpdated_req.resx">
+      <DependentUpon>201309260550593_addressUpdated_req.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309281638043_addedSkills.resx">
+      <DependentUpon>201309281638043_addedSkills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309290701401_updatedSkills.resx">
+      <DependentUpon>201309290701401_updatedSkills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309300957449_batchType.resx">
+      <DependentUpon>201309300957449_batchType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310010619482_testingRevert.resx">
+      <DependentUpon>201310010619482_testingRevert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310011327075_UserCouse_Add.resx">
+      <DependentUpon>201310011327075_UserCouse_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310011332103_UserCourse_Update.resx">
+      <DependentUpon>201310011332103_UserCourse_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310020501241_addedCourseName.resx">
+      <DependentUpon>201310020501241_addedCourseName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310020505434_removedrequired.resx">
+      <DependentUpon>201310020505434_removedrequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310030717338_migrationAdded.resx">
+      <DependentUpon>201310030717338_migrationAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310031045458_removedUserBatch.resx">
+      <DependentUpon>201310031045458_removedUserBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310040602143_update_mentorName.resx">
+      <DependentUpon>201310040602143_update_mentorName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310070437571_added_namesMentor.resx">
+      <DependentUpon>201310070437571_added_namesMentor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310070551240_addedNameMsg.resx">
+      <DependentUpon>201310070551240_addedNameMsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310081102040_added_user_intersts.resx">
+      <DependentUpon>201310081102040_added_user_intersts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310091255252_Connections_Added.resx">
+      <DependentUpon>201310091255252_Connections_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310091347528_Connections_Updated.resx">
+      <DependentUpon>201310091347528_Connections_Updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310100412031_updated_Connect_DateNUll.resx">
+      <DependentUpon>201310100412031_updated_Connect_DateNUll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310100809458_updated_Connect_CourseDetails.resx">
+      <DependentUpon>201310100809458_updated_Connect_CourseDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310131357232_removed_user_contact_visibility.resx">
+      <DependentUpon>201310131357232_removed_user_contact_visibility.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310131411082_added_user_contact_visibility.resx">
+      <DependentUpon>201310131411082_added_user_contact_visibility.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310161135014_added_Msgs.resx">
+      <DependentUpon>201310161135014_added_Msgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310161407284_updated_Msgs.resx">
+      <DependentUpon>201310161407284_updated_Msgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310170506578_added_circle.resx">
+      <DependentUpon>201310170506578_added_circle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310170522442_added_Circles_DBCxt.resx">
+      <DependentUpon>201310170522442_added_Circles_DBCxt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310170610458_update_Circles.resx">
+      <DependentUpon>201310170610458_update_Circles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310181447020_updated_msg_receiver.resx">
+      <DependentUpon>201310181447020_updated_msg_receiver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310181653184_updates_msg_totally.resx">
+      <DependentUpon>201310181653184_updates_msg_totally.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310200923114_updated_msgUserMap_notify.resx">
+      <DependentUpon>201310200923114_updated_msgUserMap_notify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310201407237_updated_MsgMap_TimeStamp.resx">
+      <DependentUpon>201310201407237_updated_MsgMap_TimeStamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310210718462_updated_userMap_userName.resx">
+      <DependentUpon>201310210718462_updated_userMap_userName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281421292_added_notify_user.resx">
+      <DependentUpon>201310281421292_added_notify_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281436231_added_notify_user_01.resx">
+      <DependentUpon>201310281436231_added_notify_user_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310290601199_added_discussion.resx">
+      <DependentUpon>201310290601199_added_discussion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310291220490_updated_user_ts.resx">
+      <DependentUpon>201310291220490_updated_user_ts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310291223430_updated_user_ts_01.resx">
+      <DependentUpon>201310291223430_updated_user_ts_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310300935283_user_removed_pswd.resx">
+      <DependentUpon>201310300935283_user_removed_pswd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310301201186_updated_user_pswdTS.resx">
+      <DependentUpon>201310301201186_updated_user_pswdTS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310310512542_updated_db.resx">
+      <DependentUpon>201310310512542_updated_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310310742572_common_threadIte.resx">
+      <DependentUpon>201310310742572_common_threadIte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310310937410_updated_user_disc_ts.resx">
+      <DependentUpon>201310310937410_updated_user_disc_ts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310311049359_updated_user_mentor_ts.resx">
+      <DependentUpon>201310311049359_updated_user_mentor_ts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311010641096_generalised_mentorships.resx">
+      <DependentUpon>201311010641096_generalised_mentorships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311021218559_added_affnity.resx">
+      <DependentUpon>201311021218559_added_affnity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311021342020_updated_aff.resx">
+      <DependentUpon>201311021342020_updated_aff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311031511498_affni_update_cnt.resx">
+      <DependentUpon>201311031511498_affni_update_cnt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311050426029_added_log.resx">
+      <DependentUpon>201311050426029_added_log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311050740159_crowrd_type_disc.resx">
+      <DependentUpon>201311050740159_crowrd_type_disc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311050831421_crowrd_type_disc_01.resx">
+      <DependentUpon>201311050831421_crowrd_type_disc_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311050926452_discussion_tag.resx">
+      <DependentUpon>201311050926452_discussion_tag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311060640264_updated_user_emailConfirm.resx">
+      <DependentUpon>201311060640264_updated_user_emailConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311071518236_updated_user_token.resx">
+      <DependentUpon>201311071518236_updated_user_token.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311100614339_updated_user_pswd_tkn_exp.resx">
+      <DependentUpon>201311100614339_updated_user_pswd_tkn_exp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311111205494_added_userrolecode.resx">
+      <DependentUpon>201311111205494_added_userrolecode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311111254563_added_userrole_tble.resx">
+      <DependentUpon>201311111254563_added_userrole_tble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311111256046_added_userrole_tble_01.resx">
+      <DependentUpon>201311111256046_added_userrole_tble_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311111300067_added_userrole_tble_02.resx">
+      <DependentUpon>201311111300067_added_userrole_tble_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311130531513_added_session.resx">
+      <DependentUpon>201311130531513_added_session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311130548100_added_session_01.resx">
+      <DependentUpon>201311130548100_added_session_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311130641082_added_session_02.resx">
+      <DependentUpon>201311130641082_added_session_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311130721006_updated_email.resx">
+      <DependentUpon>201311130721006_updated_email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311130721418_updated_email_01.resx">
+      <DependentUpon>201311130721418_updated_email_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311130729034_added_failedloginsd.resx">
+      <DependentUpon>201311130729034_added_failedloginsd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311130732277_added_failedloginsd_01.resx">
+      <DependentUpon>201311130732277_added_failedloginsd_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311140607223_added_jobOpening.resx">
+      <DependentUpon>201311140607223_added_jobOpening.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311140628213_added_jobOpening_01.resx">
+      <DependentUpon>201311140628213_added_jobOpening_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311140709251_added_jobOpening_02.resx">
+      <DependentUpon>201311140709251_added_jobOpening_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311170914317_jobPost_update_desiredSkill.resx">
+      <DependentUpon>201311170914317_jobPost_update_desiredSkill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311171225239_update_jobOpen_Skills_01.resx">
+      <DependentUpon>201311171225239_update_jobOpen_Skills_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311190449430_updated_joOpen_expNUll.resx">
+      <DependentUpon>201311190449430_updated_joOpen_expNUll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311190727453_updated_msgLength.resx">
+      <DependentUpon>201311190727453_updated_msgLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311191118553_updated_jobPost_userName.resx">
+      <DependentUpon>201311191118553_updated_jobPost_userName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311191121587_updated_jobPost_userName_01.resx">
+      <DependentUpon>201311191121587_updated_jobPost_userName_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311200701308_jobPost_updateTime.resx">
+      <DependentUpon>201311200701308_jobPost_updateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311211110534_updated_jobpost_resume.resx">
+      <DependentUpon>201311211110534_updated_jobpost_resume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311220721436_add_event.resx">
+      <DependentUpon>201311220721436_add_event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311230712445_updated_event_googleMap.resx">
+      <DependentUpon>201311230712445_updated_event_googleMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311230741140_updated_event_location_mndt.resx">
+      <DependentUpon>201311230741140_updated_event_location_mndt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311230849362_updated_event_cretedtime.resx">
+      <DependentUpon>201311230849362_updated_event_cretedtime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311250459144_updated_event_01.resx">
+      <DependentUpon>201311250459144_updated_event_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311250514308_updated_event_02.resx">
+      <DependentUpon>201311250514308_updated_event_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311250637013_updated_event_03.resx">
+      <DependentUpon>201311250637013_updated_event_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311250945049_added_alumnitoKnow.resx">
+      <DependentUpon>201311250945049_added_alumnitoKnow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311251012056_update_alumnitoKnow.resx">
+      <DependentUpon>201311251012056_update_alumnitoKnow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311251224283_updated_alumniknow_Speak.resx">
+      <DependentUpon>201311251224283_updated_alumniknow_Speak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311251239068_update_alumnitoKnow_02.resx">
+      <DependentUpon>201311251239068_update_alumnitoKnow_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311261156134_updatedUser_IsAdminCreated.resx">
+      <DependentUpon>201311261156134_updatedUser_IsAdminCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311270653336_added_altoknow-01.resx">
+      <DependentUpon>201311270653336_added_altoknow-01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311271509110_added_specialOffers.resx">
+      <DependentUpon>201311271509110_added_specialOffers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311271656332_udpate_specialOffers_01.resx">
+      <DependentUpon>201311271656332_udpate_specialOffers_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311280447294_update_specialOffer_01.resx">
+      <DependentUpon>201311280447294_update_specialOffer_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311281310547_update_news.resx">
+      <DependentUpon>201311281310547_update_news.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311290526409_update_alumniNews_02.resx">
+      <DependentUpon>201311290526409_update_alumniNews_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311290548563_update_user_roleStr.resx">
+      <DependentUpon>201311290548563_update_user_roleStr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311290740456_update_alumniNews_03.resx">
+      <DependentUpon>201311290740456_update_alumniNews_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311291449190_updated_user_role-notReq.resx">
+      <DependentUpon>201311291449190_updated_user_role-notReq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312011313199_updated_reltion_withUser.resx">
+      <DependentUpon>201312011313199_updated_reltion_withUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312011445597_revert_reltion_withUser.resx">
+      <DependentUpon>201312011445597_revert_reltion_withUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312020450565_updated_relative_location.resx">
+      <DependentUpon>201312020450565_updated_relative_location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312021050451_added_feedback.resx">
+      <DependentUpon>201312021050451_added_feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312021130210_udpate_feedback.resx">
+      <DependentUpon>201312021130210_udpate_feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312030417247_updated_user_contact_01.resx">
+      <DependentUpon>201312030417247_updated_user_contact_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312050542234_updated_user_tseventView.resx">
+      <DependentUpon>201312050542234_updated_user_tseventView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312060651167_update_news_anonymos.resx">
+      <DependentUpon>201312060651167_update_news_anonymos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312060725205_update_news_anonymos_10.resx">
+      <DependentUpon>201312060725205_update_news_anonymos_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312060735377_update_news_anonymos_02.resx">
+      <DependentUpon>201312060735377_update_news_anonymos_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312060948220_added_guestPost.resx">
+      <DependentUpon>201312060948220_added_guestPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312071358495_updated_toknow_ip.resx">
+      <DependentUpon>201312071358495_updated_toknow_ip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312071410375_updated_toknow_ip_01.resx">
+      <DependentUpon>201312071410375_updated_toknow_ip_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312110736065_added_userlog.resx">
+      <DependentUpon>201312110736065_added_userlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312110754274_update_userlog_01.resx">
+      <DependentUpon>201312110754274_update_userlog_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312111640021_updated_specialOffer_11.resx">
+      <DependentUpon>201312111640021_updated_specialOffer_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312120457394_updated_offer.resx">
+      <DependentUpon>201312120457394_updated_offer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312130618414_user_bloodgrp.resx">
+      <DependentUpon>201312130618414_user_bloodgrp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312131216390_user_digest.resx">
+      <DependentUpon>201312131216390_user_digest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312150357493_updated_disc_deletion.resx">
+      <DependentUpon>201312150357493_updated_disc_deletion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312150541314_updated_discCmt_deletion.resx">
+      <DependentUpon>201312150541314_updated_discCmt_deletion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312151205594_added_serviceinfo.resx">
+      <DependentUpon>201312151205594_added_serviceinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312151250196_added_serviceinfo_01.resx">
+      <DependentUpon>201312151250196_added_serviceinfo_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312151257238_added_serviceinfo_02.resx">
+      <DependentUpon>201312151257238_added_serviceinfo_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312161356364_updated_event_cnts.resx">
+      <DependentUpon>201312161356364_updated_event_cnts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312170530272_updated_event_picsurl.resx">
+      <DependentUpon>201312170530272_updated_event_picsurl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312201039488_updated_user_TP.resx">
+      <DependentUpon>201312201039488_updated_user_TP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312201714176_updated_dashboard.resx">
+      <DependentUpon>201312201714176_updated_dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312211218529_updated_user_creatype.resx">
+      <DependentUpon>201312211218529_updated_user_creatype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312211439052_updated_user_volunteer.resx">
+      <DependentUpon>201312211439052_updated_user_volunteer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401080420114_updated_edu_batch.resx">
+      <DependentUpon>201401080420114_updated_edu_batch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401230445530_added_termCheck.resx">
+      <DependentUpon>201401230445530_added_termCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401230514079_updated_event_tentative.resx">
+      <DependentUpon>201401230514079_updated_event_tentative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401270535287_tweet_aff.resx">
+      <DependentUpon>201401270535287_tweet_aff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402021431170_update_disc_content.resx">
+      <DependentUpon>201402021431170_update_disc_content.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402021527576_update_disc_content_req.resx">
+      <DependentUpon>201402021527576_update_disc_content_req.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402040647030_Blog_added.resx">
+      <DependentUpon>201402040647030_Blog_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4417/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

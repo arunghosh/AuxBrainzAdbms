@@ -1,0 +1,101 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.News);
+    ViewData[Constants.HomeTitleKey] = "News";
+    ViewData[Constants.HomeImgKey] = "/Content/images/news.png";
+    Layout = Routes.Layout;
+}
+
+<style>
+    .news-li .time-ctnr
+    {
+color: #aaa;
+font-size: 11px;
+display: inline-block;
+width: 100%;
+    }
+
+
+    .news-li .title
+    {
+        font-weight: bold;
+        display:inline-block;
+        width:100%;
+        font-size:13px;
+    }
+
+    .news-li .summ
+    {
+color: #aaa;
+font-size: 12px;
+word-wrap: break-word;
+word-break: break-all;
+    }
+    .news-li
+    {
+        padding: 10px 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+        line-height: 15px;
+        color: #888;
+    }
+</style>
+@{var isAdmin = (bool)ViewData[Constants.IsAdminKey];}
+<div class="left-lst w-brdr" style="width: 300px;">
+    @if ((bool)ViewData[Constants.IsAuthKey] && (bool)ViewData[Constants.IsAdminKey])
+    {
+        <div style="margin: 1px;">
+            <a class="add-btn-big d-blk" href='/Admin/AlumniNews/Edit'><i class="icon-plus"></i>Add News (ADM)</a>
+        </div>
+    }
+    else
+    {
+        <div style="padding: 18px; background: #eed;margin-top:-30px;"
+            class="ta-c">
+            <span class="clmn-head" style="color: #777">You have <span class="title-em">news</span> to share?</span>
+            <div style="margin: 5px 0px;">
+                <a class="btn d-blk bld" href='/Admin/AlumniNews/Edit'>Click here to  <i class="icon-share"></i><span class="title-em">SHARE</span> !!!</a>
+            </div>
+        </div>
+        <br />
+    }
+    @if (Model == null)
+    {
+        <h5>No items to display</h5>
+    }
+    else
+    {
+        <div class="avail-ht-">
+            <ul class="news-lst">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="news-li a-sele-item @(item.EntityKey == Model.SelectedId ? "seleted" : "")" data-id="@item.EntityKey">
+                        <div class="title trim">@item.Title</div>
+                        <div>
+                            <div class="time-ctnr">
+                                @DisplayHelper.DateTime(item.Date, DateTypes.DateOnly)
+                                @if (isAdmin)
+                                {
+                                    <div class="d-ib ft-r">@item.Status</div>
+                                }
+                            </div>
+                        </div>
+                        <div class="summ">@item.News.LetterLimited(70)</div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+<div class="right-lstSele" style="padding: 10px 0 0 19px; width: 620px;">
+    @{Html.RenderPartial(Routes.CloseNote);}
+    @if (Model != null)
+    {   
+        <div class="a-frm-ctnr lazy-load" data-id="@Model.SelectedId" data-url="/Admin/AlumniNews/Show/" >
+        </div>
+    }
+</div>
+@section Scripts
+    {
+}

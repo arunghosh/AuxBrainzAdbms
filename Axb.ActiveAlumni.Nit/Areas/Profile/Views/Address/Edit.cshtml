@@ -1,0 +1,28 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Address
+
+@using Axb.ActiveAlumni.Nit.ViewModels;
+<div class="prof-frm">
+    @using (Html.BeginForm("Edit", "Address", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.AddressId)
+        @Html.HiddenFor(m => m.AddressType)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.AddressLine1).ShowValidationMessage(false)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.City).ShowValidationMessage(false).HtmlAttributes(new { data_autocomplete_source = @Url.Action("GetCities") })
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.State).ShowValidationMessage(false)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Country).ShowValidationMessage(false)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Pincode).ShowValidationMessage(false)
+        <div class="pop-cnt-btns">
+            <button type="button" class="edit-close btn btn-default">Cancel</button>
+            <button type="submit" class="btn-primary">Update</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+            
+        <p>
+            @Html.ValidationSummary()
+        </p>
+            
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    }
+</div>

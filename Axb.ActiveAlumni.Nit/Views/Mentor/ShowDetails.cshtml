@@ -1,0 +1,58 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.MentorShip
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit
+@using Axb.ActiveAlumni.Nit.Infrastructure
+
+@{var userId = UserSession.CurrentUserId; Model.Messages.Reverse();}
+<div id="threadNewMsg">
+    @using (Html.BeginForm("UpdateStatus", "Mentor", FormMethod.Post, new { @class = "refresh-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("Status")
+        @Html.Hidden("Id", Model.MentorShipId)
+        <textarea name="Message" placeholder="Type your messsage"></textarea>
+        <div>
+
+            @if (Model.Status == MentorStatusType.AdminApproved && Model.AlumniId == userId)
+            {
+                <a class="status-btn btn btn-default"  data-status="@MentorStatusType.AlumniRejected">Reject</a>
+                <a class="status-btn btn-primary" data-status="@MentorStatusType.StudentInfo">More Info</a>
+                <a class="status-btn btn btn-success" data-status="@MentorStatusType.AlumniApproved" style="margin-right: 10px;">Accept</a>
+            }
+            else if (Model.Status == MentorStatusType.StudentInfo && Model.StudentId == userId)
+            {
+                <div class="dim ft-sl-i">Note: In the message specific your areas on interest and your expectation from the mentor.</div>
+                <a class="status-btn btn-primary" data-status="@MentorStatusType.RequestSend">Send</a>
+            }
+            else
+            {
+                <a class="status-btn btn-primary" data-status="@MentorStatusType.Message">Send</a>
+            }
+        </div>
+    }
+</div>
+<div class="msg-thread">
+    <ul>
+        @foreach (var msg in Model.Messages)
+        {
+            <li>
+                <div class="span">
+                    <a href="@Routes.Profile(msg.SenderId)">
+                        <img src='@Routes.ProfilePic(msg.SenderId)' alt="Pic"/>
+                    </a>
+                </div>
+                <div class="span msg">
+                    <div>
+                        <a href="@Routes.Profile(msg.SenderId)" class = "bld">@msg.SenderName</a>
+                        <span class="dim-v ft-r">@DisplayHelper.DateTime(msg.Date, DateTypes.Medium) </span>
+                    </div>
+                    <pre>@Html.Raw(msg.Text.TrimStart().Replace(Environment.NewLine, "<br/>"))</pre>
+                    <div class="dim-v">#@Axb.ActiveAlumni.Nit.Controllers.MentorController.GetUserMsg(msg.Status)</div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+
+<script src="~/Scripts/_ajax-form.js"></script>

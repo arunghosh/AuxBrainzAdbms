@@ -1,0 +1,16 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.RegisterUserVm
+
+<div class="control-group">
+    <label class="control-label" for="Name">Course<span class="required">*</span></label>
+    <div class="controls">
+        @Html.DropDownList("CourseId", null, new { @id = "ddlAlumniRegCourse" })
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="Name">Specialisation<span class="required">*</span></label>
+    <div class="controls">
+        @Html.DropDownList("BranchId", null, new { @id = "ddlAlumniRegBranch" })
+    </div>
+</div>
+@Html.Bootstrap().ControlGroup().DropDownListFor(m => m.Batch, ViewBag.Batches as SelectList)

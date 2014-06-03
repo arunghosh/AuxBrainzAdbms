@@ -1,0 +1,6 @@
+﻿        @Html.AntiForgeryToken()
+        @Html.Bootstrap().SubmitButton().Text("REGISTER").HtmlAttributes(new { @class = "btn-primary" }) 
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        <p>
+            @Html.ValidationSummary()
+        </p>

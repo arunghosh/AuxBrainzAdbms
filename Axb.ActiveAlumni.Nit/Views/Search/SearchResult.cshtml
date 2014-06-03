@@ -1,0 +1,67 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.UserSearchBase
+@{var hasFilters = Model.HasFilters;}
+<div class="span" style="width: 570px; margin: 0 0 0 -1px; padding: 10px 20px 0 25px; border-left: 1px solid #eee;">
+    <ul id="filter-summ">
+        @{var isAnyFil = false;}
+        @if (!string.IsNullOrEmpty(Model.UserName))
+        {
+            <li class="item"><span>@Model.UserName</span><span class="close">&times;</span></li>
+        }
+        @foreach (var grp in Model.Filters.Where(f => f.IsList))
+        {
+            foreach (var item in grp.MasterFilters.Where(i => i.IsChecked))
+            {
+                isAnyFil = true;
+                var id = grp.CkboxName + grp.MasterFilters.IndexOf(item);
+            <li class="item"><span>@item.DisplayText</span><span class="close" data-id="@id">&times;</span></li>
+            }
+        }
+        @if (isAnyFil)
+        {
+            <li>
+                <button class="reset-btn">Reset</button></li>
+        }
+    </ul>
+    <hr />
+
+    @if (hasFilters)
+    {
+        <div class="ctrl-panel">
+            @if (Model.TotalUsers.Count() < 1000)
+            {
+                <i data-url="/Message/New" data-title="New Message" title="Message" class="btn-dialog-act icon-envelope"></i>
+                <i data-url="/Discussion/New" data-title="New Discussion" title="Discussion" class="btn-dialog-act icon-comment"></i>
+                <i data-url="/Event/New" data-title="New Event" title="Event" class="btn-dialog-act icon-calendar"></i>
+                <i data-url="/Circle/Edit" data-title="New Circle" title="Circle" class="btn-dialog-act icon-plus-sign"></i>
+            }
+            @{var currUserId = UserSession.CurrentUserId;}
+            @if (currUserId == 129 || currUserId == 9 || currUserId == 1693)
+            {
+                <i data-url="/Download/Info" data-title="New Circle" title="Download in CSV Format" class="btn-download icon-download"></i>
+            }
+        </div>
+        <hr />
+        @SearchHelper.MiniPageControl(Model.TotalUsers.Count(), Model.ItemsPerPage, Model.PageIndex)
+        <hr />
+        <div>
+            @Html.Partial("UserList", Model)
+        </div>
+        <div>
+            @SearchHelper.MiniPageControl(Model.TotalUsers.Count(), Model.ItemsPerPage, Model.PageIndex)
+        </div>
+    }
+    else
+    {
+        <h6>No filter selected</h6>
+    }
+</div>
+@*@if (hasFilters)
+{
+    <div id="srchStat">
+        <div class="sub-head">Result Statistics</div>
+        @foreach (var grp in Model.Filters.Where(f => f.IsList && f.FilterItems.Any()))
+        {
+            @SearchHelper.DispayGroupStat(grp)
+        }
+    </div>
+}*@

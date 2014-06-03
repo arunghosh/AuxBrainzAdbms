@@ -1,0 +1,91 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.BasicProfileVm
+
+
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<div class="popover bottom">
+    <div class="arrow"></div>
+    <div class="popover-content">
+        @using (Html.BeginForm("Edit", "BasicProfile", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.FirstName).ShowValidationMessage(false)
+            @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.LastName).ShowValidationMessage(false)
+        
+            <div class="control-group">
+                <label class="control-label" for="Name">Date of Birth</label>
+                <div class="controls">
+                    @Html.Bootstrap().TextBoxFor(m => m.BirthDay).Placeholder("DD").HtmlAttributes(new { style = "width:30px" })
+                    @Html.Bootstrap().TextBoxFor(m => m.BirthMonth).Placeholder("MM").HtmlAttributes(new { style = "width:30px" })
+                    @Html.Bootstrap().TextBoxFor(m => m.BirthYear).Placeholder("YYYY").HtmlAttributes(new { style = "width:50px" })
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label" for="BloodGroup">Marital Status<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("MaritialStatus")
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label" for="Name">Sex<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("Sex")
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label" for="BloodGroup">Blood Group<span class="required">*</span></label>
+                <div class="controls">
+                    @Html.DropDownList("BloodGroup")
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <div class="controls">
+                    @Html.CheckBoxFor(m => m.CanDonateBlood)
+                @Html.LabelFor(m => m.CanDonateBlood)
+                </div>
+            </div>
+
+            <div class="pop-cnt-btns">
+                <button type="button" class="edit-close btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn-primary">Update</button>
+                <img src="~/Content/images/busy.gif" class="frm-busy" />
+            </div>
+            
+            <p>
+                @Html.ValidationSummary()
+            </p>
+            
+            <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    var AlumniSetting = {};
+    AlumniSetting.getBrachesUrl = '@Url.Action("GetBranches", "Register", new { Area = "" })';
+
+    $('#ddlAlumniRegCourse').change(function () {
+        var id = $(this).val();
+        $.ajax({
+            url: AlumniSetting.getBrachesUrl,
+            type: 'GET',
+            data: { courseId: id },
+            dataType: 'JSON',
+            contentType: 'application/json',
+
+            success: function (branches) {
+                var ddlBranch = $("#ddlAlumniRegBranch");
+                ddlBranch.empty();
+                $.each(branches, function (key, branch) {
+                    $(ddlBranch).append('<option value="' + branch.id + '">' + branch.name + '</option>');
+                });
+            }
+        });
+    });
+</script>
+

@@ -1,0 +1,119 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.User
+<div style="width: 850px">
+    <div>
+        <img  src="@Routes.SearchPic(Model.UserId)" alt="" class="d-ib"/>
+        <div class="span" style="margin: 4px 5px">
+            <a href="@Routes.Profile(Model.UserId)" class="slim-head" target="_blank">@Model.FullName</a>
+            @{var roles = string.Join(" | ", Model.UserRoles.Select(u => u.RoleType.ToString()));}
+            <div>@roles</div>
+            <div>Sessions : @Model.UserSessions.Count</div>
+        </div>
+    </div>
+    <br />
+    <div style="max-height: 250px; overflow: auto;">
+        <table class="table">
+            <tr>
+                <th>Date</th>
+                <th>Comment</th>
+                <th>By</th>
+            </tr>
+            @{Model.UserLogs.Reverse();}
+            @foreach (var item in Model.UserLogs)
+            {
+                <tr>
+                    <td>@DisplayHelper.DateTime(item.Date, DateTypes.Normal)</td>
+                    <td>@item.Comment.LetterLimited(80)</td>
+                    <td>
+                        <a href="@Routes.Profile(item.ByUserId)">@item.ByUserName</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    @using (Html.BeginForm("Block", "ManageUser", FormMethod.Post, new { @class = "save-clse-frm" }))
+    {
+        @Html.Hidden("id", Model.UserId)
+        @Html.Hidden("status", Model.AccountStatus)
+        @Html.AntiForgeryToken()
+        <hr />
+        if (Model.AccountStatus == Axb.ActiveAlumni.Nit.Entities.UserRegisterStatus.Suspended)
+        {
+        <button type="submit" class="btn">Unblock User</button>
+        }
+        else
+        {
+        <input type="text" name="reason" placeholder="Reason For Blocking" style="width: 90%;" />
+        <div>
+            <button type="submit" class="btn">Block User</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>     
+        }
+        <hr />
+    }
+
+    <hr />
+
+    @using (Html.BeginForm("UpdateAdminRole", "ManageUser", FormMethod.Post, new { @class = "d-ib save-clse-frm" }))
+    {
+        @Html.Hidden("id", Model.UserId)
+        @Html.AntiForgeryToken()
+        if (Model.UserRoles.Any(m => m.RoleType == Axb.ActiveAlumni.Nit.Entities.UserRoleType.Admin))
+        {
+        <button type="submit" class="btn">Remove Admin Role</button>
+        }
+        else
+        {
+        <button type="submit" class="btn">Make as Admin</button>
+        }
+        <img src="~/Content/images/busy.gif" class="frm-busy" />
+    }
+
+    @using (Html.BeginForm("UpdateTouchPoint", "ManageUser", FormMethod.Post, new { @class = "d-ib save-clse-frm" }))
+    {
+        @Html.Hidden("id", Model.UserId)
+        @Html.AntiForgeryToken()
+        if (Model.IsTouchPoint)
+        {
+        <button type="submit" class="btn">Remove TouchPoint</button>
+        }
+        else
+        {
+        <button type="submit" class="btn">Make TouchPoint</button>
+        }
+        <img src="~/Content/images/busy.gif" class="frm-busy" />
+    }
+
+    @using (Html.BeginForm("UpdateUserRole", "ManageUser", FormMethod.Post, new { id ="frmUserType", @class = "d-ib save-clse-frm" }))
+    {
+        @Html.Hidden("id", Model.UserId)
+        @Html.Hidden("role", Model.UserRoles[0].RoleType)
+        @Html.AntiForgeryToken()
+        <a class="btn" data-role="@UserRoleType.Alumni">Make Alumni</a>
+        <a class="btn" data-role="@UserRoleType.Student">Make Student</a>
+        <a class="btn" data-role="@UserRoleType.Test">Make Test User</a>
+        <a class="btn" data-role="@UserRoleType.Staff">Make Staff</a>
+        <img src="~/Content/images/busy.gif" class="frm-busy" />
+    }
+    <hr />
+
+</div>
+
+<script>
+    var $form = $('#frmUserType');
+    $form.find('a').click(function () {
+        var $this = $(this);
+        $form.find('#role').val($this.attr('data-role'));
+        $form.submit();
+    });
+
+</script>
+<script src="~/Scripts/_save-clse-frm.js"></script>
+
+<script src="~/Scripts/_time.js"></script>

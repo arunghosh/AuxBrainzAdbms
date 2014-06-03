@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+<ul class="alm-know-summ">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a class="news-summ" href="/AlumniStory/@item.AlumniNewsId">
+                <div>
+                    <p>
+                        @if (item.ImageData != null && item.ImageData.Length > 100)
+                        {
+                            <img src="/Admin/AlumniNews/NewsImage/@item.AlumniNewsId" style="width:100%" />
+                        }
+                    </p>
+
+                    <div class="slim-head title">@item.Title</div>
+                    <div class="dim">@item.SubTitle</div>
+@*                    <div class="dim-v">
+                        @DisplayHelper.DateTime(item.Date, DateTypes.DateOnly)
+                    </div>*@
+                </div>
+
+            </a>
+        </li>    
+    }
+</ul>

@@ -1,0 +1,52 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.User>
+
+@{
+    ViewBag.Title = "UserRegistration";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div style="padding: 0 0 0 10px;">
+    <form action="/Admin/UserStatistics/UserAutoReg" method="post">
+        <h5>Find users joined on : </h5>
+        <input type="text" name="date" id="date"  value="@ViewBag.Date"/>
+        <button type="submit" class="btn-primary">Submit</button>
+    </form>
+</div>
+<br />
+@if (Model != null)
+{
+<div style="padding: 0 0 0 10px;">
+    <h6>@Model.Count users</h6>
+    </div>
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Batch</th>
+            <th>Branch</th>
+            <th>Degree</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(Model.IndexOf(item) + 1)</td>
+                <td>@item.FullName</td>
+                <td>@item.UserCourses[0].Batch</td>
+                <td>@item.UserCourses[0].BranchName</td>
+                <td>@item.UserCourses[0].CourseName</td>
+            </tr>
+        }
+    </table>
+}
+
+
+
+@section Scripts{
+    <script src="~/Scripts/_timePicker.js"></script>
+    <script>
+        $(function () {
+            $("#date").datepicker();
+        });
+    </script>
+}

@@ -1,0 +1,43 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Feedback
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.Advt);
+    Layout = Routes.Layout;
+}
+<style>
+    #newOffer textarea
+    {
+        height: 150px;
+    }
+</style>
+<div class="new-frm" id="newOffer" style="min-height: 450px;">
+    <p>To advertise please fill and submit the following form</p>
+    @using (Html.BeginForm("Index", "Advertise", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken();
+        if (!(bool)ViewData[Constants.IsAuthKey])
+        {    
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName)
+
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)
+        }
+        <label>Your Message</label>
+        @Html.TextAreaFor(m => m.Message)
+
+        <div>
+            <br />
+            <a class="btn btn-cancel" href="/">Back</a>
+            <button class="submit btn-primary">Submit</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+    
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+
+    }
+</div>
+
+@section Scripts{}

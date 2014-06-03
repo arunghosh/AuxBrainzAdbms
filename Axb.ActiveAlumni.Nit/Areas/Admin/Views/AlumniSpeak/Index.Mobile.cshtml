@@ -1,0 +1,24 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.AlumniSpeak>
+
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.AlumniSpeaks);
+    if (System.Web.HttpContext.Current.Request.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+@if (Model != null)
+{
+<div style="padding:7px;">
+    @if (Model != null)
+    {
+        @Html.Action("Show", "AlumniSpeak", new { area = "Admin", id=Model.SelectedId })
+    }
+</div>}
+@section Scripts
+    {
+}

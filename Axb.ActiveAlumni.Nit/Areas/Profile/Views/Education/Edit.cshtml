@@ -1,0 +1,40 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Education
+
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<div class="prof-frm">
+    @using (Html.BeginForm("Edit", "Education", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.EducationId)
+        
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.SchoolName).ShowValidationMessage(false).HtmlAttributes(new { data_autocomplete_source = @Url.Action("GetCompanyNames") })
+        @Html.Bootstrap().ControlGroup().DropDownListFor(m => m.Batch, ViewBag.Batches as SelectList)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Location).ShowValidationMessage(false)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Degree).ShowValidationMessage(false)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Specialisation).ShowValidationMessage(false)
+            
+        <div class="pop-cnt-btns">
+            <button type="button" class="edit-close btn btn-default">Cancel</button>
+            <button type="submit" class="btn-primary">Update</button>
+                <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+            
+        <p>
+            @Html.ValidationSummary()
+        </p>
+            
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    }
+
+    @if (Model.EntityKey != 0)
+    {
+        using (Html.BeginForm("Remove", "Education", FormMethod.Post, new { @class = "removefrm" }))
+        {
+            @Html.Hidden("id", Model.EntityKey)
+            @Html.AntiForgeryToken()
+            <a>Remove this course from my profile</a>
+        }
+    }
+</div>

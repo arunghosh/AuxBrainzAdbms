@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+<ul class="alm-know-summ">
+    @foreach (var item in Model)
+    {
+        <li>
+            @if (item.Title.Contains("2014 Grad"))
+            {
+                <a class="news-summ" href="/News/@item.AlumniNewsId">
+                    <img src="/Admin/AlumniNews/NewsImage/@item.AlumniNewsId" class="w100"/>
+                    <div>
+                        <div class="slim-head title">@item.Title</div>
+                        <p>@item.News.LetterLimited(150)</p>
+                    </div>
+                </a>
+            }
+            else
+            {
+                <a class="news-summ" href="/News/@item.AlumniNewsId">
+                    <div>
+                        <div class="slim-head title">@item.Title</div>
+                        <div>
+                            @DisplayHelper.DateTime(item.Date, DateTypes.DateOnly)
+                        </div>
+                    </div>
+
+                    <p>
+                        @if (item.ImageData != null && item.ImageData.Length > 100)
+                        {
+                            <img src="/Admin/AlumniNews/NewsThumb/@item.AlumniNewsId" style="margin:3px 6px 0px 1px" />
+                        }
+                        @item.News.LetterLimited(180)
+                    </p>
+                </a>
+            }
+        </li>    
+    }
+</ul>

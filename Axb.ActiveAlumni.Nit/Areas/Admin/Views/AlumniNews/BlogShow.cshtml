@@ -1,0 +1,48 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.AlumniNews
+@Html.Partial("FBInit")
+<div class="d-ib ft-r">
+    @if ((bool)ViewData[Constants.IsAdminKey])
+    { 
+        <a class="btn-gray" data-title="Edit Job Post" href='/Admin/AlumniNews/BlogEdit/@Model.AlumniNewsId'><i class="icon-edit"></i>Edit</a>
+    }
+</div>
+<h3>@Model.Title</h3>
+<div class="bld fs-l">@Model.SubTitle</div>
+@if (!string.IsNullOrEmpty(Model.NewsLink))
+{
+    <div><a target="_blank" href="@Model.NewsLink">@Model.NewsLink.LetterLimited(80)</a></div>
+}
+<div>@DisplayHelper.DateTime(Model.Date, DateTypes.DateOnly)</div>
+<br />
+<div>@if (Model.ImageData != null && Model.ImageData.Length > 100)
+     {<img src="/Admin/AlumniNews/NewsImage/@Model.AlumniNewsId" style="margin:0 20px 12px 0;" />}</div>
+<pre class="read">@Html.Raw(Model.News.Replace(Environment.NewLine, "<br/>"))</pre>
+<br />
+@if (Model.Status == PostStatusType.Approved)
+{
+    var url = Routes.NewsUrl(Model.EntityKey);
+    url = url.Replace("News", "AlumniStory");
+    <div>
+        <div class="tw-btn">
+            <a id="twBtn" href="https://twitter.com/share" class="twitter-share-button" data-url="@url" data-count="none">Tweet</a>
+            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
+        <div class="fb-share-button" data-href="http://@(url)" data-type="button_count"></div>
+    </div>
+
+    <br />
+
+    <div style="background: rgba(255,255,255,.8)" class="d-ib">
+        <div class="fb-comments" data-href="@url" data-numposts="5" data-width="600" data-colorscheme="light"></div>
+    </div>
+}
+<script src="~/Scripts/_time.js"></script>
+<script>
+    window.location.hash = '@Model.Slug';
+    $(document).ajaxComplete(function () {
+        try {
+            FB.XFBML.parse();
+            twttr.widgets.load();
+        } catch (ex) { }
+    });
+</script>

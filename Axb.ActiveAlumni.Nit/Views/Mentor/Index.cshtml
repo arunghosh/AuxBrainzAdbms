@@ -1,0 +1,40 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<MentorShip>
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit.Services
+@{
+    ViewBag.Title = "Mentor | Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@if (Model == null)
+{
+    <h4 class="m10">No mentoring available</h4>
+}
+else
+{
+    <div class="left-lst">
+        <div class="avail-ht">
+            <table style="width: 100%">
+                @foreach (var item in Model.Items)
+                {
+                    var isStd = UserSession.CurrentUserId == item.StudentId;
+                    <tr class="a-sele-item va-t @(item.MentorShipId == Model.SelectedId ? "seleted" : "")" data-id="@item.MentorShipId">
+                        <td>
+                            <img src='@Routes.ProfilePic(isStd ? item.AlumniId : item.StudentId)' class="ntfy-uimg"/>
+                            <div class="ntfy-msg">
+                                <div><b class="sender">@(isStd ? item.AlumniName : item.StudentName)</b><span class="time">@DisplayHelper.DateTime(item.StartDate, DateTypes.Medium)</span></div>
+                                @MentorStatusFilter.GetStatusMsg(item.Status.ToString())
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="a-frm-ctnr right-lstSele" data-id="@Model.SelectedId" data-url="/Mentor/ShowDetails">
+        @{Html.RenderAction("ShowDetails", new { id = Model.SelectedId });}
+    </div>
+}
+@section Scripts
+{
+    <script src="~/Scripts/_ajax-form.js"></script>
+}

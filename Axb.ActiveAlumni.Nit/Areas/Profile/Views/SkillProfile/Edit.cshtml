@@ -1,0 +1,80 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.SkillVm
+
+<div id="skillIp">
+    <input type="text" placeholder="Enter new skill" name="newSkill" data-autocomplete-source='@Url.Action(Routes.AcJoinedSkills)' />
+    <button class="btn-primary" style="background: #369">Add</button>
+</div>
+
+@using (Html.BeginForm("Edit", "SkillProfile", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <ul id="skillList" class="ltype-none" style="">
+    </ul>
+    
+    <div class="pop-cnt-btns">
+        <button type="button" class="edit-close btn btn-default">Cancel</button>
+        <button type="submit" class="btn-primary">Update</button>
+        <img src="~/Content/images/busy.gif" class="frm-busy" />
+    </div>
+
+    <p>
+        @Html.ValidationSummary()
+    </p>
+            
+    <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+    </div>
+}
+<script type="text/javascript">
+    $("#skillIp input").autocomplete({
+        select: function (a, b) {
+            addSkill(b.item.value);
+            this.value = '';
+            return false;
+        }
+    });
+
+    $(function () {
+        $.ajax({
+            url: "/Profile/SkillProfile/List",
+            type: "Get",
+            success: function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    addSkill(result[i]);
+                }
+            }
+        });
+
+    });
+
+    $("#skillIp button").click(function () {
+        var input = $('#skillIp input');
+        if (input.val().length > 0) {
+            var skills = input.val().split(',');
+            for (var i = 0; i < skills.length; i++) {
+                addSkill(skills[i]);
+            }
+            input.val('');
+        }
+    });
+
+    function addSkill(skill) {
+        var $ctnr = $('<li>')
+        $('#skillList').append($ctnr);
+        $('<span>')
+            .addClass('value')
+            .text(skill)
+            .appendTo($ctnr);
+        $('<input>')
+            .attr({ type: 'hidden', value: skill, name: 'SeleSkills' })
+            .appendTo($ctnr);
+        $('<span>')
+            .addClass('close')
+            .text('X')
+            .click(function () {
+                $(this).parent().remove();
+            })
+            .appendTo($ctnr);
+        $("#skillIp input").focus();
+    }
+</script>
+<script src="~/Scripts/_common.js"></script>

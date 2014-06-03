@@ -1,0 +1,73 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.MentorRequestVm
+
+@{
+    ViewBag.Title = "New Mentoring Reqest";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<style>
+    #mntrCtnr a
+    {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    #mntrCtnr h4
+    {
+        display: none;
+    }
+</style>
+<div class="p20">
+    @if (Model.IsDone)
+    {
+        <h5>Your mentoring request has been send to the concerned person.</h5>
+    }
+    else
+    {
+
+        
+        <div id="mntrCtnr">
+            <div class="ft-l span">
+                <img src='@Url.Action("ProfileImage", new { id = Model.AlumniId })' alt="" style="width:124px; height:124px;"/>
+            </div>
+            <div class="span pl20">
+                <div>
+                    @Html.ActionLink(@Model.Alumni.FullName, "Index", "FullProfile", new { area = "Profile", id = Model.AlumniId }, null)
+                </div>
+                <div>
+                    <div class="span" style="width: 250px">
+                        @{Html.RenderAction("List", "Course", new { area = "Profile", id = Model.AlumniId });}
+                    </div>
+                    <div class="span" style="width: 250px">
+                        @{Html.RenderAction("List", "Address", new { area = "Profile", id = Model.AlumniId });}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="clrb">
+            @{Html.RenderAction("Show", "SkillProfile", new { area = "Profile", id = Model.AlumniId });}
+        </div>
+        <br />
+        <div>
+            @using (Html.BeginForm("MentorRequest", "Mentor", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.StudentId)
+                @Html.HiddenFor(m => m.AlumniId)
+                <div class="clrb">
+                    <textarea name="Message" placeholder="Mentoring Request Messsage" style="width: 450px; height: 150px"></textarea>
+                    <div class="dim ft-sl-i">Note: In the message specific your areas on interest and your expectation from the mentor.</div>
+                </div>
+                <div class="pop-cnt-btns">
+                    @Html.Bootstrap().SubmitButton().Text("Send Request").HtmlAttributes(new { @class = "btn-primary" })
+                </div>
+
+                <p>
+                    @Html.ValidationSummary()
+                </p>
+            }
+        </div>
+    }
+</div>
+@section Scripts
+{}

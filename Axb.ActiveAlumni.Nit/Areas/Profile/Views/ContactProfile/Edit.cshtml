@@ -1,0 +1,87 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.ContactProfileVm
+
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<style>
+
+</style>
+
+<div class="popover bottom">
+    <div class="arrow"></div>
+    <div class="popover-content">
+        @using (Html.BeginForm("Edit", "ContactProfile", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+ 
+            
+            @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Email).ShowValidationMessage(false)
+            <div class="control-group">
+                <label class="control-label" for="Email">
+                    Visible to
+                </label>
+                <div class="controls">
+                    @ProfileHelper.CkBoxes(Model.VisibilityOptions, Model.EmailVisibility, "EmailVisibility")
+                </div>
+            </div>
+            <hr />
+            
+            @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.MobileNumber).ShowValidationMessage(false)
+            <div class="control-group">
+                <label class="control-label" for="Email">
+                    Visible to
+                </label>
+                <div class="controls">
+                    @ProfileHelper.CkBoxes(Model.VisibilityOptions, Model.MobileVisibility, "MobileVisibility")
+                </div>
+            </div>
+            <hr />
+
+            @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.HomePhone).ShowValidationMessage(false)
+            <div class="control-group">
+                <label class="control-label" for="Email">
+                    Visible to
+                </label>
+                <div class="controls">
+                    @ProfileHelper.CkBoxes(Model.VisibilityOptions, Model.HomePhoneVisibility, "HomePhoneVisibility")
+                </div>
+            </div>
+            <hr />
+
+            <div class="clrb">
+                @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Website).ShowValidationMessage(false)
+            </div>
+            <br />
+            <div class="pop-cnt-btns">
+                <button type="button" class="edit-close btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn-primary">Update</button>
+                <img src="~/Content/images/busy.gif" class="frm-busy" />
+            </div>
+            
+            <p>
+                @Html.ValidationSummary()
+            </p>
+            
+            <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+            </div>
+            
+        }
+    </div>
+</div>
+<script>
+    $(function () {
+        //$('.btn-ckbox input').click(function () {
+        //    var ckCls = 'btn-success';
+        //    var ukCls = 'btn-default';
+        //    var $this = $(this).parents('label');
+        //    if ($this.hasClass(ckCls)) {
+        //        $this.removeClass(ckCls);
+        //        $this.addClass(ukCls);
+        //    } else {
+        //        $this.removeClass(ukCls);
+        //        $this.addClass(ckCls);
+        //    }
+        //    $(this).prop('checked', 'checked');
+        //});
+    });
+</script>
+<script src="~/Scripts/bootstrap.min.js"></script>

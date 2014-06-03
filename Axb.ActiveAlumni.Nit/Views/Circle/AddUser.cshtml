@@ -1,0 +1,54 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.AddCircleVm
+    <div class="arrow"></div>
+    <div style="padding:0 0 0 10px;">
+        <div class="span fs-l">Add <span class="bld">@Model.UserName</span> to Circle</div>
+        <div class="close-btn">X</div>
+    </div>
+    <div class="addc-ctnt">
+        @using (Html.BeginForm("AddUser", "Circle", FormMethod.Post, new { @class = "form-horizontal save-clse-frm"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("userId", Model.UserId)
+            @Html.Hidden("circleId", string.Empty)
+            <ul>
+                @foreach (var item in Model.Circles)
+                {
+                    <li data-id="@item.CircleId">
+                        <i class=" icon-play-circle"></i> @item.Name
+                    </li>
+
+                }
+            </ul>
+            <div style="padding: 15px 0px 5px 15px;">
+                <input type="text" id="newCircle" name="newCircle" placeholder="New Circle Name" style="display: inline-block; width: 150px;" />
+                <button class="btn btn-default">Add</button>
+                <img src="~/Content/images/busy.gif" class="frm-busy" />
+            </div>
+
+            <div class="validation-summary-errors" data-valmsg-summary="true">
+            </div>
+        }
+    </div>
+
+<script>
+
+
+    $(function () {
+        $('.addc-ctnt li').click(function () {
+            var $this = $(this);
+            var $form = $this.parents('form');
+            $form.find('#circleId').val($this.attr('data-id'));
+            $form.submit();
+        });
+    });
+
+    $(function () {
+        $('.addc-ctnt a').click(function () {
+            var $this = $(this);
+            var $form = $this.parents('form');
+            $form.find('#circleId').val($this.attr(''));
+            $form.submit();
+        });
+    });
+</script>
+<script src="~/Scripts/_save-clse-frm.js"></script>

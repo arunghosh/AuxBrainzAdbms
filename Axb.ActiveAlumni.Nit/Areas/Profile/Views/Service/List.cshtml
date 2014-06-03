@@ -1,0 +1,28 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.ServiceInfo>
+
+<div id="addServiceCtnr">
+    <div style="position: relative">
+        <h4>Service Information</h4>
+        @if ((bool)ViewData[Constants.ProfileEditKey])
+        {
+            <div class="edit-ctnr">
+                <a class="edit-icon add-text"><i class="icon-plus"></i>Service
+                </a>
+            </div>
+            <script>
+                $(function () {
+                    new AddProfile("Service");
+                });
+            </script>
+        }
+    </div>
+</div>
+<ul class="ltype-none">
+    @foreach (var info in Model)
+    {
+        var ctnrId = String.Format("serviceCtnr_{0}", info.EntityKey);
+        <li id = '@ctnrId' class="span clearb ctnt-bhr">
+            @{Html.RenderPartial("Show", info);}
+        </li>
+    }
+</ul>

@@ -1,0 +1,65 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Admin.Models.ManualUserRegVm
+
+<div class="p20">
+    @using (Html.BeginForm("AddUser", "ManageUser", FormMethod.Post, new { @class = "form-horizontal save-clse-frm", data_refresh = "true" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.FirstName).Placeholder("").ShowValidationMessage(false)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.LastName).Placeholder("").ShowValidationMessage(false)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Email).Placeholder("name@domain.com").ShowValidationMessage(false)
+
+        <div class="control-group">
+            <label class="control-label" for="Name">Course<span class="required">*</span></label>
+            <div class="controls">
+                @Html.DropDownList("CourseId", null, new { @id = "ddlAlumniRegCourse" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Name">Specialisation<span class="required">*</span></label>
+            <div class="controls">
+                @Html.DropDownList("BranchId", null, new { @id = "ddlAlumniRegBranch" })
+            </div>
+        </div>
+        @Html.Bootstrap().ControlGroup().DropDownListFor(m => m.Batch, ViewBag.Batches as SelectList)
+
+        <div>
+            <br />
+            <a class="btn btn-cancel">Cancel</a>
+            <button type="submit" class="btn-primary">Create User</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    }
+</div>
+<script src="~/Scripts/_save-clse-frm.js"></script>
+<script>
+    var AlumniSetting = {};
+    AlumniSetting.getBrachesUrl = '@Url.Action("GetBranches", "Register", new { Area = "" })';
+    $(document).ready(function () {
+        $('#ddlAlumniRegCourse').change(function () {
+            var id = $(this).val();
+            $.ajax({
+                url: AlumniSetting.getBrachesUrl,
+                type: 'GET',
+                data: { courseId: id },
+                dataType: 'JSON',
+                contentType: 'application/json',
+
+                success: function (branches) {
+                    var ddlBranch = $("#ddlAlumniRegBranch");
+                    ddlBranch.empty();
+                    $.each(branches, function (key, branch) {
+                        $(ddlBranch).append('<option value="' + branch.id + '">' + branch.name + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>

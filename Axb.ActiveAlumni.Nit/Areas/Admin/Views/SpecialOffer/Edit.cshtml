@@ -1,0 +1,108 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.SpecialOffer
+
+@{
+    ViewBag.Title = "Edit Offer | NIT Calicut Alumni";
+    Layout = Routes.Layout;
+}
+@*<style>
+    #newOffer h3
+    {
+        color: #444;
+    }
+
+    #previewCtnr
+    {
+        float: right;
+        display: inline-block;
+    }
+
+    #newOffer
+    {
+        width: 600px;
+        margin: 0 auto;
+        padding: 10px;
+        background: #f0f0c0;
+    }
+
+        #newOffer input, #newOffer textarea
+        {
+            width: 90%;
+        }
+</style>*@
+<div class="new-frm" id="newOffer" style="">
+    <h3>Add New Offer</h3>
+    @using (Html.BeginForm("Edit", "SpecialOffer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.SpecialOfferId)
+
+        if (!(bool)ViewData[Constants.IsAuthKey])
+        {
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName)
+        }
+
+        @Html.LabelFor(m => m.EmailAddress)
+        @Html.TextBoxFor(m => m.EmailAddress)
+
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone)
+        
+        @Html.LabelFor(m => m.Category)
+        @Html.TextBoxFor(m => m.Category)
+
+        @Html.LabelFor(m => m.OrganisationName)
+        @Html.TextBoxFor(m => m.OrganisationName)
+
+        @Html.LabelFor(m => m.City)
+        @Html.TextBoxFor(m => m.City)
+
+        @Html.LabelFor(m => m.Address)
+        @Html.TextAreaFor(m => m.Address)
+
+        @Html.LabelFor(m => m.OfferStatment)
+        @Html.TextBoxFor(m => m.OfferStatment)
+
+        <div style="display: inline-block; width: 100%;">
+            <div class="span">
+                <br />
+                <input type="file" name="profile" onchange="showPreview(this)" class="dim" />
+                <div class="dim">*** You can upload a JPG, GIF or PNG file</div>
+                <div class="dim">*** Maximum allowed file size is 700MB</div>
+                <br />
+            </div>
+
+
+            <div id="previewCtnr" class="span p20 hide">
+                <div class="dim">Display Picture</div>
+                <img id="preview" src="/Admin/SpecialOffer/OfferImage/@Model.SpecialOfferId" alt="image" />
+            </div>
+        </div>
+        if ((bool)ViewData[Constants.IsAdminKey])
+        {
+        @Html.LabelFor(m => m.Status)
+        @Html.DropDownList("Status")
+        }
+        
+        <div>
+            <a class="submit btn" href="@Routes.NavigationItems[PageTypes.SpecialOffers].TinyUrl">Cancel</a>
+            @if (Model.SpecialOfferId == 0)
+            {
+                <button class="submit btn-primary">Add Offer</button>
+            }
+            else
+            {
+                <button class="submit btn-primary">Update Offer</button>
+            }
+        </div>
+        
+        @Html.ValidationSummary()
+    }
+</div>
+
+
+@section Scripts
+{
+    <script src="~/Scripts/_photoPre.js"></script>
+    <script src="~/Scripts/_save-clse-frm.js"></script>
+}

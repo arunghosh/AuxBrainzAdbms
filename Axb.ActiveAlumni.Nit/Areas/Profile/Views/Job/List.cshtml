@@ -1,0 +1,32 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Job>
+
+<div id="addJobCtnr">
+    <div style="position: relative">
+        <h4><i class="icon-briefcase"></i> Professional Information</h4>
+        @if ((bool)ViewData[Constants.ProfileEditKey])
+        {
+            <div class="edit-ctnr">
+                <a class="edit-icon add-text"><i class="icon-plus"></i>Job
+                </a>
+            </div>
+            <script>
+                $(function () {
+                    new AddProfile("Job");
+                });
+            </script>
+        }
+    </div>
+</div>
+<ul class="ltype-none">
+    @foreach (var job in Model)
+    {
+        var ctnrId = String.Format("jobCtnr_{0}", job.JobId);
+        <li id = '@ctnrId' class="span clearb ctnt-bhr">
+            @{Html.RenderPartial("Show", job);}
+        </li>
+    }
+</ul>
+
+
+
+

@@ -1,0 +1,12 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.AlumniSpeak
+
+<div id="newAlumnitK" style="width: 600px">
+    @using (Html.BeginForm("Edit", "AlumniSpeak", FormMethod.Post, new { @class = "save-clse-frm", data_refresh = "true" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.AlumniToKnowId)
+        @Html.Partial("ArticleEdit")
+    }
+</div>
+<script src="~/Scripts/_common.js"></script>
+<script src="~/Scripts/_save-clse-frm.js"></script>

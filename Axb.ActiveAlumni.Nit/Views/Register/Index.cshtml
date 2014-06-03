@@ -1,0 +1,174 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.RegisterUserVm
+@using Axb.ActiveAlumni.Nit.Entities
+@{
+    ViewBag.Title = "Register New User | NIT Calicut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .reg-type li
+    {
+        display: inline-block;
+        cursor: pointer;
+        padding: 4px 15px;
+        color: #888;
+        background: transparent;
+        font-size: 13px;
+    }
+
+    .reg-type .selected
+    {
+        background: #fff;
+        color: #333;
+        border: 1px solid #ccc;
+        border-bottom: 0px;
+        border-radius: 4px 3px 0px 0px;
+        font-weight: bold;
+    }
+
+    .reg-type
+    {
+border-bottom: 1px solid #ddd;
+margin: 0px -8% 10px -15%;
+background: #fbfbfb;
+padding: 7px 0 0 20%;
+    }
+
+        .reg-type ul
+        {
+            list-style-type: none;
+            margin: 0 0 -1px 12px;
+        }
+
+    #regFrmCtnr select
+    {
+        width:246px;
+    }
+    #regFrmCtnr input
+    {
+        width:235px;
+    }
+    #regFrmCtnr .control-group
+    {
+        margin-bottom:15px;
+    }
+    #regFrmCtnr .control-label
+    {
+        padding: 3px 4px 0 0;
+    }
+    #regFrmCtnr .half-w
+    {
+        width:110px;
+    }
+    #regFrmCtnr
+    {
+text-align: left;
+margin: 2% 0 12px 100px;
+width: 772px;
+border: 0px solid #678;
+box-shadow: 0px 0px 1px 0px #eee;
+border-radius: 2px;
+padding: 20px;
+    }
+</style>
+<div id="regFrmCtnr">
+    <div class="a-frm-ctnr">
+        @{Html.RenderPartial("RegisterUser", Model);}
+    </div>
+</div>
+<div class="clr-b d-ib read dim m10">
+<hr />
+<p>You agree that by registering on <a href="nitcalumni.com" target="_blank">nitcalumni.com</a>, that you are an alumnus/staff/student of National Institute of Technology, Calicut (NITC / erstwhile  REC Calicut), and the information updated on this site are correct and accurate.You further agree that you will not post any content that is defamatory, obscene or illegal. Copyrighted material, may not be placed on the Site without the permission of the owner of the copyright in the material, or other legal entitlement to use the material. You must not publish any material that would be against the national interest and you take full responsibility of all material that are posted by you.
+NITC Alumni Association reserves the right to edit or remove any material posted upon our website.</p>
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/_ajax-form.js"></script>
+    <script>
+        var AlumniSetting = {};
+        AlumniSetting.getBrachesUrl = '@Url.Action("GetBranches", "Register", new { Area = "" })';
+
+        $(function () {
+            $("#Role").val('@UserRoleType.Alumni.ToString()');
+
+            $('#regAlumni').click(function () {
+                resetSelection($(this));
+                $("#Role").val('@UserRoleType.Alumni.ToString()');
+                $('#regStdOnly').show();
+                var date = new Date().getFullYear();
+                setBranch(1965, date);
+            });
+
+            $('#regStudent').click(function () {
+                resetSelection($(this));
+                $("#Role").val('@UserRoleType.Student.ToString()');
+                $('#regStdOnly').show();
+                var date = new Date().getFullYear();
+                setBranch(date, date + 5);
+            });
+
+
+            $('#regStaff').click(function () {
+                resetSelection($(this));
+                $("#Role").val('@UserRoleType.Staff.ToString()');
+                $('#regStdOnly').hide();
+            });
+
+            function resetSelection($this) {
+                $('.reg-type li').removeClass('selected');
+                $this.addClass("selected");
+            }
+
+            //var $ctnr = $("#dialogCtnr");
+            //showAppBusy("Terms and Conditions");
+            //$ctnr.dialog({
+            //    modal: true, autoOpen: false, resizable: false,
+            //    width: 'auto', title: "Terms and Conditions", draggable: false,
+            //    closeOnEscape: false,
+            //    open: function (event, ui) { $(".ui-dialog-titlebar-close").hide(); }
+            //});
+
+            //$.ajax({
+            //    url: '/Register/Terms',
+            //    type: "GET",
+            //    traditional: true,
+            //    success: function (result) {
+            //        hideAppBusy();
+            //        $ctnr.html(result);
+            //        $ctnr.dialog("open");
+            //    }
+            //});
+        });
+
+        function setBranch(start, end) {
+            var $batch = $("#Batch");
+            $batch.find('option').remove();
+
+            for (var i = start; i <= end; i++) {
+                $batch.append('<option value=' + i + '>' + i + '</option>');
+
+            }
+        }
+
+        $(document).ready(function () {
+            $('#ddlAlumniRegCourse').change(function () {
+                var id = $(this).val();
+                $.ajax({
+                    url: AlumniSetting.getBrachesUrl,
+                    type: 'GET',
+                    data: { courseId: id },
+                    dataType: 'JSON',
+                    contentType: 'application/json',
+
+                    success: function (branches) {
+                        var ddlBranch = $("#ddlAlumniRegBranch");
+                        ddlBranch.empty();
+                        $.each(branches, function (key, branch) {
+                            $(ddlBranch).append('<option value="' + branch.id + '">' + branch.name + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

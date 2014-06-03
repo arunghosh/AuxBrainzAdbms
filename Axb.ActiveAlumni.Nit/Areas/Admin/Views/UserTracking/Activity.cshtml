@@ -1,0 +1,35 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Session>
+
+@{
+    ViewBag.Title = "User Activity | Admin NITCAA";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h5 style="padding: 0 0 0 10px;">User Activity</h5>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>User Name</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Browser</th>
+        <th>IP Address</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(Model.IndexOf(item) + 1)</td>
+            <td>
+                <a href="@Routes.Profile(item.UserId)">@item.UserName</a>
+            </td>
+            <td>@DisplayHelper.DateTime(item.Start, DateTypes.Normal)</td>
+            <td>@DisplayHelper.DateTime(item.End, DateTypes.Normal)</td>
+            <td>@item.Browser</td>
+            <td>@item.IPAddress</td>
+        </tr>
+    }
+</table>
+@section Scripts
+{
+}

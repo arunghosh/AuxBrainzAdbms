@@ -1,0 +1,36 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Admin.Models.RegisterSearchVm
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div id="searchCtnr">
+    <div id="filterCtnr">
+        <div class="avail-ht">
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(m => m.PageIndex)
+                foreach (var grp in Model.Filters.Where(f => f.IsList))
+                {
+                @SearchHelper.DispayGroup(grp, Url.Action(grp.AutoComplete))
+                <hr />
+                }
+            }
+        </div>
+    </div>
+    <div class="span" style="width: 530px; margin: 0 0 0 10px;">
+        <div id="searchResult">
+            @Html.Partial("RegisterFilterResult", Model)
+        </div>
+        <div>
+            @SearchHelper.PageControl(Model.TotalPages, Model.PageIndex)
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/_search.js"></script>
+    <script src="~/Scripts/_ajax-form.js"></script>
+    <script src="~/Scripts/_time.js"></script>
+}

@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Edit | Profile Picture";
+    Layout = "/Views/Shared/_UserLayout.cshtml";
+}
+<div class="p20">
+    <h4>Edit profile picture</h4>
+</div>
+<div class="span p20">
+    <div class="dim">Current Profile Picture</div>
+    <img src='@Url.Action("ShowPicture")' alt="" style="height:150px; width:150px;"/>
+</div>
+<div class="span" style="border: 1px solid #eee; padding: 18px 10px 38px 10px; border-width: 0 1px; width: 300px;">
+    @using (Html.BeginForm("PictureEdit", "FullProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Select Photo</h4>
+        <br />
+        <input type="file" name="profile" onchange="showPreview(this)" class="dim" />
+        <div class="dim">*** You can upload a JPG, GIF or PNG file</div>
+        <div class="dim">*** Maximum allowed file size is 700KB</div>
+        <br />
+        <div class="pop-cnt-btns">
+            <button type="submit" class="btn-primary">Update</button>
+        </div>
+        <br />
+        <div class="clrb">
+            @Html.ValidationSummary()
+        </div>
+    }
+</div>
+<div id="previewCtnr" class="span p20 hide">
+    <div class="dim">New Profile Picture</div>
+    <img id="preview" src="#" alt="your image" />
+</div>
+
+@section Scripts
+{
+
+<script type="text/javascript">
+    function showPreview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview')
+                    .attr('src', e.target.result)
+                    .height(150);
+                $('#previewCtnr').show();
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            $('#previewCtnr').hide();
+        }
+    }
+</script>
+    }

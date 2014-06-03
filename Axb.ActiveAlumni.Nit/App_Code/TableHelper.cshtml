@@ -1,0 +1,28 @@
+﻿@using Axb.ActiveAlumni.Nit.Entities
+@using System.Web.Mvc.Html
+
+@helper Row(string field, string value)
+{
+    if (!string.IsNullOrEmpty(value))
+    {
+    <tr>
+        <td class="tbl-field">@field</td>
+        <td class="tbl-value">@value</td>
+    </tr>
+    }
+}
+
+
+@helper InlineRow(string field, string value, int? wid = null)
+{
+    if (wid == null)
+    {
+    <td class="tbl-field">@field</td>
+    <td class="tbl-value">@value</td>
+    }
+    else
+    {
+    <td class="tbl-field" style="width:@wid">@field</td>
+    <td class="tbl-value">@value</td>        
+    }
+}

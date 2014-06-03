@@ -1,0 +1,25 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.ServiceInfo
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<div class="edit-ctnr">
+    <div class="prof-summ">
+        <div><span class="des-head">@Model.Title</span></div>
+        <div class="des-ctnt">@Model.Category</div>
+        <div class="des-ctnt">@Model.Description</div>
+    </div>
+    @if ((bool)ViewData[Constants.ProfileEditKey])
+    {
+        <div class="span ft-r">
+            <a class="edit-icon">
+                <i class="icon-edit"></i> Edit
+            </a>
+        </div>
+        <script>
+            $(function () {
+                new ListProfile("Service", '@Model.EntityKey');
+            });
+        </script>
+    }
+</div>
+
+

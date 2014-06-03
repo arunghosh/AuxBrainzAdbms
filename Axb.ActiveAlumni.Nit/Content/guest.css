@@ -1,0 +1,49 @@
+﻿.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus
+{
+    background: transparent;
+    color: #000;
+    border-bottom: 0px solid #49f;
+}
+
+.nav-tabs > li > a:hover
+{
+    color:#000!important;
+}
+.nav-tabs > li > a
+{
+    text-transform: uppercase;
+    font-family: bebasregular;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    letter-spacing: .3px;
+    color: #999;
+    padding: 2px 8px 0px 8px;
+    border-right: 0px solid #eee;
+    text-align: right;
+}
+
+.dropdown-menu a
+{
+    display: block;
+    text-align: left;
+    color: #777;
+    padding: 4px 4px 4px 8px;
+    font-family: bebasregular;
+    text-transform: uppercase;
+    background: #fff;
+}
+
+#guestHeadCvr
+{
+    background: #fff;
+    display: inline-block;
+    width: 100%;
+}
+
+
+#mainBk
+{
+    background: #fff;
+}
+

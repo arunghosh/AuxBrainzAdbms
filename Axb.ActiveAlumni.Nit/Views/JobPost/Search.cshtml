@@ -1,0 +1,34 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.JobSearchVm
+
+@{
+    ViewBag.Title = "Search Jobs | NIT Calicut Alumni";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div id="searchCtnr">
+    <div id="filterCtnr">
+        @using (Html.BeginForm("Search", "JobPost"))
+        {
+            @Html.HiddenFor(m => m.PageIndex)
+            foreach (var grp in Model.Filters.Where(f => f.IsList))
+            {
+            @SearchHelper.DispayGroup(grp, Url.Action(grp.AutoComplete))
+            <hr />
+            }
+        }
+
+    </div>
+    <div class="span" style="width: 510px; margin: 0 0 0 10px;">
+        <div id="searchResult">
+            @Html.Partial("Result", Model)
+        </div>
+        <div>
+            @SearchHelper.PageControl(Model.TotalPages, Model.PageIndex)
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/_search.js"></script>
+}

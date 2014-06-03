@@ -1,0 +1,41 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.AlumniToKnow
+
+<div id="newAlumnitK" style="width: 600px">
+    @using (Html.BeginForm("Edit", "AlumniKnow", FormMethod.Post, new { @class = "save-clse-frm", data_refresh = "true" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.AlumniToKnowId)
+        @Html.HiddenFor(m => m.IsDeleted)
+        <label>Tweet</label>
+        @Html.TextAreaFor(d => d.About, new { style = "height:100px; width:65%;" });
+        <div>
+            <br />
+            <a class="btn btn-cancel">Cancel</a>
+            @if (Model.EntityKey == 0)
+            {
+                <button class="submit btn-primary">Add Article</button>
+            }
+            else
+            {
+                <button class="submit btn-primary">Update Tweet</button>
+                if (Model.IsDeleted)
+                {
+                <a class="btn-unhide">Unhide</a>
+                }
+                else
+                {
+                <a class="btn-hide">Hide</a>
+                }
+            }
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    }
+</div>
+<script src="~/Scripts/_common.js"></script>
+<script src="~/Scripts/_save-clse-frm.js"></script>

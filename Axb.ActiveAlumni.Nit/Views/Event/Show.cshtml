@@ -1,0 +1,218 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Event
+@using Axb.ActiveAlumni.Nit.Entities
+@{var isAuth = System.Web.HttpContext.Current.Request.IsAuthenticated;}
+<script>
+    $(function () {
+        var title = '@Model.EventName';
+        $('meta[name=description]').attr(title);
+        $('meta[name=title]').attr(title);
+        $('title').html(title);
+        window.location.hash = '@Model.Slug';
+    });
+</script>
+@Html.Partial("FBInit")
+<div class="evt-show">
+    <h3>
+        @Model.EventName
+    </h3>
+    <hr class="bs-dot" />
+    <div>
+        @if (isAuth && Model.CreatedUserId == UserSession.CurrentUserId && Model.FromDate > DateTime.Now)
+        {
+            <a class="new-obj btn-gray ft-r" data-method="post" data-title="Edit Event" data-url='/Event/Edit/@Model.EventId'><i class="icon-edit"></i>Edit</a>
+        }
+
+        <div>
+            <i class="icon-map-marker"></i>
+            <div class="d-ib va-t">
+                <pre class="bld">@Html.Raw(Model.Location.Replace(Environment.NewLine, "<br/>"))</pre>
+            </div>
+        </div>
+        <div>
+            <i class="icon-user"></i>
+            <div class="d-ib va-t">Created by <a href="@Routes.Profile(Model.CreatedUserId)">@Model.CreatedUserName</a></div>
+        </div>
+    </div>
+    <hr class="bs-dot" />
+    @if (Model.IsOneDay)
+    {
+        <div class="bld">
+            <i class="icon-calendar"></i>
+            @DisplayHelper.DateTime(Model.FromDate, DateTypes.WithDay)
+        </div>
+        <div>
+            <i class="icon-time"></i>
+            <div class="d-ib va-t" style="width: 500px">
+                <ul>
+                    <li class="evt-d-li">
+                        <label>Starts at</label>
+                        @DisplayHelper.DateTime(Model.FromDate, DateTypes.TimeOnly)
+                    </li>
+                    <li class="evt-d-li">
+                        <label>Ends at</label>
+                        @DisplayHelper.DateTime(Model.ToDate, DateTypes.TimeOnly)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div>
+            <i class="icon-calendar"></i>
+            <div class="d-ib va-t" style="width: 500px">
+                <ul>
+                    <li class="evt-d-li">
+                        <label>Starts at</label>
+                        @DisplayHelper.DateTime(Model.FromDate, DateTypes.WithTime)
+                    </li>
+                    <li class="evt-d-li">
+                        <label>Ends at</label>
+                        @DisplayHelper.DateTime(Model.ToDate, DateTypes.WithTime)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+    @if (Model.IsTentative)
+    {
+        <div>
+            <i class="icon-blank"></i>
+            <div class="d-ib va-t bld c-red">Date Tentative</div>
+        </div>
+    }
+    <hr class="bs-dot" />
+    <div>
+        <i class="icon-list va-t"></i>
+        <div class="d-ib w90">
+            @if (Model.GroupsStr.Any())
+            {
+                <span class="bld">Invited : </span> <span>@string.Join(" | ", Model.GroupsDisplay)</span>
+            }
+            else if (Model.Invitees.Count > 1)
+            {
+                <span class="bld">Invited : </span>
+                foreach (var item in Model.Invitees)
+                {
+                <a class="discft-a" href="@Routes.Profile(item.UserId)">@item.UserName</a>
+                }
+            }
+        </div>
+    </div>
+    @if (!string.IsNullOrEmpty(Model.GoogleMap))
+    {
+
+        <i class="icon-star"></i>
+        <div class="d-ib va-t">
+            <a style="color: #d80;font-size: 15px;font-weight: bold;line-height: 25px;" href="@Model.GoogleMap">Click here to register for the event on the official registration page</a>
+        </div>
+        if (isAuth)
+        {       
+        <i class="icon-star"></i>
+        <div class="d-ib va-t" style="margin-left: 29px;">and also click the button below and indicate your participation</div>
+        }
+    }
+
+    @if (!Model.IsDeleted && Model.FromDate > DateTime.Now)
+    {
+        if (isAuth)
+        {
+        <hr class="bs-dot" />
+        <div>
+            <i class="icon-list-"></i>
+            <div class="d-ib">
+                @using (Html.BeginForm("UpdateStatus", "Event", FormMethod.Post, new { id = "invtFrm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.EventId)
+                    @Html.HiddenFor(m => m.Status)
+                    <a data-status="@InviteStatusTypes.Going" class="status-btn btn evt-cnt-c"><i class="icon-ok m0-5"></i>Going<div class="evt-cnt" id="eGnCnt">@Model.GoingCnt</div>
+                    </a>
+                    <a data-status="@InviteStatusTypes.MayBe" class="status-btn btn evt-cnt-c"><i class="icon-ques m0-5"></i>Maybe<div class="evt-cnt" id="eMbCnt">@Model.MayBeCnt</div>
+                    </a>@*
+                    <a data-status="@InviteStatusTypes.NotGoing" class="status-btn btn evt-cnt-c"><i class="icon-remove m0-5"></i>Not Going<div class="evt-cnt" id="eNgCnt">@Model.NotGoingCnt</div>
+                    </a>*@
+                }
+                <div id="invtStatLzy" class="lazy-load" data-url="/Event/InviteStat/@Model.EventId">
+                </div>
+            </div>
+        </div>
+        }
+        else
+        {
+        <hr class="bs-dot" />
+        <i class="icon-star"></i>
+        <div class="d-ib va-t status-note">Please <a href="/Login?ReturnUrl=%2fEvents/@Model.EntityKey">login</a> to indicate your participation</div>
+
+        }
+    }
+    <hr class="bs-dot" />
+    @if (Model.Description != null)
+    {
+        <i class="icon-align-left va-t"></i> 
+        <div class="d-ib" style="width: 94%">
+            <pre class="read">@Html.Raw(Model.Description.Replace(Environment.NewLine, "<br/>"))</pre>
+        </div>
+        <hr class="bs-dot" />
+    }
+
+    <br />
+    <div>
+        @if (System.Web.HttpContext.Current.Request.IsAuthenticated && Model.CreatedUserId == UserSession.CurrentUserId)
+        {
+            <i class="icon-envelope"></i>
+            <button type="submit" class="new-obj btn-gray" data-method="get" data-title="Send Email Notification" data-url="/Event/EmailNotify/@Model.EventId">Email Notify</button>
+            <button type="submit" class="new-obj btn-gray" data-method="get" data-title="Send SMS Notification" data-url="/Event/SmsNotify/@Model.EventId">SMS Notify</button>
+            <hr class="bs-dot" />
+            
+            Model.Comments.Reverse();
+            <ul class="event-ul fs-s">
+
+                @foreach (var cmt in Model.Comments)
+                {
+                    <li class="evt-cmt">
+                        @DisplayHelper.DateTime(cmt.Date, DateTypes.Medium)
+                        <div>@cmt.Text</div>
+                    </li>   
+                }
+            </ul>
+        }
+    </div>
+    @if (Model.GroupsStr.Any())
+    {
+        <br />
+        <div>
+            <i class="icon-share"></i>
+            <div class="tw-btn">
+                <a id="twBtn" href="https://twitter.com/share" class="twitter-share-button" data-url="@Routes.EventsUrl(Model.EntityKey)" data-count="none">Tweet</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+            </div>
+            <div class="fb-share-button" data-href="http://@Routes.EventsUrl(Model.EventId)" data-type="button_count"></div>
+        </div>
+        <br />
+        <div class="fb-comments" data-href="@Routes.EventsUrl(Model.EventId)" data-numposts="5" data-width="600" data-colorscheme="light"></div>
+    }
+</div>
+<script>
+    $(function () {
+        $('#invtFrm').submit(function () {
+            var $this = $(this);
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    $('#eGnCnt').html(result.gnCnt);
+                    //$('#eNgCnt').html(result.ngCnt);
+                    $('#eMbCnt').html(result.mbCnt);
+                    $('#invtStatLzy').removeAttr('data-loaded').html("");
+                    refreshLazy($('#invtStatLzy'));
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script src="~/Scripts/_common.js"></script>
+<script src="~/Scripts/_time.js"></script>
+<script src="~/Scripts/_ajax-form.js"></script>

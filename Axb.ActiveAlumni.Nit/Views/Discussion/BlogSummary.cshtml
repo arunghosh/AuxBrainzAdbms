@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.Discussion>
+@using Axb.ActiveAlumni.Nit.Infrastructure
+
+<ul class="cmnt-links">
+    @foreach (var link in Model)
+    {
+        var cmt = link.Comments[0];
+        <li>
+            <div>
+                <a  href="\Discussions\@link.DiscussionId" class="title">@link.Title</a>
+            </div>
+            <div class="cmnt-cnt">
+                <span class="">
+                    <i class="icon-comment"></i> @link.Comments.Count @DisplayHelper.DateTime(link.Comments.Last().Date, DateTypes.Short)
+                </span>
+            </div>
+        </li>
+    }
+</ul>
+<script src="~/Scripts/_time.js"></script>

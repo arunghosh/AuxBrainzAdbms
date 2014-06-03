@@ -1,0 +1,15 @@
+﻿@helper CkBoxes(IEnumerable<string> items, IEnumerable<string> seleItems, string grpName)
+{
+    <ul class="btn-ckbox btn-group">
+        @foreach (var item in items)
+        {
+            var id = string.Format("{0}_{1}", grpName, item);
+            <li>
+                <input id="@id" name="@grpName" type="checkbox" value="@item" @(seleItems.Contains(item) ? "checked" : "")/>
+                <label for="@id">@item</label>
+            </li>
+        }
+    </ul>
+}
+
+

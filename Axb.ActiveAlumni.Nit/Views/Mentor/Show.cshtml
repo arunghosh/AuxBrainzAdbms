@@ -1,0 +1,57 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.MentorShip
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit.Infrastructure
+
+
+@using (Html.BeginForm("UpdateStatus", "Mentor", FormMethod.Post, new { @class = "refresh-form" }))
+{
+    var item = Model;
+    var lstMsg = item.Messages.Last();
+    @Html.AntiForgeryToken()
+    @Html.Hidden("Status")
+    @Html.Hidden("Id", item.MentorShipId)
+    <table style="border-spacing: 0; border-collapse: collapse;">
+        <tr>
+            <td class="bdr-r">
+                <div class="ft-r">
+                    <img src='@Url.Action("ProfileImage", new { id = item.StudentId })' alt=""/>
+                </div>
+            </td>
+            <td>
+                <div class="span mentor-msg">
+                    <span class="bld">@DisplayHelper.DateTime(lstMsg.Date, DateTypes.Medium) : </span>@lstMsg.Text
+                </div>
+            </td>
+            <td class="bdr-l">
+                <img src='@Url.Action("ProfileImage", new { id = item.AlumniId })' alt=""/>
+            </td>
+        </tr>
+        <tr>
+            <td class="bdr-r txt-r" style="line-height: 16px;">
+                <div class="span" style="width: 90px; overflow-wrap: break-word;">
+                    @Html.ActionLink(@item.StudentName, "Index", "FullProfile", new { area = "Profile", id = item.StudentId }, null)
+                    <span class="dim">(student)</span>
+                </div>
+            </td>
+            <td style="padding-left: 10px;">
+                @if (item.Status == MentorStatusType.RequestSend)
+                {
+                    <a data-status="@MentorStatusType.AdminRejected" class="status-btn btn btn-default">Reject</a>
+                    <a data-status="@MentorStatusType.StudentInfo" class="status-btn btn-primary">More Info</a>
+                    <a data-status="@MentorStatusType.AdminApproved" class="status-btn btn btn-success ft-r" style="margin-right: 10px;">Accept</a>
+                }
+                else
+                {
+                    @Axb.ActiveAlumni.Nit.Services.MentorStatusFilter.GetStatusMsg(item.Status.ToString())
+                }
+            </td>
+            <td class="bdr-l" style="width: 90px; line-height: 16px;">
+                <div class="span" style="width: 90px; overflow-wrap: break-word;">
+                    @Html.ActionLink(@item.AlumniName, "Index", "FullProfile", new { area = "Profile", id = item.AlumniId }, null)
+                    <span class="dim">(alumni)</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+}
+

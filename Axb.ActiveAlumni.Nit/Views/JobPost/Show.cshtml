@@ -1,0 +1,88 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.JobOpening
+
+<style>
+    #jobDetails .time
+    {
+        display: inline-block;
+        padding: 0 10px 0 0;
+    }
+
+    #jobDetails .title
+    {
+        font-size: 15px;
+        font-weight: bold;
+        color: #38d;
+        display: inline-block;
+        padding: 0 5px 0 0;
+    }
+
+    #jobDetails
+    {
+        padding:15px 0 20px 5px;
+        color: #222;
+        font-size: 13px;
+        width: 650px;
+        max-height:600px;
+        word-wrap: break-word;
+        font-family:'Segoe UI',sans-serif;
+    }
+
+        #jobDetails label
+        {
+color: #05e;
+display: block;
+margin: 15px 0 0 0;
+font-size: 13px;
+font-weight:normal;
+        }
+</style>
+@{var userId = UserSession.CurrentUserId;}
+<div id="jobDetails">
+    <div>
+        <div></div>
+        <span class="title">
+            @Model.Title
+        </span>
+         (@Model.ExperienceDisplay)
+        <div>
+
+        </div>
+        <div>
+        @Model.Organisation.FormattedDisplay()
+        </div>
+        <div>
+        @Model.Location.FormattedDisplay()
+        </div>
+    </div>
+
+    <hr />
+    <div class="pop-up-ht-">
+
+        @Html.LabelFor(m => m.Description)
+        <pre>@Html.Raw(Model.Description.Replace(Environment.NewLine, "<br/>"))</pre>
+
+        @Html.LabelFor(m => m.DesiredSkills)
+        @Model.GetSkillsForDisplay()
+
+        @Html.LabelFor(m => m.JobType)
+        @Model.JobType.ToString()
+    </div>
+        <hr />
+    <div>
+        @if (userId == Model.UserId)
+        { 
+            <a class="new-obj btn" data-method="get" data-title="Edit Job Post" data-url='/JobPost/Edit/@Model.JobPostId'><i class="icon-edit"></i>Edit Job Post</a>
+        }
+        else
+        {
+            <div>To apply send your resumes to <b>@(Model.SendToAdmin ? "info@nitcalumni.com" : Model.SendYourResumesTo)</b> . In the mail subject specify job code <b>Job#@Model.JobPostId</b> </div>
+            @*<a class="btn" data-url='/JobPost/Apply/@Model.JobPostId'>Apply</a>*@
+        }
+        <div class="fs-s">Posted @DisplayHelper.DateTime(Model.PostedOn, DateTypes.Medium)</div>
+    </div>
+    <div>
+        <hr />
+    </div>
+</div>
+<script src="~/Scripts/_common.js"></script>
+<script src="~/Scripts/_time.js"></script>

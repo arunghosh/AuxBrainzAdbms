@@ -1,0 +1,46 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<NotifyDispItem>
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit.Services
+
+@{
+    ViewBag.Title = "Messages | NIT Calicut Alumni";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<div class="left-lst w-brdr">
+    <div class="message">
+        <a class="new-obj add-btn-big" data-title="New Message" data-url='/Message/New'>
+            <div class="icon"><i class="icon-plus"></i></div>
+            <div class="text">New Message</div>
+        </a>
+    </div>
+    @if (Model == null)
+    {
+        <h4 class="m10">No messages available</h4>
+    }
+    else
+    {
+        <div class="avail-ht">
+            <ul class="ltype-none">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="msg-lst-item a-sele-item @(item.ItemId == Model.SelectedId ? "seleted" : "")" data-id="@item.ItemId">
+                        <div style="padding: 4px;">
+                            @NotifyHelper.DisplayMsg(item)
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+@if (Model != null)
+{
+    <div class="a-frm-ctnr right-lstSele lazy-load" data-id="@Model.SelectedId" data-url="/Message/Show/">
+    </div>
+}
+@section Scripts
+{
+    <script src="~/Scripts/_ajax-form.js"></script>
+}

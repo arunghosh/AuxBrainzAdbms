@@ -1,0 +1,32 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.NewMessageVm
+<div class="arrow"></div>
+<div style="margin: 0 0 10px 0;">
+    <div>
+        <div class="span">Messge - <span class="bld">@Model.ReceiverName</span></div>
+        <div class="close-btn">X</div>
+    </div>
+    <hr class="clrb" />
+    <div>
+        @using (Html.BeginForm("NewMessage", "Message", FormMethod.Post, new { @class = "save-clse-frm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ReceiverId)
+            @Html.HiddenFor(m => m.ReceiverName)
+            <textarea name="Message" id="Text" placeholder="Type your messsage" style="width: 380px; height: 70px; margin: 5px 0px;"></textarea>
+            <hr />
+            <div class="pop-cnt-btns">
+                <a class="btn btn-cancel">Cancel</a>
+                <button type="submit" class="btn-primary">Send</button>
+                <img src="~/Content/images/busy.gif" class="frm-busy" />
+            </div>
+            <div class="validation-summary-errors" data-valmsg-summary="true">
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/_save-clse-frm.js"></script>
+<script>
+    $(function () {
+        $('textarea').focus();
+    });
+</script>

@@ -1,0 +1,51 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.IntrestProfileVm
+
+
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<style>
+ 
+</style>
+
+<div class="popover bottom">
+    <div class="arrow"></div>
+    <div class="popover-content">
+        @using (Html.BeginForm("Edit", "InterestProfile", FormMethod.Post, new { @class = "form-horizontal", style = "width:450px" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="m5">
+                @Html.CheckBoxFor(m => m.LectureInterest)
+                @Html.LabelFor(m => m.LectureInterest)
+            </div>
+
+            <div class="m5">
+                @Html.CheckBoxFor(m => m.MentoringInteset)
+                @Html.LabelFor(m => m.MentoringInteset)
+            </div>
+
+            <div class="m5">
+                @Html.CheckBoxFor(m => m.PlacementInterest)
+                @Html.LabelFor(m => m.PlacementInterest)
+            </div>
+
+            <div class="m5">
+                @Html.CheckBoxFor(m => m.StartupInterest)
+                @Html.LabelFor(m => m.StartupInterest)
+            </div>
+
+            <div class="pop-cnt-btns">
+                <button type="button" class="edit-close btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn-primary">Update</button>
+                <img src="~/Content/images/busy.gif" class="frm-busy" />
+            </div>
+            
+            <p>
+                @Html.ValidationSummary()
+            </p>
+            
+            <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+            </div>
+            
+        }
+    </div>
+</div>

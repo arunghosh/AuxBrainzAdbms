@@ -1,0 +1,102 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.ListDisplayVm<Axb.ActiveAlumni.Nit.Entities.SpecialOffer>
+@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.SpecialOffers);
+    Layout = Routes.Layout;
+    ViewData[Constants.HomeTitleKey] = "Special Offers for Alumni";
+    ViewData[Constants.HomeImgKey] = "/Content/images/offer.png";
+}
+
+<style>
+    #allOffer .title
+    {
+        font-size: 14px;
+        font-family: bebasregular;
+        color: rgb(221,83,0);
+        text-transform: uppercase;
+    }
+
+    #allOffer .content
+    {
+        display: inline-block;
+        width: 72%;
+    }
+
+    #allOffer img
+    {
+        display: inline-block;
+        width: 110px;
+    }
+
+    #allOffer li
+    {
+        display: inline-block;
+        width: 100%;
+    }
+
+    #allOffer
+    {
+        list-style-type: none;
+    }
+</style>
+
+@{var isEditable = (bool)ViewData[Constants.IsAdminKey];}
+<div style="width: 500px; padding: 0px 35px 10px 15px; border-right: 1px dashed #999; margin: 0 35px 0 0;"
+    class="d-ib ft-l">
+    @{Html.RenderPartial(Routes.CloseNote);}
+    <hr />
+    @if (Model == null)
+    {
+        <h5>No Offers</h5>
+    }
+    else
+    {
+        <div>
+            <ul id="allOffer">
+                @foreach (var item in Model.Items)
+                {
+                    <li>
+                        <div class="d-ib va-t">
+                            <img src='/Admin/SpecialOffer/OfferImageSmall/@item.SpecialOfferId' />
+                        </div>
+                        <div class="content va-t">
+                            <div>
+                                <span class="title">@item.OrganisationName</span><span class="dim"> ( @item.Category ) </span>
+                            </div>
+                            <div>@item.City</div>
+                            <div>@item.Address</div>
+                            <div>@item.GoogleMap</div>
+                            <div>@item.OfferStatment</div>
+                            @if (!string.IsNullOrEmpty(item.EmailAddress))
+                            {
+                                <div>@item.EmailAddress</div>
+                            }
+                            @if (!string.IsNullOrEmpty(item.Phone))
+                            {
+                                <div>@item.Phone</div>
+                            }
+                            @if (isEditable)
+                            {
+                                <div>
+                                    <a class="btn-gray ft-r" href="/Admin/SpecialOffer/Edit/@item.SpecialOfferId"><i class="icon-edit"></i>Edit</a>
+                                    <em>@item.Status</em>
+                                </div>
+                            }
+                        </div>
+
+                        <hr />
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+<div class="d-ib" style="width: 350px; line-height: 30px">
+    <hr />
+    <img src="~/Content/images/offer.jpg" style="padding: 12px 0" />
+    <div class="clmn-head" style="color: #999">You have something <span style="color: rgb(39,174,97)">special</span> to <span style="color: rgb(193,53,46)">offer</span> for your <span class="title-em">Alumni</span>...</div>
+    <div>
+        <a class="btn btn-spl" href='/Admin/SpecialOffer/Edit'><i class="icon-gift icon-white"></i>click here to <i class="icon-share icon-white"></i><b>SHARE</b> !!!</a>
+    </div>
+    <hr />
+</div>
+@section Scripts{}

@@ -1,0 +1,58 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Event
+<style>
+    .ivt-stat a
+    {
+color: #666;
+font-size: 11px;
+font-family: Tahoma, Arial, sans-serif;
+    }
+    .ivt-stat li
+    {
+        padding:0px 5px;
+        border-bottom: 1px solid #eee;
+    }
+    .ivt-stat ul
+    {
+        list-style-type:none;
+/*max-height:100px;
+overflow:auto;*/
+    }
+    .ivt-stat
+    {
+display: inline-block;
+width: 175px;
+border: 1px solid #e0e0e0;
+border-width: 0 1px 1px 1px;
+    }
+</style>
+<div class="ivt-stat">
+    <ul>
+        @foreach (var item in Model.Going)
+        {
+            <li><a href="@Routes.Profile(item.UserId)">@item.UserName</a></li>
+        }
+    </ul>
+</div>
+<div class="ivt-stat">
+    <ul>
+        @foreach (var item in Model.MayBe)
+        {
+            <li><a href="@Routes.Profile(item.UserId)">@item.UserName</a></li>
+        }
+    </ul>
+</div>
+
+@*<div class="ivt-stat">
+    <ul>
+        @foreach (var item in Model.NotGoing)
+        {
+            <li><a href="@Routes.Profile(item.UserId)">@item.UserName</a></li>
+        }
+    </ul>
+</div>*@
+
+<script>
+    $('.ivt-stat ul').slimScroll({
+        height: 100
+    });
+</script>

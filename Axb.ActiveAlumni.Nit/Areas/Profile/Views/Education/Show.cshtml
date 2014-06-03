@@ -1,0 +1,29 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Education
+<div class="edit-ctnr">
+    <div class="prof-summ">
+        <div><span class="des-head">@Model.SchoolName</span>, @Model.Location</div>
+        <div>
+            @if (!string.IsNullOrEmpty(Model.Batch))
+            {
+                <span class="dim">@Model.Batch Batch | </span>
+            }
+            @if (!string.IsNullOrEmpty(Model.Degree))
+            {
+                <span class="dim">@Model.Degree | @Model.Specialisation </span>
+            }
+        </div>
+    </div>
+    @if ((bool)ViewData[Constants.ProfileEditKey])
+    {
+        <div class="span ft-r">
+            <a class="edit-icon">
+                <i class="icon-edit"></i>Edit
+            </a>
+        </div>
+        <script>
+            $(function () {
+                new ListProfile("Education", '@Model.EducationId');
+            });
+        </script>
+    }
+</div>

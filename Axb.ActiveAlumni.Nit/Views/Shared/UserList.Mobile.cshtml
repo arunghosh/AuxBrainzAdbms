@@ -1,0 +1,65 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.IUserListDisp
+@using Axb.ActiveAlumni.Nit.Infrastructure
+
+<div class="avail-ht_">
+    <ul class="ltype-none">
+        <li class="bld">@Model.TotalUsers.Count() matches found
+            <hr />
+        </li>
+        @{var currUser = Axb.ActiveAlumni.Nit.UserSession.CurrentUserId;
+          var relative = Axb.ActiveAlumni.Nit.Entities.UserRoleType.Relative.ToString();}
+        @foreach (var user in Model.PagesUsers)
+        {
+            var role = user.RoleStr;
+            <li class="user-info">
+                @if (role != relative)
+                {
+                    <div class="ft-l span">
+                        <a href="@Routes.Profile(user.UserId)">
+                            <img src='@Routes.SearchPic(user.UserId)' alt="Pic" class="user-img"/>
+                        </a>
+                    </div>
+
+                    <div class="span rslt-info">
+                        <a href="@Routes.Profile(user.UserId)" >@user.FullName.ToLower()</a><div>@role </div>
+                        @if (user.UserCourses != null && user.UserCourses.Any())
+                        {
+                            var crse = user.UserCourses.Last();
+                            <div>@string.Format("{0}, {1}", crse.Batch, crse.BranchName)</div>
+                        }
+                        @if(!string.IsNullOrEmpty(user.CurrentCity))
+                        {
+                            <div>@string.Format("{0}, {1}", user.CurrentCity, user.CurrentCountry)</div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    var rel = user.Relatives[0];
+                    <div class="span rslt-info">
+                        <div>
+                            <span class="rslt-name">@rel.Name </span>
+                            <span>@rel.RelationShip.ToString() of </span>
+                            <a class="rslt-name" href="@Routes.Profile(rel.UserId)" >@rel.UserName</a>
+                        </div>
+                        <div>@rel.Location</div>
+                        @if (!string.IsNullOrEmpty(rel.Work))
+                        {
+                            <div>Work: <em>@rel.Work</em></div>
+                        }
+                        @if (!string.IsNullOrEmpty(rel.Education))
+                        {
+                            <div>Education: <em>@rel.Education</em></div>
+                        }
+                    </div>
+                }
+
+            </li>
+        }
+    </ul>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/_connect-req.js"></script>
+}

@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = Routes.GetTitile(PageTypes.ManageUsers);
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<style>
+    #manuRight
+    {
+        display: inline-block;
+        width: 500px;
+    }
+
+    #manuLeft
+    {
+        display: inline-block;
+        width: 250px;
+        float: left;
+        border-right: 1px solid #ddd;
+        margin: 0 10px 0 0;
+        min-height:400px;
+    }
+
+    .manu-a.sele
+    {
+        background: #456;
+        color:#ccc;
+    }
+
+    .manu-a:hover
+    {
+        text-decoration:none;
+        background:#f0f0f0;
+        color:#000;
+    }
+    .manu-a
+    {
+        display: block;
+        padding: 4px 10px;
+        cursor: pointer;
+        text-align: right;
+        color:#555;
+    }
+</style>
+<div id="manuLeft">
+    <a class="new-obj btn" style="display: block; margin: 2px;"
+        data-title="Add Alumni" data-method="get" data-url='Admin/ManageUser/AddUser'><i class="icon-plus"></i>Add Alumni Manually</a>
+    <hr />
+    <a class="manu-a" data-url="/Admin/ManageUser/Auto">Auto Created Users</a>
+    <a class="manu-a" data-url="/Admin/ManageUser/Manual">Manually Created Users</a>
+    <a class="manu-a" data-url="/Admin/ManageUser/Admins">Admin Users</a>
+    <a class="manu-a" data-url="/Admin/ManageUser/Active">Active Users</a>
+    <a class="manu-a" data-url="/Admin/ManageUser/TouchPoints">Touch Points</a>
+    <a class="manu-a" data-url="/Admin/ManageUser/TestUsers">Test Users</a>
+</div>
+<div id="manuRight"></div>
+@section Scripts
+    {
+    <script>
+        $('.manu-a').click(function () {
+            $('.manu-a').removeClass('sele');
+            var $this = $(this);
+            $this.addClass('sele');
+            var url = $this.attr('data-url');
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    $("#manuRight").html(result);
+                }
+            });
+        });
+    </script>
+}

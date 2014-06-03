@@ -1,0 +1,23 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.NavigationVm
+@using Axb.ActiveAlumni.Nit.Infrastructure
+<ul class="nav nav-tabs d-ib">
+    @foreach (var ni in Model.TextItems)
+    {
+        var drops = ni.NavivationItems;
+        if (drops != null && drops.Any())
+        {
+        <li>
+            @foreach (var drop in drops)
+            {
+                <a href="@drop.TinyUrl" >@drop.DisplayText</a>
+            }
+        </li>
+        }
+        else
+        {
+        <li class="@(ni.PageType == Model.SelectePage ? "active" : "")">
+            <a href="@ni.TinyUrl">@ni.DisplayText</a>
+        </li>
+        }
+    }
+</ul>

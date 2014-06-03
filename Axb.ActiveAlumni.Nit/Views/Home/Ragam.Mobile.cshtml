@@ -1,0 +1,79 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Controllers.RagamLink>
+
+@{
+    ViewBag.Title = "Ragam";
+    Layout = Routes.Layout;
+    var slink = (string)ViewBag.Link;
+    var absLink = Routes.Root + "Home/Ragam/" + slink;
+    //ViewData[Constants.HomeTitleKey] = "RAGAM";
+    //ViewData[Constants.HomeImgKey] = "/Content/images/ragam_logo.png";
+}
+<style>
+    #ragam img
+    {
+        width: 100%;
+    }
+
+    #ragam
+    {
+        margin: 10px;
+    }
+
+    #ragLogo
+    {
+        display:none;
+    }
+
+    #ragamLink a, #ragamLink .social
+    {
+        padding: 10px;
+        border-bottom: 1px solid rgba(0,0,0,.4);
+        font-family: bebasregular, 'Segoe UI', sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        text-align: left;
+        display: block;
+        color: #ccc;
+        background: rgba(0,0,0,.65);
+    }
+
+    #ragamLink .selected
+    {
+        color: #7af;
+        background: rgba(0,0,0,.82);
+        text-shadow: -1px 1px #000;
+    }
+
+    #ragamLink
+    {
+        list-style-type: none;
+        display: block;
+    }
+</style>
+@Html.Partial("FBInit")
+<div>
+
+    <div id="ragam">
+        @{Html.RenderPartial(slink);}
+        <div class="social">
+            <div class="d-ib va-t">
+                <a id="twBtn" href="https://twitter.com/share" class="twitter-share-button" data-url="@absLink" data-count="none">Tweet</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+            </div>
+            <div class="fb-share-button" data-href="http://@absLink" data-type="button_count"></div>
+        </div>
+    </div>
+
+    <div>
+        <ul id="ragamLink">
+            @foreach (var link in Model)
+            {
+                <li><a class="@(link.Link == slink ? "selected" : "")" href="/Home/Ragam/@link.Link">@link.DisplayText</a></li>
+            }
+            <li><a href="http://www.ragam.org.in/2014/" target="_blank">Link to Ragam ‘14 </a></li>
+        </ul>
+    </div>
+</div>
+
+
+@section Scripts{}

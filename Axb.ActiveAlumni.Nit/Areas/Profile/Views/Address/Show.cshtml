@@ -1,0 +1,32 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Address
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+
+<div class="edit-ctnr">
+    <div class="prof-summ p0">
+        @if(string.IsNullOrEmpty(Model.City))
+        {
+            <div>--</div>
+        }
+        else
+        {
+            <div>@string.Format("{0}, {1}", Model.City, Model.Country)</div>
+        }
+    </div>
+    @if ((bool)ViewData[Constants.ProfileEditKey])
+    {
+        <div class="span ft-r">
+            <a class="edit-icon">
+                <i class="icon-edit"></i> Edit
+            </a>
+        </div>
+        <script>
+            $(function () {
+                @{var addType = @Model.AddressType == Axb.ActiveAlumni.Nit.Entities.AddressType.Permanent ? "Permanent" : "Current";}
+                new AddressProfile("Address", '@addType');
+            });
+        </script>
+    }
+</div>
+
+

@@ -1,0 +1,185 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Controllers.RagamLink>
+
+@{
+    ViewBag.Title = "Ragam";
+    Layout = Routes.Layout;
+    var slink = (string)ViewBag.Link;
+    var absLink = Routes.Root + "Home/Ragam/" + slink;
+    //ViewData[Constants.HomeTitleKey] = "RAGAM";
+    //ViewData[Constants.HomeImgKey] = "/Content/images/ragam_logo.png";
+}
+<style>
+    .nav-tabs > .active > a
+    {
+        color: #fff;
+    }
+
+    #companyNamel
+    {
+        padding-left:8px;
+        color: #49d;
+    }
+
+    body
+    {
+        background-image: url('/Content/Images/invi.jpg');
+    }
+
+    #mainBk
+    {
+        background: rgba(255,255,255,.2);
+    }
+
+    #mainContent
+    {
+        background: rgba(255,255,255,.5);
+        box-shadow: none;
+        padding-top: 12px;
+        background: transparent;
+        border:none;
+    }
+
+    #companyNamel img
+    {
+        display: none;
+    }
+
+    #headerl
+    {
+        padding-top: 12px;
+        background: rgba(0,0,0,.9);
+        border-bottom: 1px solid #000;
+        box-shadow: inset 0px 0px 9px 4px rgba(0,0,0,1);
+    }
+
+    #guestHeadCvr
+    {
+        background: transparent;
+        background: rgba(255,255,255,.6);
+    }
+
+    .footer-bk
+    {
+        background: rgba(0,0,0,.8);
+        display: inline-block;
+        padding: 2px 0;
+        width: 100%;
+    }
+
+    #hme-title
+    {
+        display: none;
+    }
+
+    #hmeCtnr
+    {
+        text-align: center;
+        padding-top: 46px;
+    }
+
+
+    #ragamLink a:hover
+    {
+        text-decoration: none;
+        background: rgba(0,0,0,.6);
+    }
+
+    #ragamLink a, #ragamLink .social
+    {
+        padding: 10px;
+        border-bottom: 1px solid rgba(0,0,0,.4);
+        font-family: bebasregular, 'Segoe UI', sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        text-align: left;
+        display: block;
+        color: #ccc;
+        background: rgba(0,0,0,.65);
+    }
+
+    #ragamLink .selected
+    {
+        color: #ff5;
+        background: rgba(0,0,0,.82);
+        text-shadow: -1px 1px #000;
+    }
+
+    #ragamLink
+    {
+        list-style-type: none;
+        position: fixed;
+        display: inline-block;
+        width: 250px;
+    }
+
+    #ragam14 pre
+    {
+        color:#bbb;
+    }
+    #ragam14
+    {
+        position: inherit;
+        display: inline-block;
+        width: 660px;
+        background: rgba(0,0,0,.85);
+        color: #b0b0b0;
+        padding: 30px 20px;
+        font-size: 13px;
+        line-height: 22px;
+    }
+
+    #ragam hr
+    {
+        border-top: 1px solid rgba(255,255,255,.2);
+        border-bottom: 1px solid rgba(0,0,0,.8);
+    }
+
+    #ragam h4
+    {
+        font-size: 18px;
+        color: #8bf;
+        display: inline-block;
+        font-family: bebasregular, sans-serif;
+    }
+
+    #ragam img
+    {
+        opacity:.75;
+    }
+    #ragam p
+    {
+        padding: 14px 20px 0px 20px;
+        background: rgba(10,10,10,.8);
+        color: #bbb;
+    }
+</style>
+@Html.Partial("FBInit")
+<div id="ragam">
+    <div style="width: 250px; display: inline-block; float: left;">
+        <ul id="ragamLink">
+            @foreach (var link in Model)
+            {
+                <li><a class="@(link.Link == slink ? "selected" : "")" href="/Home/Ragam/@link.Link">@link.DisplayText</a></li>
+            }
+            <li><a href="http://www.ragam.org.in/2014/" target="_blank">Link to Ragam ‘14 </a></li>
+            <li><a href="http://www.ragam.org.in/2014/events/" target="_blank">Link to Ragam ‘14 Events</a></li>
+            <li class="">
+                <div class="ta-r social">
+                    <div class="d-ib va-t">
+                        <a id="twBtn" href="https://twitter.com/share" class="twitter-share-button" data-url="@absLink" data-count="none">Tweet</a>
+                        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+                    </div>
+                    <div class="fb-share-button" data-href="http://@absLink" data-type="button_count"></div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div style="display: inline-block; width: 700px; float: right;">
+        @{Html.RenderPartial(slink);}
+        <div style="background: rgba(0,0,0,.8);" class="fb-comments" data-href="@absLink" data-numposts="5" data-width="700" data-colorscheme="dark"></div>
+    </div>
+</div>
+
+
+@section Scripts{}

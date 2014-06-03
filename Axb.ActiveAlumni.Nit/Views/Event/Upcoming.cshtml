@@ -1,0 +1,42 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Event>
+<ul class="event-disp">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="/Events/@item.EventId">
+                <div class="evt-summ" style="padding-top: 0px;">
+                    <div class="evt-date-summ">
+                        <div class="day">@DisplayHelper.DateTime(item.FromDate, DateTypes.DateOfMonth)</div>
+                        <div class="month">@DisplayHelper.DateTime(item.FromDate, DateTypes.MonthOnly)</div>
+                    </div>
+                    <div class="evt-summ-txt">
+                        <div class="slim-head evt-name">
+                            @item.EventName
+                        </div>
+                        @if (item.IsTentative)
+                        {
+                            <div>
+                                <i class="icon-ques event-i"></i>
+                                <div class="d-ib dim">*** Tentative Date ***</div>
+                            </div>
+                        }
+                        @if (item.FromDate > DateTime.UtcNow)
+                        {
+                            <div>
+                                <div class="d-ib">
+                                    @item.Location
+                                </div>
+                            </div>
+                            <div class="fs-s">
+                                @DisplayHelper.DateTime(item.FromDate, DateTypes.WithTime)
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </a>
+        </li>    
+    }
+</ul>
+

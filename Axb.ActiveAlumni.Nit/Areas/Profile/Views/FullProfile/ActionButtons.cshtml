@@ -1,0 +1,24 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.ProfileIdVm
+@if (Model.CurrUserId != Model.ReqUserId)
+{
+    <div class="prof-box" style="padding: 10px;">
+        @if (Model.IsCurrAdmin)
+        {
+            <button class="btn-warning new-obj" data-title="User Control Panel" data-method="get" data-url="/Admin/ManageUser/UserPanel/@Model.ReqUserId">Admin Panel</button>
+        }
+        <div class="notify-icon va-t" data-url="/Message/Popup/@Model.ReqUserId">
+            <span class="ntfy-trig btn-primary">Message</span>
+            <div class="ntfy-ctnr"></div>
+        </div>
+
+        <div class="notify-icon va-t" data-url="/Circle/AddUser/@Model.ReqUserId">
+            <span class="ntfy-trig btn-primary">Circle</span>
+            <div class="ntfy-ctnr"></div>
+        </div>
+
+        @if (Model.CanReqMentor)
+        {
+            @Html.RouteLink("Reqest Mentor", new { controller = "Mentor", action = "MentorRequest", area = "", id = Model.ReqUserId }, new { @class = "btn-primary btn-mentor" })
+        }
+    </div>
+}

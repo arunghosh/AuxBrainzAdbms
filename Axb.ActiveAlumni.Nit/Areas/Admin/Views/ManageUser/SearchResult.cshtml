@@ -1,0 +1,11 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Admin.Models.SimpleUserSearchVm
+<ol style="margin:0 0 0 20px;">
+@foreach (var item in Model.FilteredUsers)
+{
+    <li>
+
+    <a href="@Routes.Profile(item.UserId)">@item.FullName</a>
+
+    </li>
+}
+</ol>

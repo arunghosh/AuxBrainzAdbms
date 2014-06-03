@@ -1,0 +1,30 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.ContactProfileVm
+
+<div>
+    <div style="position: relative">
+        <h4><i class="icon-envelope"></i> Contact Information</h4>
+        @if ((bool)ViewData[Constants.ProfileEditKey])
+        {        
+            <a class="edit-icon ft-r">
+                <i class="icon-edit"></i> Edit
+            </a>
+
+            <div class="edit-ctnr"></div>
+            
+            <script>
+                $(function () {
+                    new BaseProfile("ContactProfile");
+                });
+            </script>
+        }
+    </div>
+</div>
+<div class="content ml-prof">
+    <table class="view-tble">
+        @TableHelper.Row("Email Addres", Model.Email)
+        @TableHelper.Row("Home Phone", Model.HomePhone)
+        @TableHelper.Row("Mobile", Model.MobileNumber)
+        @TableHelper.Row("Website", Model.Website)
+    </table>
+</div>
+

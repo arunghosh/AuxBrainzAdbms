@@ -1,0 +1,69 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.JobSearchVm
+
+<style>
+    .jobpost-time
+    {
+        color: #999;
+        font-size: 11px;
+        float: right;
+        font-style:italic;
+    }
+
+    #jobResult .company
+    {
+        color: #444;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    #jobResult .title
+    {
+        color: #17b;
+        font-size: 15px;
+        display: inline-block;
+    }
+
+    #jobResult .btn
+    {
+        padding: 0 20px;
+    }
+
+    #jobResult
+    {
+        list-style-type: none;
+        color: #666;
+        font-family:'Segoe UI',sans-serif;
+    }
+
+    .job-res-ctrl
+    {
+        padding: 3px 0 0 0;
+    }
+
+    #jobResult li
+    {
+        padding: 10px 5px;
+        border-bottom: 1px solid #ddd;
+        line-height:18px;
+    }
+</style>
+<ul id="jobResult">
+    @foreach (var job in Model.PagedItems)
+    {
+        <li>
+            <div>
+                <div>
+                    <div class="title">@job.Title  </div>
+                    <span>(@job.ExperienceDisplay)</span>
+                </div>
+                <div class="company">@job.Organisation.FormattedDisplay(), @job.Location.FormattedDisplay()</div>
+                <div>@job.Description.LetterLimited(140)</div>
+                <div>Key Skills: <b> @job.GetSkillsForDisplay()</b></div>
+                <div class="job-res-ctrl">
+                    <a class="new-obj btn" data-title="Apply for Job" data-method="get" data-url="/jobpost/show/@job.JobPostId">Apply</a>
+                    <div class="jobpost-time">Posted on @DisplayHelper.DateTime(job.PostedOn, DateTypes.DateOnly) by <a href="@Routes.Profile(job.UserId)"> @job.UserName.LetterLimited(11)</a></div>
+                </div>
+            </div>
+        </li>    
+    }
+</ul>

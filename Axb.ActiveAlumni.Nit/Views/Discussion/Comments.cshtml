@@ -1,0 +1,106 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.DiscussionComment>
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit.Infrastructure
+@{
+    Model.Reverse();
+    var isAdmin = (bool)ViewData[Constants.IsAdminKey];
+    var userId = UserSession.CurrentUserId;}
+
+<div class="bld">Comments (@(Model.Count))</div>
+<ul>
+    @foreach (var msg in Model)
+    {
+        <li class="va-t">
+            @if (msg.IsDeleted && !isAdmin)
+            {
+                <em>Post Removed</em>
+                continue;
+            }
+            <div class="span">
+                <a href="@Routes.Profile(msg.SenderId)">
+                    <img src='@Routes.Img35Pic(msg.SenderId)' alt="Pic"/>
+                </a>
+                <div class="ctrl-pnl">
+                    <form class="afnty-frm">
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Status")
+                        @Html.Hidden("DiscussionCommentId", @msg.DiscussionCommentId)
+                        <a class="agree" data-cnt="@msg.AgreeCnt" />
+                        <a class="disagree" data-cnt="@msg.DisagreeCnt" />
+                        <a class="offensive" data-cnt="@msg.OffensiveCnt" />
+                    </form>
+                </div>
+            </div>
+            <div class="disc-msg">
+                <div><a href="@Routes.Profile(msg.SenderId)" class="bld" >@msg.SenderName</a></div>
+                @DisplayHelper.DateTime(msg.Date, DateTypes.WithTime)
+                <pre>@Html.Raw(msg.Text.Replace(Environment.NewLine, "<br/>"))</pre>
+                @if (isAdmin || msg.SenderId == userId)
+                {     
+                    <div class="ctrl-pnl d-ib">
+                        <form class="afnty-frm d-ib">
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("Status")
+                            @Html.Hidden("DiscussionCommentId", @msg.DiscussionCommentId)
+                            <a class="status-btn delete" data-status="@AffinityStatus.Delete" >@(msg.IsDeleted ? "Undo Hide" : "Hide")</a>
+                        </form>
+                    </div>
+                }
+            </div>
+
+        </li>
+    }
+</ul>
+
+<script src="~/Scripts/_time.js"></script>
+<script>
+    function addAffEvent(status, img) {
+        var lStatus = status.toLowerCase();
+        $('.' + lStatus).each(function () {
+            var $this = $(this);
+            $this.addClass('status-btn');
+            $this.attr('data-status', status);
+            $this.attr('title', status);
+            var cnt = $this.attr('data-cnt');
+            $this.html('<i class="' + img + '"></i>' + '<span class="cnt ft-r">' + cnt + '</span>');
+        });
+    }
+
+    $(function () {
+        addAffEvent('@AffinityStatus.Agree', 'icon-th-up');
+        addAffEvent('@AffinityStatus.Disagree', 'icon-th-down');
+        addAffEvent('@AffinityStatus.Offensive', 'icon-ban-circle');
+
+        $('.status-btn').each(function () {
+            var $this = $(this);
+            $this.unbind('click');
+            $this.click(function () {
+                var form = $(this).parents("form");
+                form.find("[name=Status]").val($(this).attr('data-status'));
+                form.submit();
+            });
+        });
+
+        $('.afnty-frm').submit(function () {
+            var $this = $(this);
+            showBusy($this);
+            $.ajax({
+                url: '/Discussion/UpdateAffinity',
+                type: 'POST',
+                data: $this.serialize(),
+                success: function (result) {
+                    if (result.deleted === undefined) {
+                        $this.find('.agree .cnt').html(result.agree);
+                        $this.find('.disagree .cnt').html(result.disagree);
+                        $this.find('.offensive .cnt').html(result.offensive);
+                    } else {
+                        $this.find('.delete').html(result.deleted);
+                    }
+                    clearBusy($this);
+                }
+            });
+            return false;
+        });
+    });
+
+</script>

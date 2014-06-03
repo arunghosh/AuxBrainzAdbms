@@ -1,0 +1,5 @@
+﻿@{var msg = ViewData[Axb.ActiveAlumni.Nit.Constants.ViewBagMessageKey] as string;}
+@if (!string.IsNullOrEmpty(msg))
+{
+    <h5 class="m10">@msg</h5>
+}

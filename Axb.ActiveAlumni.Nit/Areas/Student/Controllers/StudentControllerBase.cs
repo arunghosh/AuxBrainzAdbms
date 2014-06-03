@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Axb.ActiveAlumni.Nit.Controllers;
+
+
+namespace Axb.ActiveAlumni.Nit.Areas.Student.Controllers
+{
+    [Authorize(Roles = Constants.RoleStudent)]
+    public class StudentControllerBase : BaseController
+    {
+
+    }
+}

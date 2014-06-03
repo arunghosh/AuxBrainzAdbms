@@ -1,0 +1,51 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.IntrestProfileVm
+
+<div>
+    <div style="position: relative">
+        <h4><i class="icon-th-up"></i> Interests</h4>
+        @if ((bool)ViewData[Constants.ProfileEditKey])
+        {
+            <a class="edit-icon ft-r">
+                <i class="icon-edit"></i> Edit
+            </a>
+            <div class="edit-ctnr"></div>
+            <script>
+                $(function () {
+                    new BaseProfile("InterestProfile");
+                });
+            </script>
+
+        }
+    </div>
+</div>
+<div class="content ml-prof">
+    @if(Model.LectureInterest)
+    {
+        
+    <div class="m5">
+        <img class="img-stat" src='@(Model.LectureInterest ? "/Content/images/check.png" : "/Content/images/remove.png ")'/>
+        @Html.DisplayNameFor(m => m.LectureInterest)
+    </div>
+    }
+    @if(Model.MentoringInteset)
+    {
+    <div class="m5">
+        <img class="img-stat" src='@(Model.MentoringInteset ? "/Content/images/check.png" : "/Content/images/remove.png ")'/>
+        @Html.DisplayNameFor(m => m.MentoringInteset)
+    </div>
+    }
+    @if(Model.PlacementInterest)
+    {
+    <div class="m5">
+        <img class="img-stat" src='@(Model.PlacementInterest ? "/Content/images/check.png" : "/Content/images/remove.png ")'/>
+        @Html.DisplayNameFor(m => m.PlacementInterest)
+    </div>
+    }
+    @if(Model.StartupInterest)
+    {
+    <div class="m5">
+        <img class="img-stat" src='@(Model.StartupInterest ? "/Content/images/check.png" : "/Content/images/remove.png ")'/>
+        @Html.DisplayNameFor(m => m.StartupInterest)
+    </div>
+    }
+</div>

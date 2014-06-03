@@ -1,0 +1,20 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.ProfileIdVm
+        <div class="m10 clr-b span cont-req-frm ">
+            @if (Model.CurrUserId != Model.ReqUserId)
+            {
+                if (Model.PendingIds.Contains(Model.ReqUserId))
+                {
+                <div>
+                    <img src="~/Content/images/link_b.png" />Pending Approval
+                </div>
+                }
+                else if (Model.AcceptedIds.Contains(Model.ReqUserId))
+                {
+                    { Html.RenderAction("DeleteBtn", "Connect", new { area = "", id = Model.ReqUserId }); }
+                }
+                else
+                {
+                    { Html.RenderAction("ReqButton", "Connect", new { area = "", id = Model.ReqUserId }); }
+                }
+            }
+        </div>

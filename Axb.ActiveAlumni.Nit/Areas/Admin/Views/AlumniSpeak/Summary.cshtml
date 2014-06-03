@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.AlumniSpeak>
+<ul class="alm-know-summ">
+    @foreach (var item in Model)
+    {
+        <li class="w100">
+            <div>
+                <img src="@Routes.ProfilePic(item.AlumniId)" alt=""/>
+                <a class="speak" href="/AlumniSpeaks/@item.AlumniToKnowId">
+                    <div>
+                        <div class="slim-head">@item.AlumniName</div>
+                        <div>
+                            @item.Course
+                        </div>
+                        <div>
+                            @item.Batch Batch
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="d-ib w100 dim">
+                <i class="clr-b">" @item.About.LetterLimited(93) "</i>
+            </div>
+        </li>    
+    }
+</ul>

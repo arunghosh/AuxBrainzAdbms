@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.SpecialOffer>
+
+<style>
+    .hide
+    {
+        display:none;
+    }
+</style>
+
+@{var count = 0;}
+@foreach (var item in Model)
+{
+    var id = "offSh_" + count;
+    <a class='offer-show @(count != 0 ? "hide" : "")' id='@id' href="@Routes.NavigationItems[PageTypes.SpecialOffers].TinyUrl">
+        <img src='/Admin/SpecialOffer/OfferImage/@item.SpecialOfferId' alt="" />
+        <div class="text">
+            <div>@item.OrganisationName, @item.City</div>
+            <div>@item.OfferStatment</div>
+        </div>
+    </a>
+    count++;
+}
+
+<script>
+    $(function () {
+        var offerTimer = setInterval(function () { dispOffer() }, 5000);
+        var offerCnt = 0;
+        function dispOffer() {
+            var temp = offerCnt;
+            $('.offer-show').hide();//function()
+            $('#offSh_' + temp).fadeIn(2000);
+            offerCnt = (offerCnt + 1) % @Model.Count();
+        }
+    });
+</script>
+

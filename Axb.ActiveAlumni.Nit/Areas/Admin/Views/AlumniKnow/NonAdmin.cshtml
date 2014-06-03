@@ -1,0 +1,63 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.NonAdminNews
+
+<style>
+    .nonAd-news li
+    {
+        display: inline-block;
+        width: 37%;
+    }
+
+    .nonAd-news
+    {
+        list-style-type: none;
+    }
+</style>
+
+<div class="new-frm" style="width: 650px">
+    @using (Html.BeginForm("NonAdmin", "AlumniKnow", FormMethod.Post, new { @class = "save-clse-frm", data_refresh = "true" }))
+    {
+        @Html.AntiForgeryToken()
+
+        if (!(bool)ViewData[Constants.IsAuthKey])
+        {
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+
+        <label>Your Email Address</label>
+        @Html.TextBoxFor(m => m.EmailAddress)
+        }
+
+        <label>This article is about (Full Name)</label>
+        @Html.TextBoxFor(m => m.AlumniName)
+
+        <ul class="nonAd-news">
+            <li>
+                @Html.LabelFor(m => m.Batch)
+                @Html.DropDownList("Batch", ViewBag.Batches as SelectList)
+
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Course)
+                @Html.DropDownList("Course", ViewBag.Branches as SelectList)
+            </li>
+        </ul>
+        
+        
+        @Html.LabelFor(m => m.News)
+        @Html.TextAreaFor(m => m.News, new { style = "height:100px; width:85%" })
+        <div>
+            <a class="btn btn-cancel">Cancel</a>
+            <button class="submit btn-primary">Add News</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+        
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    }
+</div>
+<script src="~/Scripts/_common.js"></script>
+<script src="~/Scripts/_save-clse-frm.js"></script>

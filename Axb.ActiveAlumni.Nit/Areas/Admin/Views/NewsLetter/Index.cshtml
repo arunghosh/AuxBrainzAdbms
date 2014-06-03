@@ -1,0 +1,18 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Admin.Models.NewsletterVm
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="p20">
+    @*<a class="new-obj btn" data-url="/Admin/Newsletter/Email" data-method="Get" data-title="Email"><i class="icon-envelope"></i> Send Mail</a>*@
+    <form action="/admin/newsletter/index" method="post">
+        @Html.AntiForgeryToken()
+        @Html.Bootstrap().ControlGroup().DropDownListFor(m => m.StartIndex, ViewBag.Indexes as SelectList)
+        @Html.Bootstrap().ControlGroup().DropDownListFor(m => m.EndIndex, ViewBag.Indexes as SelectList)
+        <button type="submit" class="btn-primary">Send Newsletter</button>
+    </form>
+    @{Html.RenderPartial(Routes.CloseNote);}
+</div>
+
+@section Scripts{}

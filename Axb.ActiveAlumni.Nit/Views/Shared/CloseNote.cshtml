@@ -1,0 +1,8 @@
+﻿@{var msg = TempData[Axb.ActiveAlumni.Nit.Constants.ViewBagMessageKey] as string;}
+@if (!string.IsNullOrEmpty(msg))
+{
+    <div class="status-note">
+        <div class="note-close">&times;</div>
+        <pre>@Html.Raw(msg)</pre>
+    </div>
+}

@@ -1,0 +1,63 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.ProfileIdVm
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData[Constants.HomeTitleKey] = "Profile";
+}
+<style>
+    #mainContent
+    {
+    }
+</style>
+@if (Model.CurrUserId == Model.ReqUserId)
+{
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+}
+
+<div class="prof-box" style="padding-top: 15px;">
+    <div id="pictureInfoCtnr" class="span">
+        @Html.Partial("PictureView", Model)
+    </div>
+        @{Html.RenderAction("Show", "BasicProfile", new { area = "Profile", id = Model.ReqUserId });}
+</div>
+@if (Model.ReqUser.IsAlumni() || Model.ReqUser.IsStudent() || Model.ReqUser.IsTest() || Model.ReqUser.IsAdmin())
+{
+    <div id="courseListCtnr" class=" prof-box">
+        @{Html.RenderAction("List", "Course", new { area = "Profile", id = Model.ReqUserId });}
+    </div>
+}
+<div id="contactprofileCtnr" class="lazy-load prof-box" data-url="\Profile\ContactProfile\Show\@Model.ReqUserId">
+    <h4>Contact Information</h4>
+    <br />
+</div>
+<div id="addressListCtnr" class="lazy-load prof-box" data-url="\Profile\Address\List\@Model.ReqUserId"></div>
+<div id="relativeListCtnr" class="lazy-load prof-box" data-url="\Profile\Relative\List\@Model.ReqUserId"></div>
+
+
+<div id="jobListCtnr" class="prof-box">
+    @{Html.RenderAction("List", "Job", new { area = "Profile", id = Model.ReqUserId });}
+</div>
+@*
+        <div id="serviceListCtnr" class="pl20 lazy-load" data-url="\Profile\Service\List\@Model.ReqUserId" >
+        <h4>Service Offering</h4>
+        <br />
+    </div>
+    <div style="clear: both; padding-top: 1px;">
+        <hr class="clrb" />
+    </div>*@
+<div id="skillprofileCtnr" class="lazy-load prof-box" data-url="\Profile\SkillProfile\Show\@Model.ReqUserId" >
+    <h4>Skills</h4>
+    <br />
+</div>
+<div id="educationListCtnr" class="lazy-load prof-box" data-url="\Profile\Education\List\@Model.ReqUserId" >
+    <h4>Education</h4>
+    <br />
+</div>
+@if (Model.ReqUser.IsAlumni())
+{
+    <div id="interestprofileCtnr" class="lazy-load prof-box" data-url="\Profile\InterestProfile\Show\@Model.ReqUserId"></div>
+}
+@section Scripts
+{
+    <script src="~/Scripts/_profile.js"></script>
+    <script src="~/Scripts/_connect-req.js"></script>
+}

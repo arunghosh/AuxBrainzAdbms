@@ -1,0 +1,139 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Event
+<style>
+    .timePicker
+    {
+        border: 1px solid #ddd;
+        display: inline-block;
+        height: 26px;
+    }
+
+    .timePicker
+    {
+        list-style-type: none;
+    }
+
+    .event-li
+    {
+        width: 49%;
+        display: inline-block;
+    }
+
+    .ui_tpicker_time
+    {
+        display: inline-block;
+    }
+
+    .ui_tpicker_time_label
+    {
+        display: inline-block;
+    }
+
+    .ui_tpicker_minute_label
+    {
+        margin-top: 10px;
+    }
+</style>
+<div id="newEventFrm">
+    @using (Html.BeginForm("CreateNew", "Event", FormMethod.Post, new { @class = "save-clse-frm", data_refresh = "true" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(e => e.EventId)
+        @Html.HiddenFor(e => e.IsDeleted)
+
+        <div>
+            @Html.Bootstrap().LabelFor(m => m.EventName)
+            @Html.TextBoxFor(m => m.EventName, new { style = "width:500px" })
+        </div>
+
+        <div>
+            @Html.Bootstrap().LabelFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new { style = "width:500px; height:100px" })
+        </div>
+
+        <div>
+            @Html.Bootstrap().LabelFor(m => m.Location)
+            @Html.TextAreaFor(m => m.Location, new { style = "width:500px" })
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.GoogleMap)
+            @Html.TextBoxFor(m => m.GoogleMap, new { style = "width:400px", placeholder = "" })
+        </div>
+        <div style="padding:0 0 8px 0;">
+            @Html.Bootstrap().LabelFor(m => m.IsTentative).ShowRequiredStar(false)
+            @Html.Bootstrap().CheckBoxFor(m => m.IsTentative)
+        </div>  
+        <div>
+            @Html.Bootstrap().LabelFor(m => m.FromDate)
+            @Html.TextBoxFor(m => m.FromDate, Model.FromDate.ToString("MM/dd/yy hh:mm"), new { @class = "dtpicker time" })
+        </div>  
+        <div>
+            @Html.Bootstrap().LabelFor(m => m.ToDate)
+            @Html.TextBoxFor(m => m.ToDate, Model.ToDate.ToString("MM/dd/yy hh:mm"), new { @class = "dtpicker time" })
+        </div>
+        
+        <label>Invite users</label>
+        <div class="user-sele-ctnr" style="max-height: 77px; min-height: 51px; display: inline-block; width: 550px;">
+            @Html.Partial("UserSelector", Model.Users)
+        </div>
+        
+        if ((bool)ViewData[Constants.IsAdminKey])
+        {
+        <label>Invite groups</label>
+        <div style="display: inline-block; width: 400px">
+            @ProfileHelper.CkBoxes(Model.VisibilityOptions, Model.Visibilities, "Visibilities")
+        </div>
+        <div>
+             @Html.Bootstrap().LabelFor(m => m.SpecificGroupName)
+            @Html.Bootstrap().TextBoxFor(m => m.SpecificGroupName)
+           
+        </div>
+
+        }
+        <hr />
+        <div class="sav-can">
+            <a class="btn btn-cancel">Cancel</a>
+            @if (Model.EventId == 0)
+            {
+                <button class="submit btn-primary">Create Event</button>
+            }
+            else
+            {
+                <button class="submit btn-primary">Update Event</button>
+                if (Model.IsDeleted)
+                {
+                <a class="btn-unhide">Activate Event</a>
+                }
+                else
+                {
+                <a class="btn btn-hide">Cancel Event</a>
+                }
+            }
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+        
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>        
+    
+    }
+</div>
+
+<script src="~/Scripts/_timePicker.js"></script>
+<script src="~/Scripts/_save-clse-frm.js"></script>
+<script>
+    $(function () {
+
+        $(".dtpicker").datetimepicker();
+
+        $(".dtpicker").each(function () {
+            var $this = $(this);
+            var utc = new Date($this.val());
+            utc.setMinutes(utc.getMinutes() - utc.getTimezoneOffset());
+            $this.val(utc.toLocaleString());
+        });
+    });
+</script>

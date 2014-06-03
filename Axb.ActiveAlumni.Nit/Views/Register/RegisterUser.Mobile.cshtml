@@ -1,0 +1,27 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.RegisterUserVm
+
+<div class="reg-type">
+    <ul>
+        <li id="regAlumni" class="selected">Alumni
+        </li>
+        <li id="regStudent">Student
+        </li>
+        <li id="regStaff">Staff
+        </li>
+    </ul>
+</div>
+<div style="padding:15px 0 0 0">
+    <div>
+        @using (Html.BeginForm("RegisterUser", "Register", FormMethod.Post, new { @class = "form-horizontal replace-frm" }))
+        {
+            @Html.HiddenFor(m => m.Role)
+            @Html.Partial("Common", Model)
+            <div id="regStdOnly">
+                @Html.Partial("StudentOnly", Model)
+            </div>
+            @Html.Partial("Footer")
+        }
+    </div>
+</div>
+
+<script src="~/Scripts/_ajax-form.js"></script>

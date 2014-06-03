@@ -1,0 +1,57 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.AlumniNews
+
+@{
+    ViewBag.Title = "Edit Blog";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div id="blogEdit">
+    <form action="/Admin/AlumniNews/BlogEdit" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.AlumniNewsId)
+        @Html.DropDownList("NewsType")
+        @Html.TextBoxFor(m => m.Title, new { placeholder = "Blog Title" })
+        @Html.TextBoxFor(m => m.SubTitle, new { placeholder = "Sub Title" })
+        <div>
+            @Html.TextAreaFor(x => x.News)
+        </div>
+        <br />
+        @if ((bool)ViewData[Constants.IsAdminKey])
+        {
+            @Html.DropDownList("Status")
+            <br />
+        }
+
+        <div style="display: inline-block; width: 100%;">
+            <div class="span">
+                <br />
+                <input type="file" name="profile" onchange="showPreview(this)" class="dim" />
+                <div class="dim">*** You can upload a JPG, GIF or PNG file</div>
+                <div class="dim">*** Maximum allowed file size is 700kB</div>
+                <br />
+            </div>
+
+
+            <div id="previewCtnr" class="span p20 hide">
+                <div class="dim">Display Picture</div>
+                <img id="preview" src="/Admin/AlumniNews/NewsImage/@Model.AlumniNewsId" alt="image" />
+            </div>
+        </div>
+        <div class="ta-r">
+            <a class="btn btn-cancel">Cancel</a>
+            <button type="submit" class="btn-primary">@(Model.IsNew ? "Post" : "Update") Blog</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+        <p>
+            @Html.ValidationSummary()
+        </p>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/_photoPre.js"></script>
+    <script src="~/Scripts/CKEditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('News');
+    </script>
+}

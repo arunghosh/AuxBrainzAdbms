@@ -1,0 +1,93 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Event
+@using Axb.ActiveAlumni.Nit.Entities
+
+<div style="margin:7px;">
+    <h3>
+        @Model.EventName
+    </h3>
+    <hr class="bs-dot" />
+    <div>
+        <div>
+            <i class="icon-map-marker"></i>
+            <div class="d-ib va-t">
+                <pre class="bld">@Html.Raw(Model.Location.Replace(Environment.NewLine, "<br/>"))</pre>
+            </div>
+        </div>
+        <div>
+            <i class="icon-user"></i>
+            <div class="d-ib va-t">Created by <a href="@Routes.Profile(Model.CreatedUserId)">@Model.CreatedUserName</a></div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div>
+        <label class="bld">Starts at</label>
+        @DisplayHelper.DateTime(Model.FromDate, DateTypes.WithTime)
+    </div>
+    <div>
+        <label class="bld">Ends at</label>
+        @DisplayHelper.DateTime(Model.ToDate, DateTypes.WithTime)
+    </div>
+    @if (Model.IsTentative)
+    {
+        <div class="bld c-red">Date Tentative</div>
+    }
+    <hr />
+    <div>
+        <i class="icon-list va-t"></i>
+        <div class="d-ib w90">
+            @if (Model.GroupsStr.Any())
+            {
+                <span class="bld">Invited : </span> <span>@string.Join(" | ", Model.GroupsDisplay)</span>
+            }
+            else if (Model.Invitees.Count > 1)
+            {
+                <span class="bld">Invited : </span>
+                foreach (var item in Model.Invitees)
+                {
+                <a class="discft-a" href="@Routes.Profile(item.UserId)">@item.UserName</a>
+                }
+            }
+        </div>
+    </div>
+    @if (!string.IsNullOrEmpty(Model.GoogleMap))
+    {
+
+        <i class="icon-star"></i>
+        <div class="d-ib va-t">
+            <a style="color: #d80;font-size: 15px;font-weight: bold;line-height: 25px;" href="@Model.GoogleMap">Click here to register for the event on the official registration page</a>
+        </div>
+    }
+
+    @if (Model.Description != null)
+    {
+        <i class="icon-align-left va-t"></i> 
+        <div class="d-ib" style="width: 94%">
+            <pre class="read">@Html.Raw(Model.Description.Replace(Environment.NewLine, "<br/>"))</pre>
+        </div>
+        <hr class="bs-dot" />
+    }
+    <div>
+        <i class="icon-share"></i>
+        <div class="fb-btn">
+            <a class="facebook" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href='http://www.facebook.com/sharer.php?s=100&amp;p[title]=@Model.EventName&amp;p[summary]=@Model.Location&amp;p[url]=@Routes.EventsUrl(Model.EntityKey)&amp;p[images[0]=@Routes.ImageUrl("logo.jpg")&amp;p[summary]=@Model.FromDate GMT'>
+                <img src="~/Content/images/fb.png" /></a>
+        </div>
+        <div class="tw-btn">
+            <a id="twBtn" href="https://twitter.com/share" class="twitter-share-button" data-url="@Routes.EventsUrl(Model.EntityKey)" data-count="none">Tweet</a>
+            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
+    </div>
+    <br />
+</div>
+
+<script src="~/Scripts/_common.js"></script>
+<script src="~/Scripts/_time.js"></script>
+<script src="~/Scripts/_ajax-form.js"></script>
+
+<script>
+    $(function () {
+        window.location.hash = '@Model.Slug';
+    });
+</script>

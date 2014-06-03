@@ -1,0 +1,39 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Job
+
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<div class="prof-frm">
+    @using (Html.BeginForm("Edit", "Job", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.JobId)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.CompanyName).ShowValidationMessage(false).HtmlAttributes(new { data_autocomplete_source = Url.Action(Routes.AcCompanyNames) })
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Location).ShowValidationMessage(false).HtmlAttributes(new { data_autocomplete_source = Url.Action(Routes.AcCities) })
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Position).ShowValidationMessage(false).HtmlAttributes(new { data_autocomplete_source = Url.Action(Routes.AcJobPositions) })
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Domain).ShowValidationMessage(false).HtmlAttributes(new { data_autocomplete_source = Url.Action(Routes.AcJobDomains) })
+        @Html.Bootstrap().ControlGroup().CheckBoxFor(m => m.IsCurrentEmployer)
+            
+        <div class="pop-cnt-btns">
+            <button type="button" class="edit-close btn btn-default">Cancel</button>
+            <button type="submit" class="btn-primary">Update</button>
+                <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+            
+        <p>
+            @Html.ValidationSummary()
+        </p>
+            
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    }
+    @if (Model.EntityKey != 0)
+    {
+        using (Html.BeginForm("Remove", "Job", FormMethod.Post, new { @class = "removefrm" }))
+        {
+            @Html.Hidden("id", Model.EntityKey)
+            @Html.AntiForgeryToken()
+            <a>Remove this job from my profile</a>
+        }
+    }
+</div>
+<script src="~/Scripts/_common.js"></script>

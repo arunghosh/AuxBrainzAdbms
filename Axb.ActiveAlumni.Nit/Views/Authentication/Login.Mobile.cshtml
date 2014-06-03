@@ -1,0 +1,52 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.SignInRequest
+@{
+    ViewBag.Title = "Login | NIT Calicut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{Html.RenderPartial(Routes.CloseNote);}
+<br />
+@using (Html.BeginForm("Login", "Authentication", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div style="margin:7px;">
+        <div class="control-group">
+            <label class="control-label" for="inputIcon">Email address</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    @Html.Bootstrap().TextBoxFor(m => m.Email).ShowValidationMessage(false).HtmlAttributes(new { type="Email" })
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputIcon">Password</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    @Html.Bootstrap().PasswordFor(m => m.Password).ShowValidationMessage(false)
+                </div>
+            </div>
+        </div>
+        @Html.Bootstrap().SubmitButton().Text("Log In").HtmlAttributes(new { @class = "btn-primary" })
+        <p>
+            @Html.ValidationSummary()
+        </p>
+    </div>
+}
+<div>
+    <div class="ft-l">
+        @Html.ActionLink("New user? Register!!!", "Index", "Register", new { area = "" }, null)
+    </div>
+    <div class="ft-r">
+        @Html.ActionLink("Forgot your password?", "ForgotPassword", "Settings", new { area = "" }, null)
+    </div>
+    <br />
+</div>
+@section Scripts
+    {
+
+    <script>
+        $(function () {
+            $('#loginSnpt').hide();
+        });
+    </script>
+}

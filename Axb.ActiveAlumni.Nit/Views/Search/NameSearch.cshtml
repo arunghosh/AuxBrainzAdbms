@@ -1,0 +1,8 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.SearchUserVm
+@using (Html.BeginForm("Index", "Search", new { area = "" }))
+{
+    <input type="text" class="search-txt" name="UserName" data-autocomplete-source='@Url.Action("GetUserNames")' placeholder="Search by Name" />
+    @*<i class="search-icon icon-search icon-white btn" ></i>*@
+    <button class="search-icon"><i class="icon-search" ></i></button>
+}
+

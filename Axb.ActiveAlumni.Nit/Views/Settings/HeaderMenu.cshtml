@@ -1,0 +1,13 @@
+﻿<div class="arrow"></div>
+<ul class="ntfy-lst">
+    <li>
+        <a href="/User" class="ntfy-lnk">Edit Profile</a>
+    </li>
+    <li>
+        @Html.ActionLink("Settings", "UserSettings", new{}, new { @class = "ntfy-lnk" })
+    </li>
+    <li>
+        @Html.RouteLink("Sign Out", new { controller = "Authentication", action = "Signout", area = "" }, new { @class="ntfy-lnk" })
+    </li>
+</ul>
+<br />

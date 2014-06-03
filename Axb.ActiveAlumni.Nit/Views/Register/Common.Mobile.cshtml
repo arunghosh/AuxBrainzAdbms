@@ -1,0 +1,17 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.RegisterUserVm
+<div class="control-group">
+    <div class="control-label">Name</div>
+    <div class="controls">
+        @Html.Bootstrap().TextBoxFor(m => m.FirstName).Placeholder("Your full name with initials").ShowValidationMessage(false).HtmlAttributes(new { })
+        @Html.HiddenFor(m => m.LastName)
+    </div>
+</div>
+@Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Email).Placeholder("name@domain.com").HtmlAttributes(new { type="email" }).ShowValidationMessage(false)
+<div class="control-group">
+    <div class="control-label">Password</div>
+    <div class="controls">
+        @Html.Bootstrap().PasswordFor(m => m.Password).HtmlAttributes(new {@class="half-w"}).Placeholder("Password").ShowValidationMessage(false)
+        @Html.Bootstrap().PasswordFor(m => m.ConfirmPassword).HtmlAttributes(new {@class="half-w"}).Placeholder("Confirm Password").ShowValidationMessage(false)
+    </div>
+</div>
+@Html.Bootstrap().ControlGroup().TextBoxFor(m => m.MobileNumber).HtmlAttributes(new { type="tel" }).Placeholder("Include location code").ShowValidationMessage(false)

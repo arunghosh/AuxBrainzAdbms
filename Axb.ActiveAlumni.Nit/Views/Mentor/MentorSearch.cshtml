@@ -1,0 +1,58 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.SearchMentorVm
+@using Axb.ActiveAlumni.Nit.Entities;
+
+@{
+    ViewBag.Title = "Mentoring Activities | Search";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    #mentorSrch img
+    {
+        width: 80px;
+        height: 80px;
+    }
+
+    #mentorSrch .mentor-msg
+    {
+        height: 80px;
+        width: 460px;
+        overflow: auto;
+        margin: 0 10px;
+        border-bottom: 1px solid #eee;
+    }
+</style>
+
+<div id="searchCtnr">
+    <div id="filterCtnr">
+        @using (Html.BeginForm("MentorSearch", "Mentor"))
+        {
+            @Html.HiddenFor(m => m.PageIndex)
+            foreach (var grp in Model.Filters.Where(f => f.IsList))
+            {
+            @SearchHelper.DispayGroup(grp, Url.Action(grp.AutoComplete))
+            <hr />
+            }
+        }
+    </div>
+    <div class="span">
+        <div id="mentorSrch">
+            @foreach (var item in Model.PagedItems)
+            {
+                <div class="a-frm-ctnr" data-id="@item.MentorShipId" data-url="/Mentor/Show">
+                    @Html.Partial("Show", item)
+                </div>
+                <hr />
+            }
+        </div>
+        <div>
+            @SearchHelper.PageControl(Model.TotalPages, Model.PageIndex)
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/_ajax-form.js"></script>
+    <script src="~/Scripts/_search.js"></script>
+}
+

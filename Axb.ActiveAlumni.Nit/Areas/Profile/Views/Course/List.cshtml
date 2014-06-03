@@ -1,0 +1,33 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.UserCourse>
+
+
+<div id="addCourseCtnr">
+    <div style="position: relative">
+        <h4><i class="icon-th"></i> NITC/RECC Courses</h4>
+        @if ((bool)ViewData[Constants.ProfileEditKey])
+        {
+            <div class="edit-ctnr">
+                <a class="edit-icon add-text"><i class="icon-plus"></i>Course
+                </a>
+            </div>
+            <script>
+                $(function () {
+                    new AddProfile("Course");
+                });
+            </script>
+        }
+    </div>
+</div>
+<ul class="ltype-none">
+    @foreach (var item in Model)
+    {
+        var ctnrId = String.Format("courseCtnr_{0}", item.EntityKey);
+        <li id = '@ctnrId' class="span clearb ctnt-bhr">
+            @{Html.RenderAction("Show", new { id = item.EntityKey });}
+        </li>
+    }
+</ul>
+
+
+
+

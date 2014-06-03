@@ -1,0 +1,12 @@
+﻿@helper DateTime(DateTime? time, Axb.ActiveAlumni.Nit.Infrastructure.DateTypes type)
+{
+    if (time != null)
+    {
+        var code = time.Value.ToString("yyyy/MM/dd/HH/mm");
+        <div data-format='@type.ToString()' class='time' data-utc='@code'></div>
+    }
+    else
+    {
+        <div>--</div>
+    }
+}

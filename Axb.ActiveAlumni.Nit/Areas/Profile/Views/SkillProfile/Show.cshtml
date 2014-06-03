@@ -1,0 +1,28 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.SkillVm
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<div>
+    <h4><i class="icon-wrench"></i> Skills</h4>
+    <div class="edit-ctnr">
+        @if ((bool)ViewData[Constants.ProfileEditKey])
+        {
+            <div style="position: relative">
+                <div style="height: 4px;"></div>
+                <a class="edit-icon add-text">
+                    <i class="icon-edit"></i>Edit Skills
+                </a>
+            </div>
+            <script>
+                $(function () {
+                    new BaseProfile("SkillProfile");
+                });
+            </script>
+        }
+        <ul id="skillView" class="ltype-none content" style="">
+            @foreach (var skill in Model.SeleSkills)
+            {
+                <li>@skill</li>
+            }
+        </ul>
+    </div>
+</div>

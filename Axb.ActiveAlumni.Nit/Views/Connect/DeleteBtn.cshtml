@@ -1,0 +1,9 @@
+﻿@model Int32
+<div class="cont-req-frm">
+    @using (Html.BeginForm("Delete", "Connect", new { area = "" }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("id", Model)
+        <a class="btn-gray"> <span class="s">Connected</span> | Disconnect</a>
+    }
+</div>

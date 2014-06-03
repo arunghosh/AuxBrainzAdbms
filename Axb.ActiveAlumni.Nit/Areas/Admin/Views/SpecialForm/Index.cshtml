@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "RECAA 89 Registration - NITC Calicut Alumni";
+    Layout = Routes.Layout;
+}
+<div class="m10">
+@*    <div>
+        <hr />
+        <h4>*** Registration only for 1989 batch ***</h4>
+        <h6 style="color:#222;">For more information, mail to: Surej K P (85 - 89 EC) <a href="mailto:surej_kp@hotmail.com">surej_kp@hotmail.com</a> and / or Ramkumar S (85 - 89 EC, representing the executive committee of parent chapter of Alumni Association, NITCAA)  at <a href="mailto:ram.kumar.sn@gmail.com">ram.kumar.sn@gmail.com</a>.</h6>
+        <hr />
+    </div>*@
+    @if ((bool)ViewData["isRec89"])
+    {
+        <iframe src='https://docs.google.com/forms/d/1b0AnystVv3Pieb_zu0AT8Un1yoQLMLNeypJ10G-8HBA/viewform?embedded=true&entry.1098041976=@ViewData["currUserName"]' width="930" height="3000" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+    }
+</div>
+@section Scripts
+{
+
+}

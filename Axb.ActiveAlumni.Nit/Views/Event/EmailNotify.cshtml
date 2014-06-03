@@ -1,0 +1,27 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Event
+<div style="width: 500px;">
+    @using (Html.BeginForm("EmailNotify", "Event", FormMethod.Post, new { @class = "save-clse-frm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.EventId);
+        <label>Email Subject</label>
+        <div class="bld">NITCAA Event - @Model.EventName</div>
+        <br />
+        <label>Email Message</label>
+        <div style="border:1px solid #ddd; padding: 8px; color: #111; border-radius: 2px;margin:5px 0 0 0">
+            <pre class="read">@Html.Raw(Model.EmailMessage.Replace(Environment.NewLine, "<br/>"))</pre>
+        </div>
+        <hr />
+        <div>
+            <a class="btn btn-cancel">Cancel</a>
+            <button type="submit" class="btn-primary">Send Email Notification</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+        <p>
+            @Html.ValidationSummary()
+        </p>
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>  
+    }
+</div>
+<script src="~/Scripts/_save-clse-frm.js"></script>

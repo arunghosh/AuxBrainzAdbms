@@ -1,0 +1,10 @@
+﻿@model Int32
+<div class="cont-req-frm">
+    @using (Html.BeginForm("Create", "Connect", new { area = "" }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("id", Model)
+        <a class="btn-gray">Connect</a>
+    }
+</div>
+

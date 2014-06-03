@@ -1,0 +1,32 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Log>
+
+@{
+    ViewBag.Title = "Logs";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h5 style="padding: 0 0 0 10px;">Logs</h5>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>User Id</th>
+        <th>Date</th>
+        <th>Message</th>
+        <th>Type</th>
+        <th>IP Address</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.LogId</td>
+            <td>@item.UserId</td>
+            <td>@DisplayHelper.DateTime(item.Date, DateTypes.Normal)</td>
+            <td>@item.LogMessage</td>
+            <td>@item.LogType.ToString()</td>
+            <td>@item.IPAddress</td>
+        </tr>
+    }
+</table>
+
+@section Scripts{}

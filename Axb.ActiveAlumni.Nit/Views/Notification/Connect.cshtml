@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.Connection>
+
+@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit.Infrastructure
+
+<div class="arrow"></div>
+<div class="ntfy-head">Connection Requests</div>
+<ul class="ntfy-lst">
+    @foreach (var item in Model)
+    {
+        <li class="nty-cnt-frm">
+            <div class="a-frm-ctnr">
+                <div class="span">
+                    <div class="span">
+                    <a href="@Routes.Profile(item.SenderId)">
+                        <img src='@Routes.ProfilePic(item.SenderId)' alt="Pic"/>
+                    </a>
+                    </div>
+                    <div class="req-info">
+                        <a href="@Routes.Profile(item.SenderId)" class="bld" >@item.SenderName</a>
+                        <div class="dim-v">@item.Batch Batch</div>
+                        <div class="dim-v">@item.SenderCourse</div>
+                    </div>
+                </div>
+                <div class="span ft-r">
+                    @using (Html.BeginForm("UpdateStatus", "Connect", FormMethod.Post, new { @class = "replace-stat-frm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("ConnectId", item.ConnectionId)
+                        @Html.Hidden("Status", item.Status)
+                        <a class="status-btn btn-acc" data-status="@ConnectStatusType.Accepted">Accept</a>
+                        <a class="status-btn btn-rej" data-status="@ConnectStatusType.Rejected">Reject</a>
+                    }
+                </div>
+            </div>
+        </li> 
+    }
+</ul>
+<script src="~/Scripts/_ajax-form.js"></script>
+<script>
+    $(function () {
+        $('.ntfy-lst-ctnr').slimScroll({
+            height: 350
+        });
+    });
+</script>

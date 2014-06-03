@@ -1,0 +1,25 @@
+﻿@using Axb.ActiveAlumni.Nit.Entities
+@using Axb.ActiveAlumni.Nit.Services
+@using Axb.ActiveAlumni.Nit.ViewModels
+@using Axb.ActiveAlumni.Nit.Infrastructure
+
+@helper DisplayMsg(NotifyDispItem item)
+{
+    <img src='@Routes.Img40Pic(item.UserId)' class="ntfy-uimg"/>
+    <div class="ntfy-msg">
+        <div><b class="sender">@item.UserName</b> @DisplayHelper.DateTime(item.Date, DateTypes.Medium)</div>
+        <div class="msg">
+            @if (!string.IsNullOrEmpty(item.Title))
+            {
+                <div class="title">@item.Title</div>
+            }
+            <div class="trim">
+                @if (item.IsReply && string.IsNullOrEmpty(item.Title))
+                {
+                    <i class="icon-share-alt"></i>
+                }
+                @item.Comment
+            </div>
+        </div>
+    </div>
+}

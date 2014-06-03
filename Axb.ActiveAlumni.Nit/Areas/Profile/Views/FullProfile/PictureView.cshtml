@@ -1,0 +1,18 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.ProfileIdVm
+<img src='@Url.Action("ShowPicture", new { id = Model.ReqUser.UserId })' alt="" style="width:120px;"/>
+<div>
+    @if ((bool)ViewData[Constants.ProfileEditKey])
+    {
+        <a class="p0 txt-l edit-icon" href="@Url.Action("PictureEdit")">Edit profile picture
+        </a>
+    }
+</div>
+
+@*<script>
+    $(function () {
+        var relativeProfile = new BaseProfile("Picture");
+        relativeProfile.refreshView = "\\Alumni\\Profile\\RelativeList";
+        relativeProfile.refreshViewId = "#relativeListCtnr";
+        registerEditPopup(relativeProfile);
+    });
+</script>*@

@@ -1,0 +1,238 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.JobOpening
+
+<style>
+
+    .job-post-frm select
+    {
+        width: 120px;
+        height: 26px;
+        padding: 0;
+    }
+
+    .job-post-frm li
+    {
+        display: inline-block;
+    }
+
+    .job-post-frm ul
+    {
+        list-style-type: none;
+    }
+
+    .job-post-frm
+    {
+        width: 600px;
+    }
+
+        .job-post-frm textarea
+        {
+            display: block;
+            width: 93%;
+            height: 70px;
+            overflow: auto;
+        }
+
+        .job-post-frm input[type="number"]
+        {
+            width: 45px;
+            height: 14px;
+            line-height: 16px;
+            padding: 4px;
+        }
+
+        .job-post-frm input[type="text"]
+        {
+            display: block;
+            width: 90%;
+        }
+
+    #jobStatus.active
+    {
+        background:#3a4;
+    }
+
+    #jobStatus.inactive
+    {
+        background:#a30;
+        color:#ccc;
+    }
+
+    #jobStatus
+    {
+        color:#fff;
+        width:90px;
+        border-radius:1px;
+    }
+</style>
+@*<div class="sticky">New Job Opening</div>*@
+<div style="margin: 9px 2px;">
+    <div>
+        @using (Html.BeginForm("Edit", "JobPost", FormMethod.Post, new { @class = "job-post-frm save-clse-frm", data_refresh = "true" }))
+        {
+            <div class="pop-up-ht">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.JobPostId)
+                @Html.HiddenFor(m => m.UserId)
+                <ul>
+                    <li style="width: 49%">
+
+                        @Html.Bootstrap().LabelFor(m => m.Title).ShowRequiredStar(true)
+                        @Html.TextBoxFor(m => m.Title)
+                    </li>
+                    <li>
+                        <label>Status</label>
+                        @Html.HiddenFor(m => m.IsActive)
+                        <a id="jobStatus" class="btn"></a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li style="width: 49%">
+                        @Html.Bootstrap().LabelFor(m => m.Organisation)
+                        @Html.TextBoxFor(m => m.Organisation, new { data_autocomplete_source = @Url.Action(Routes.AcCompanyNames) })
+                    </li>
+                    <li style="width: 49%">
+                        @Html.Bootstrap().LabelFor(m => m.Location)
+                        @Html.TextBoxFor(m => m.Location, new { data_autocomplete_source = @Url.Action(Routes.AcCities) })
+
+                    </li>
+                </ul>
+
+
+                <ul>
+                    <li style="width: 49%">
+                        <label>Experience</label>
+                        <ul>
+                            <li></li>
+                            <li>
+                                @Html.DropDownList("minExp")
+                            </li>
+                            <li style="padding: 0 5px;">to </li>
+                            <li>
+                                @Html.DropDownList("maxExp")
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        @Html.LabelFor(m => m.JobType)
+                        @Html.DropDownList("JobType")
+                    </li>
+                </ul>
+
+                <ul>
+                    <li style="width: 50%">
+                        @Html.Bootstrap().LabelFor(m => m.SendYourResumesTo)
+                        @Html.TextBoxFor(m => m.SendYourResumesTo)
+                    </li>
+                    <li style="width: 42%; padding-left:20px;">
+                        @Html.Bootstrap().ControlGroup().CheckBoxFor(m => m.SendToAdmin)
+                    </li>
+                </ul>
+
+                @Html.Bootstrap().LabelFor(m => m.Description).ShowRequiredStar(true)
+                @Html.TextAreaFor(m => m.Description)
+
+                <label>Required Skills (enter atleast one skill)</label>
+                <div id="skillIp" style="height: 30px">
+                    <input  type="text" style="width:200px; display:inline-block" placeholder="Skill" name="newSkill" data-autocomplete-source='@Url.Action(Routes.AcJoinedSkills)' />
+                    <a class="btn btn-lg">Add</a>
+                </div>
+                <ul id="skillList" class="ltype-none">
+                </ul>
+            </div>
+            if (Model.JobPostId == 0)
+            {
+            <div>
+                <a class="btn btn-cancel">Cancel</a>
+                <button type="submit" class="btn-primary">Post Job Opening</button>
+            </div>
+            }
+            else
+            {
+            <div>
+                <a class="btn btn-cancel">Cancel</a>
+                <button type="submit" class="btn-primary">Update</button>
+                <img src="~/Content/images/busy.gif" class="frm-busy" />
+            </div>
+            }
+            <p>
+                @Html.ValidationSummary()
+            </p>
+            
+            <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+            </div>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+
+    function updateJobStatus() {
+        if ($('#IsActive').val() == 'True') {
+            $('#jobStatus').removeClass('inactive').addClass('active').html("Active");
+        }
+        else {
+            $('#jobStatus').removeClass('active').addClass('inactive').html("Inactive");
+        }
+    }
+
+    $(function () {
+
+        updateJobStatus();
+
+        $('#jobStatus').click(function () {
+            var $status = $('#IsActive');
+            if ($status.val() == 'True') {
+                $status.val('False');
+            }
+            else {
+                $status.val('True');
+            }
+            updateJobStatus();
+        });
+
+        $("#skillIp input").autocomplete({
+            select: function (a, b) {
+                addSkill(b.item.value);
+                this.value = '';
+                return false;
+            }
+        });
+
+        @foreach (var skill in Model.GetSkills())
+        {
+		    <text>addSkill('@skill');</text>
+        }
+
+        $("#skillIp a").click(function () {
+            var input = $('#skillIp input');
+            var skills = input.val().split(',');
+            for (var i = 0; i < skills.length; i++) {
+                addSkill(skills[i]);
+            }
+            input.val('');
+        });
+
+    });
+    function addSkill(skill) {
+        var $ctnr = $('<li>')
+        $('#skillList').append($ctnr);
+        $('<span>')
+            .addClass('value')
+            .text(skill)
+            .appendTo($ctnr);
+        $('<input>')
+            .attr({ type: 'hidden', value: skill, name: 'reqSkill' })
+            .appendTo($ctnr);
+        $('<span>')
+            .addClass('close')
+            .text('X')
+            .click(function () {
+                $(this).parent().remove();
+            })
+            .appendTo($ctnr);
+        $("#skillIp input").focus();
+    }
+</script>
+<script src="~/Scripts/_common.js"></script>
+<script src="~/Scripts/_save-clse-frm.js"></script>

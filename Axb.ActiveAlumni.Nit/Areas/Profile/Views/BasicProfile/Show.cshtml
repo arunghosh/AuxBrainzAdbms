@@ -1,0 +1,34 @@
+﻿@model Axb.ActiveAlumni.Nit.Areas.Profile.Models.BasicProfileVm
+@using Axb.ActiveAlumni.Nit.ViewModels;
+
+<div class="d-ib" style="width: 72%">
+    <div class="ml10 ft-l">
+        <div>
+            <div style="font-size: 16px; font-weight: bold; color: #222;">@Model.FullName
+            </div>
+            <span>(@ViewData[Constants.RoleKey]) </span>
+        </div>
+        <div class="dim">@((byte)Model.Sex == 0 ? "" : Model.Sex.ToString())</div>
+        @if (Model.DateOfBirth != null)
+        {
+            <div class="dim">Date of Birth: @Model.DateOfBirth.Value.ToString("dd-MMM-yyyy")</div>
+        }
+    </div>
+    @if ((bool)ViewData[Constants.ProfileEditKey])
+    {
+        <div style="position: relative">
+            <a class="edit-icon ft-r" style="margin-left: 5px;">
+                <i class="icon-edit"></i>Edit
+            </a>
+            <div class="edit-ctnr"></div>
+        </div>
+        <script>
+            $(function () {
+                new BaseProfile("BasicProfile");
+            });
+        </script>
+    }
+</div>
+
+
+

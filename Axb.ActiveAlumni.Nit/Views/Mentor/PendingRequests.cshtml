@@ -1,0 +1,50 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.MentorListVm
+@using Axb.ActiveAlumni.Nit.Entities;
+@{
+    ViewBag.Title = "Pending Mentoring Reqest";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div id="mpCtnr" class="p20">
+    @foreach (var item in Model.MentorItems)
+    {
+        using (Html.BeginForm("UpdateStatus", "Mentor", FormMethod.Post))
+        {
+            var lstMsg = item.Mentoship.Messages.Last();
+            @Html.AntiForgeryToken()
+            @Html.Hidden("Status")
+            @Html.Hidden("Id", item.MentorShipId)
+            <table style="border-spacing:0; border-collapse:collapse;">
+                <tr>
+                    <td class="bdr-r">
+                        <img src='@Url.Action("ProfileImage", new { id = item.Student.UserId })' alt="" style="float:left;width:90px; height:90px;"/>
+                    </td>
+                    <td>
+                        <div class="span" style="height: 90px; width: 300px; overflow: auto; margin: 10px;">
+                            <span class="bld">@lstMsg.Date.ToShortDateString() : </span>@lstMsg.Message
+                        </div>
+                    </td>
+                    <td class="bdr-l">
+                        <img src='@Url.Action("ProfileImage", new { id = item.Alumni.UserId })' alt="" style="float:left;width:90px; height:90px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bdr-r"  style="width:90px; line-height:16px;">
+                        @Html.ActionLink(item.Student.FullName, "Index", "FullProfile", new { area = "Profile", id = item.Student.UserId }, null)
+                        <span class="dim">(student)</span>
+                    </td>
+                    <td style="padding-left:10px;">
+                        <a class="reject edit-close btn btn-default">Reject</a>
+                        <a class="accept btn btn-primary btn-lg">Accept</a>
+                    </td>
+                    <td class="bdr-l" style="width:90px; line-height:16px;">
+                        @Html.ActionLink(item.Alumni.FullName, "Index", "FullProfile", new { area = "Profile", id = item.Alumni.UserId }, null)
+                        <span class="dim">(alumni)</span>
+                    </td>
+                </tr>
+            </table>
+        }
+        <hr />
+    }
+</div>
+
+

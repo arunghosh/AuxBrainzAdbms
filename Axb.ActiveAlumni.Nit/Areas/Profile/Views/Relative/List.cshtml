@@ -1,0 +1,28 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Relative>
+
+<div id="addRelativeCtnr">
+    <div style="position: relative">
+        <h4><i class="icon-home"></i> Family</h4>
+        @if ((bool)ViewData[Constants.ProfileEditKey])
+        {
+            <div class="edit-ctnr">
+                <a class="edit-icon add-text"><i class="icon-plus"></i>Member
+                </a>
+            </div>
+            <script>
+                $(function () {
+                    new AddProfile("Relative");
+                });
+            </script>
+        }
+    </div>
+</div>
+<ul class="ltype-none">
+    @foreach (var item in Model)
+    {
+        var ctnrId = String.Format("relativeCtnr_{0}", item.EntityKey);
+        <li id = '@ctnrId' class="span clearb ctnt-bhr">
+            @{Html.RenderPartial("Show", item);}
+        </li>
+    }
+</ul>

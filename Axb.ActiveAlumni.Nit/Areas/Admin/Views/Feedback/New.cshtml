@@ -1,0 +1,46 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Feedback
+<style>
+    #feedFrm textarea
+    {
+        width: 90%;
+        height: 100px;
+    }
+
+    #feedFrm input
+    {
+        width: 90%;
+    }
+</style>
+<div class="new-frm" id="feedFrm" style="width: 550px; padding: 7px 0">
+
+    @using (Html.BeginForm("New", "Feedback", FormMethod.Post, new { @class = "save-clse-frm", data_refresh = "true" }))
+    {
+        @Html.AntiForgeryToken();
+                                if (!(bool)ViewData[Constants.IsAuthKey])
+                                {    
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+                                }
+
+        @Html.LabelFor(m => m.Message)
+        @Html.TextAreaFor(m => m.Message)
+
+        <div>
+            <br />
+            <a class="btn btn-cancel">Cancel</a>
+            <button class="submit btn-primary">Submit Feedback</button>
+            <img src="~/Content/images/busy.gif" class="frm-busy" />
+        </div>
+    
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>        
+    }
+</div>
+<script src="~/Scripts/_save-clse-frm.js"></script>

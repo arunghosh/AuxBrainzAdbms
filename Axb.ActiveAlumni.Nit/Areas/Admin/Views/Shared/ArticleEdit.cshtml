@@ -1,0 +1,43 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.AlumniArticleBase
+@Html.HiddenFor(m => m.IsDeleted)
+<label>Alumni Name</label>
+@if (Model.AlumniId == 0)
+{
+    @Html.Partial(Routes.UserSelector, new List<Axb.ActiveAlumni.Nit.Entities.User> { })
+}
+else
+{
+    @Html.HiddenFor(m => m.AlumniId)
+    <div class="bld">@Model.AlumniName (@Model.Course | @Model.Batch) </div>
+}
+<br />
+<label>Description</label>
+@Html.TextAreaFor(d => d.About, new { style = "height:300px; width:95%;" });
+
+<div>
+    <br />
+    <a class="btn btn-cancel">Cancel</a>
+    @if (Model.EntityKey == 0)
+    {
+        <button class="submit btn-primary">Add Article</button>
+    }
+    else
+    {
+        <button class="submit btn-primary">Update Article</button>
+        if (Model.IsDeleted)
+        {
+        <a class="btn-unhide">Unhide Article</a>
+        }
+        else
+        {
+        <a class="btn-hide">Hide Article</a>
+        }
+    }
+    <img src="~/Content/images/busy.gif" class="frm-busy" />
+</div>
+<p>
+    @Html.ValidationSummary()
+</p>
+
+<div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+</div>
