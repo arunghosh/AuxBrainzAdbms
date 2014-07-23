@@ -9,17 +9,15 @@ namespace Axb.ActiveAlumni.Nit.ViewModels
 {
     public class MentorRequestVm
     {
-        public User Alumni { get; set; }
-        
-        [Required]
-        public int AlumniId { get; set; }
-        
         [Required]
         public int StudentId { get; set; }
 
         [Required]
         [MentorMsgLength]
         public string Message { get; set; }
+
+        [Required]
+        public string[] SeleSkills { get; set; }
 
         public bool IsDone { get; set; }
 

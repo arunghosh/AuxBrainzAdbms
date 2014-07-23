@@ -1,0 +1,32 @@
+﻿@model Axb.ActiveAlumni.Nit.ViewModels.MentorStatusUpdateVm
+@using Axb.ActiveAlumni.Nit.Entities;
+
+<div class="p20" style="width:400px;">
+    @if (Model.Status == MentorStatusType.RequestSend)
+    {
+        using (Html.BeginForm("UpdateStatus", "Mentor", FormMethod.Post, new { @class = "save-clse-frm" }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("Status")
+        @Html.Hidden("Id", Model.Id)
+        <div>
+            <div>
+                <textarea name="Message" style="width:90%;height:60px" placeholder="Message" />
+            </div>
+            <div>
+                @Html.Partial(Routes.SingleUserSelector, new List<Axb.ActiveAlumni.Nit.Entities.User> { })
+                <a data-status="@MentorStatusType.AdminApproved" class="status-btn btn btn-success" style="margin-right: 10px;color:#fff">Assign Alumni</a>
+            </div>
+            <hr />
+            <div>
+                <a data-status="@MentorStatusType.AdminRejected" class="status-btn btn btn-default">Reject Request</a>
+                <a data-status="@MentorStatusType.StudentInfo" class="status-btn btn-primary">More Info</a>
+            </div>
+
+        </div>
+        }
+    }
+</div>
+<script src="~/Scripts/_ajax-form.js"></script>
+<script src="~/Scripts/_save-clse-frm.js"></script>
+

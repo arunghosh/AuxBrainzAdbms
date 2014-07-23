@@ -17,12 +17,13 @@
 <div id="profBanCtnr">
     <div class="lazy-load" data-url="/Home/ProfileBanner"></div>
 </div>
+@*<object data="/content/test.pdf" width="960" height="3000"></object>*@
 @{Html.RenderPartial(Routes.CloseNote);}
 <div style="margin-top: -12px;">
     <div id="hmeLeft">
         <div id="hmeLeftL">
             <div class="box-sd">
-                <a class="slip-head" href="/AlumniStory">Alumni Stories</a>
+                <a class="slip-head" href="/AlumniStory">Blogs</a>
                 @{Html.RenderAction("BlogSummary", "AlumniNews", new { area = "Admin" });}
             </div>
             <br />
@@ -67,6 +68,7 @@
         </div>
     </div>
     <div id="hmeRight">
+        @*@{Html.RenderAction("RequestBtn", "Mentor");}*@
         <div id="advt">
             <a href="http://suviregroup.com/" target="_blank">
                 <span class="ft-r fs-s dim-v">advt</span>

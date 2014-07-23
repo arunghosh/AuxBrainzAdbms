@@ -16,6 +16,16 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         private EventSrv _srv = new EventSrv();
 
         [HttpGet]
+        [AllowAnonymous]
+        public PartialViewResult SearchEvents(string term)
+        {
+            term = term.ToLower();
+            var events = _srv.MyEvents;
+            events = events.Where(n => n.EventName.ToLower().Contains(term) || n.Location.ToLower().Contains(term)).ToList();
+            return PartialView(events);
+        }
+
+        [HttpGet]
         public PartialViewResult EmailNotify(int id)
         {
             var evnt = _db.Events.Find(id);
@@ -81,6 +91,7 @@ namespace Axb.ActiveAlumni.Nit.Controllers
             var evt = _db.Events.Include(e => e.Comments)
                         .Include(e => e.Invitees)
                         .Single(e => e.EventId == id);
+            evt.Polls = _db.Polls.Where(p => p.PollType == PollTypes.Event && p.PollTypeId == id).ToList();
             return PartialView(evt);
         }
 
@@ -101,16 +112,19 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Edit(int id)
+        public PartialViewResult Edit(int id, int offset)
         {
             ViewData[Constants.IsAdminKey] = CurrentUser.IsAdmin();
-            return PartialView("New", _srv.GetEvent(id));
+            var model = _srv.GetEvent(id);
+            model.SetOffset(offset);
+            return PartialView("New", model);
         }
 
         [HttpPost]
-        public PartialViewResult New(List<int> userIds)
+        public PartialViewResult New(List<int> userIds, int offset)
         {
             Event model = new Event();
+            model.SetOffset(offset);
             userIds = userIds == null ? new List<int>() : userIds;
             userIds.Remove(CurrentUserId);
             var users = _db.Users.Where(u => userIds.Contains(u.UserId)).ToList();

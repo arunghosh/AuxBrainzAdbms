@@ -13,6 +13,8 @@ namespace Axb.ActiveAlumni.Nit.ViewModels
     {
         public int Id { get; set; }
 
+        public int AcUserId { get; set; }
+
         public MentorStatusType Status { get; set; }
 
         [MentorMsgLength]

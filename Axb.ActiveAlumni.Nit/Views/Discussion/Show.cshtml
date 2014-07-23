@@ -19,13 +19,13 @@ else
                 @Model.Title
                 @if ((bool)ViewData[Constants.IsAdminKey] || UserSession.CurrentUserId == Model.Comments[0].SenderId)
                 {
-                    if(Model.DiscusionType == DiscusionTypes.Discussion)
+                    if (Model.DiscusionType == DiscusionTypes.Discussion)
                     {
-                        <a class="new-obj btn-gray ft-r" data-method="get" data-title="Edit Discussion" data-url='/Discussion/Edit/@Model.DiscussionId'><i class="icon-edit"></i>Edit</a>
+                    <a class="new-obj btn-gray ft-r" data-method="get" data-title="Edit Discussion" data-url='/Discussion/Edit/@Model.DiscussionId'><i class="icon-edit"></i>Edit</a>
                     }
                     else
                     {
-                        <a class="btn-gray ft-r" href="/Discussion/BlogEdit/@Model.DiscussionId" ><i class="icon-edit"></i>Edit</a>
+                    <a class="btn-gray ft-r" href="/Discussion/BlogEdit/@Model.DiscussionId" ><i class="icon-edit"></i>Edit</a>
                     }
                 }
             </div>
@@ -86,6 +86,12 @@ else
         </div>
 
         <br />
+        <div id="sortCtnr">
+            <span class="dim bld">Sort by: </span>
+            <a data-id="0" class="sele">Most Recent</a>
+            <a data-id="1">Most Agreed</a>
+        </div>
+
         <div id="dis-cmts-ctnr">
             <img src="~/Content/images/busy.gif" class="m10" />
         </div>

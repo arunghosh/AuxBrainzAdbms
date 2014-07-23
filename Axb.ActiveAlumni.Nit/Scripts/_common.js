@@ -57,8 +57,10 @@ function refreshTweeks() {
                                 .append($('<img>').attr('src', '/Home/SmallImage/' + id))
                                 .append($like)
                                 .append($dlike);
+                
+                var re = new RegExp('-', 'g');
+                artc.Time = artc.Time.replace(re, '/');
                 var $time = $('<span>').addClass('time')
-                            .attr('src', '/Home/ImageTiny/' + id)
                             .html(getShortTime(artc.Time));
 
                 var $info = $('<div>').addClass('tw-info').append($time)
@@ -216,7 +218,7 @@ function showDialog($this, data) {
         url: url,
         type: $this.attr('data-method') === undefined ? "POST" : "GET",
         traditional: true,
-        data: { userIds: data },
+        data: { userIds: data, offset: new Date().getTimezoneOffset() },
         success: function (result) {
             hideAppBusy();
             $ctnr.html(result);

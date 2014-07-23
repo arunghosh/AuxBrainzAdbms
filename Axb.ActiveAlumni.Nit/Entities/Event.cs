@@ -37,9 +37,13 @@ namespace Axb.ActiveAlumni.Nit.Entities
         public string EventName { get; set; }
 
         [Display(Name = "Event starts at")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime FromDate { get; set; }
 
         [Display(Name = "Events ends at")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime ToDate { get; set; }
 
         [StringLength(512)]
@@ -149,6 +153,12 @@ namespace Axb.ActiveAlumni.Nit.Entities
             get { return Invitees.Select(m => m as EntityUserMap); }
         }
 
+        [NotMapped]
+        public List<Poll> Polls { get; set; }
+
+        [NotMapped]
+        public int TimeOffset { get; set; }
+
         public Event()
         {
             CreatedOn = DateTime.UtcNow;
@@ -157,6 +167,19 @@ namespace Axb.ActiveAlumni.Nit.Entities
             AcSeleUserIds = new List<int>();
             Invitees = new List<EventInvitee>();
             ToDate = FromDate = DateTime.UtcNow;
+        }
+
+        public void SetOffset(int offset)
+        {
+            TimeOffset = offset;
+            ToDate = ToDate.AddMinutes(-1 * TimeOffset);
+            FromDate = FromDate.AddMinutes(-1 * TimeOffset);
+        }
+
+        public void RemoveOffset()
+        {
+            ToDate = ToDate.AddMinutes(TimeOffset);
+            FromDate = FromDate.AddMinutes(TimeOffset);
         }
 
         #region Not Mapped

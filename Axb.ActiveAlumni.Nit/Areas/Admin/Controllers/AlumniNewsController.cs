@@ -18,6 +18,17 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        public PartialViewResult SearchNews(string term)
+        {
+            term = term.ToLower();
+            var news = _db.AlumniNewss.Where(n => n.NewsType == NewsType.News && n.Status == PostStatusType.Approved).ToList();
+            news = news.Where(n => n.Title.ToLower().Contains(term)).ToList();
+            return PartialView(news);
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult BlogIndex(int? id)
         {
             return CommonIndex(id, NewsType.AlumniStory);
@@ -51,17 +62,18 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Controllers
                 if (sele != null)
                 {
                     ViewBag.Meta = sele.Title;
-                    ViewBag.MetaD = sele.NewsType == NewsType.Blog ? sele.Title : sele.News.LetterLimited(80);
-                    if (sele.NewsType == NewsType.AlumniStory)
-                    {
-                        ViewBag.Meta = "Alumni Story : " + sele.Title;
-                        ViewBag.MetaD = sele.SubTitle;
-                        ViewBag.OgImg = Routes.ImageUrl("alumni_speak.png");
-                    }
-                    else
-                    {
-                        ViewBag.OgImg = Routes.NewsImg(model.SelectedId);
-                    }
+                    ViewBag.MetaD = sele.NewsType == NewsType.AlumniStory ? sele.SubTitle : sele.News.LetterLimited(80);
+                    ViewBag.OgImg = Routes.NewsImg(model.SelectedId);
+                    //if (sele.NewsType == NewsType.AlumniStory)
+                    //{
+                    //    ViewBag.Meta = "Alumni Story : " + sele.Title;
+                    //    ViewBag.MetaD = sele.SubTitle;
+                    //    ViewBag.OgImg = Routes.ImageUrl("alumni_speak.png");
+                    //}
+                    //else
+                    //{
+                    //    ViewBag.OgImg = Routes.NewsImg(model.SelectedId);
+                    //}
                 }
             }
             return View(model);

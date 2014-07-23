@@ -23,6 +23,7 @@ namespace Axb.ActiveAlumni.Nit.Controllers
             return PartialView(_srv.RecentBlogs());
         }
 
+
         [HttpGet]
         public ViewResult BlogEdit(int? id)
         {
@@ -50,6 +51,14 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         }
 
         [HttpGet]
+        public PartialViewResult MostAgreed(int id)
+        {
+            var model = _db.DiscussionComments.Where(c => c.DiscussionId == id).ToList().Skip(1).ToList();
+            model = model.OrderByDescending(m => m.AgreeCnt).ToList();
+            return PartialView(model.Take(4));
+        }
+
+        [HttpGet]
         public PartialViewResult MostCommented()
         {
             return PartialView("Links", _srv.MostCommented());
@@ -72,9 +81,14 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Comments(int id)
+        public PartialViewResult Comments(int id, int sortBy = 0)
         {
             var model = _db.DiscussionComments.Where(c => c.DiscussionId == id).ToList().Skip(1).ToList();
+            model.Reverse();
+            if (sortBy == 1)
+            {
+                model = model.OrderByDescending(m => m.AgreeCnt).ToList();
+            }
             FillAuthKeys();
             return PartialView("Comments", model);
         }

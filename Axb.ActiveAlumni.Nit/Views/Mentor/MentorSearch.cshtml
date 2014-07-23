@@ -7,19 +7,70 @@
 }
 
 <style>
-    #mentorSrch img
-    {
-        width: 80px;
-        height: 80px;
+    #mentorSrch a {
+        font-weight: bold;
     }
 
-    #mentorSrch .mentor-msg
-    {
-        height: 80px;
-        width: 460px;
-        overflow: auto;
-        margin: 0 10px;
-        border-bottom: 1px solid #eee;
+    #mentorSrch tr {
+        vertical-align: top;
+        text-align: left;
+    }
+
+    #mentorSrch {
+        display: inline-block;
+        width: 690px;
+        margin: 8px 0 0 0;
+    }
+
+        #mentorSrch .main-row:hover {
+            background: #eee;
+        }
+
+        #mentorSrch .main-row {
+            border-top: 1px solid #ccc;
+            cursor: pointer;
+            background: #eeeee9;
+        }
+
+        #mentorSrch td, #mentorSrch th {
+            padding: 6px 10px;
+        }
+
+        #mentorSrch th {
+            padding-bottom: 1px;
+            background: #999;
+            color: #eee;
+            font-weight: normal;
+            border-bottom: 1px solid #888;
+        }
+
+        #mentorSrch .mentor-msg {
+            height: 80px;
+            width: 460px;
+            overflow: auto;
+            margin: 0 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+    .mentor-details .time {
+        color: #bbb;
+        font-size: 11px;
+        display: block;
+    }
+
+    .mentor-details em {
+        /*font-style:normal;*/
+    }
+
+    .mentor-details {
+        background: #f9f9f9;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .metor-details td {
+        padding: 5px 10px 5px 0px!important;
+        border-bottom: 1px dashed #ddd;
+        min-width: 60px;
     }
 </style>
 
@@ -35,16 +86,83 @@
             }
         }
     </div>
-    <div class="span">
-        <div id="mentorSrch">
+    <div class="span" style="padding: 0 15px;">
+        <table id="mentorSrch">
+            <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Alumni</th>
+                <th>Status</th>
+                <th>Last Activity</th>
+                <th>Total Activities</th>
+            </tr>
             @foreach (var item in Model.PagedItems)
             {
-                <div class="a-frm-ctnr" data-id="@item.MentorShipId" data-url="/Mentor/Show">
-                    @Html.Partial("Show", item)
-                </div>
-                <hr />
+                <tr class="a-frm-ctnr main-row" data-id="@item.MentorShipId" data-url="/Mentor/Show">
+                    <td>
+                        @(Model.PagedItems.ToList().IndexOf(item) + 1)
+                    </td>
+                    <td>
+                        <a href="@Routes.Profile(item.StudentId)">@item.StudentName</a>
+                    </td>
+                    <td>
+                        @if (item.AlumniId == 0)
+                        {
+                            <div>Not assigned</div>
+                        }
+                        else
+                        {
+                            <a href="@Routes.Profile(item.AlumniId)">@item.AlumniName</a>
+                        }
+                    </td>
+                    <td>
+                        @Axb.ActiveAlumni.Nit.Services.MentorStatusFilter.GetStatusMsg(item.Status.ToString())
+                    </td>
+                    <td>
+                        @DisplayHelper.DateTime(item.Messages.Last().Date, DateTypes.Short)
+                    </td>
+                    <td>@item.Messages.Count()</td>
+                </tr>
+                <tr id="md_@item.MentorShipId" class="hide mentor-details">
+                    <td></td>
+                    <td colspan="5">
+                        <table>
+                            @foreach (var msg in item.Messages)
+                            {
+                                <tr>
+                                    <td class="ta-r">
+                                        @if (msg.SenderId == item.StudentId)
+                                        {
+                                            <em>Student:</em>
+                                        }
+                                        else if (msg.SenderId == item.AlumniId)
+                                        {
+                                            <em>Alumni:</em>
+                                        }
+                                        else
+                                        {
+                                            <em>Admin:</em>
+                                        }
+                                        @DisplayHelper.DateTime(msg.Date, DateTypes.Medium)
+                                    </td>
+                                    <td>
+                                        @msg.Text
+                                        <div class="dim-v">
+                                            @Axb.ActiveAlumni.Nit.Controllers.MentorController.GetUserMsg(msg.Status)
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                        @if (item.Status == MentorStatusType.RequestSend)
+                        {
+                            <a class="btn-primary new-obj" data-method="get" data-title="Assign Mentor for @item.StudentName" data-url="/mentor/assignalumni/@item.MentorShipId">Assign Alumni</a>
+                        }
+                    </td>
+                </tr>
             }
-        </div>
+        </table>
         <div>
             @SearchHelper.PageControl(Model.TotalPages, Model.PageIndex)
         </div>
@@ -54,5 +172,13 @@
 {
     <script src="~/Scripts/_ajax-form.js"></script>
     <script src="~/Scripts/_search.js"></script>
+    <script>
+        $(function () {
+            $(".main-row").click(function () {
+                var $this = $(this);
+                $("#md_" + $this.attr('data-id')).toggle();
+            });
+        });
+    </script>
 }
 

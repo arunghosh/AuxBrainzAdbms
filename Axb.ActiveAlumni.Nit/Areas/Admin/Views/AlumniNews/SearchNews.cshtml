@@ -1,0 +1,18 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+
+<table class="grp-acts">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @DisplayHelper.DateTime(item.Date, DateTypes.Medium)
+            </td>
+            <td>
+                <a href="http://@Routes.NewsUrl(item.AlumniNewsId)">@item.Title</a>
+            </td>
+
+        </tr>    
+    }
+</table>
+
+<script src="~/Scripts/_time.js"></script>

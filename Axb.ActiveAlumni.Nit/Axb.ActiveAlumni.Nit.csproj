@@ -206,6 +206,39 @@
     <Compile Include="Areas\Admin\Controllers\NewsLetterController.cs" />
     <Compile Include="Areas\Admin\Controllers\SpecialFormController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserTrackingController.cs" />
+    <Compile Include="Controllers\ChapterController.cs" />
+    <Compile Include="Controllers\PollController.cs" />
+    <Compile Include="Entities\Chapter.cs" />
+    <Compile Include="Entities\ChapterHead.cs" />
+    <Compile Include="Entities\Poll.cs" />
+    <Compile Include="Migrations\201406151035228_added_poll.cs" />
+    <Compile Include="Migrations\201406151035228_added_poll.Designer.cs">
+      <DependentUpon>201406151035228_added_poll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406161003511_updated_poll_option.cs" />
+    <Compile Include="Migrations\201406161003511_updated_poll_option.Designer.cs">
+      <DependentUpon>201406161003511_updated_poll_option.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407050754544_added_chapter.cs" />
+    <Compile Include="Migrations\201407050754544_added_chapter.Designer.cs">
+      <DependentUpon>201407050754544_added_chapter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407060521066_update_chapter.cs" />
+    <Compile Include="Migrations\201407060521066_update_chapter.Designer.cs">
+      <DependentUpon>201407060521066_update_chapter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407070551513_updated_chapter_head.cs" />
+    <Compile Include="Migrations\201407070551513_updated_chapter_head.Designer.cs">
+      <DependentUpon>201407070551513_updated_chapter_head.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407070605523_updated_chapter_head_01.cs" />
+    <Compile Include="Migrations\201407070605523_updated_chapter_head_01.Designer.cs">
+      <DependentUpon>201407070605523_updated_chapter_head_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407091337141_updated_chapter_10.cs" />
+    <Compile Include="Migrations\201407091337141_updated_chapter_10.Designer.cs">
+      <DependentUpon>201407091337141_updated_chapter_10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\AuthenticationSrvBase.cs" />
     <Compile Include="Services\AuthFacebookSrv.cs" />
     <Compile Include="ViewModels\AdminSearchVm.cs" />
@@ -727,6 +760,7 @@
     <Compile Include="Services\SmsSrv.cs" />
     <Compile Include="Services\ThreadSrvBase.cs" />
     <Compile Include="Services\UserDigest.cs" />
+    <Compile Include="ViewModels\AssignMentorVm.cs" />
     <Compile Include="ViewModels\AutoComUserInfo.cs" />
     <Compile Include="ViewModels\BloodSearchVm.cs" />
     <Compile Include="ViewModels\ChangePasswordVm.cs" />
@@ -1053,6 +1087,7 @@
     <Compile Include="ViewModels\UserSearchBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\chapterpos.txt" />
     <Content Include="App_Data\companies.txt" />
     <Content Include="App_Data\branches.txt" />
     <Content Include="App_Data\courses.txt" />
@@ -1113,6 +1148,7 @@
     <Content Include="Content\images\icon_mobile.png" />
     <Content Include="Content\images\invi.jpg" />
     <Content Include="Content\images\invi200.jpg" />
+    <Content Include="Content\images\jobs.png" />
     <Content Include="Content\images\link.jpg" />
     <Content Include="Content\images\link.png" />
     <Content Include="Content\images\link_b.png" />
@@ -1172,6 +1208,7 @@
     <Content Include="Content\jquery.mobile.structure-1.1.2.min.css" />
     <Content Include="Content\jquery.mobile.theme-1.1.2.css" />
     <Content Include="Content\jquery.mobile.theme-1.1.2.min.css" />
+    <Content Include="Content\jquery.simple-dtpicker.css" />
     <Content Include="Content\Site.Mobile.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -1286,6 +1323,7 @@
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\jquery.mobile-1.1.2.js" />
     <Content Include="Scripts\jquery.mobile-1.1.2.min.js" />
+    <Content Include="Scripts\jquery.simple-dtpicker.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\_ajax-form.js" />
     <Content Include="Scripts\_ajax-pop.js" />
@@ -1410,6 +1448,9 @@
     <Content Include="Scripts\CKEditor\plugins\imageresize\LICENSE.md" />
     <Content Include="Scripts\CKEditor\plugins\imageresize\README.md" />
     <Content Include="Scripts\CKEditor\skins\moonocolor\readme.md" />
+    <Content Include="Views\Chapter\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AlumniNews\SearchNews.cshtml" />
+    <Content Include="Content\blog\m.pdf" />
     <None Include="Properties\PublishProfiles\NIT_WinHost.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Content\images\busy_b.gif" />
@@ -1550,6 +1591,18 @@
     <Content Include="Views\Home\sneha-ragam.cshtml" />
     <Content Include="Views\Home\about-nit-ragam.cshtml" />
     <Content Include="Views\Shared\SocialButtons.cshtml" />
+    <Content Include="Views\Mentor\AssignAlumni.cshtml" />
+    <Content Include="Views\Shared\SingleUserSelector.cshtml" />
+    <Content Include="Views\Discussion\MostAgreed.cshtml" />
+    <Content Include="Views\Event\SearchEvents.cshtml" />
+    <Content Include="Views\Poll\Edit.cshtml" />
+    <Content Include="Views\Poll\Index.cshtml" />
+    <Content Include="Views\Poll\EditOption.cshtml" />
+    <Content Include="Views\Poll\Display.cshtml" />
+    <Content Include="Views\Chapter\Edit.cshtml" />
+    <Content Include="Views\Chapter\EditHead.cshtml" />
+    <Content Include="Views\Chapter\Users.cshtml" />
+    <Content Include="Views\Chapter\ChapterNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Alumni\Views\Shared\" />
@@ -2015,6 +2068,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402040647030_Blog_added.resx">
       <DependentUpon>201402040647030_Blog_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406151035228_added_poll.resx">
+      <DependentUpon>201406151035228_added_poll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406161003511_updated_poll_option.resx">
+      <DependentUpon>201406161003511_updated_poll_option.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407050754544_added_chapter.resx">
+      <DependentUpon>201407050754544_added_chapter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407060521066_update_chapter.resx">
+      <DependentUpon>201407060521066_update_chapter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407070551513_updated_chapter_head.resx">
+      <DependentUpon>201407070551513_updated_chapter_head.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407070605523_updated_chapter_head_01.resx">
+      <DependentUpon>201407070605523_updated_chapter_head_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407091337141_updated_chapter_10.resx">
+      <DependentUpon>201407091337141_updated_chapter_10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>

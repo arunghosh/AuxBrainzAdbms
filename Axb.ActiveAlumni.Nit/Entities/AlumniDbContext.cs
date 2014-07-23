@@ -36,10 +36,18 @@ namespace Axb.ActiveAlumni.Nit.Entities
         public DbSet<EventInvitee> EventInvitees { get; set; }
         public DbSet<EventComment> EventComments { get; set; }
 
+        public DbSet<Poll> Polls { get; set; }
+        public DbSet<PollVote> PollVotes { get; set; }
+        public DbSet<PollInvitee> PollInvitees { get; set; }
+        public DbSet<PollOption> PollOptions { get; set; }
+
         public DbSet<Discussion> Discussions { get; set; }
         public DbSet<DiscussionUserMap> DiscussionUserMaps { get; set; }
         public DbSet<DiscussionComment> DiscussionComments { get; set; }
         public DbSet<CommentAffinity> CommentAffinities { get; set; }
+
+        public DbSet<Chapter> Chapters { get; set; }
+        public DbSet<ChapterHead> ChapterHeads { get; set; }
 
         public DbSet<SpecialOffer> SpecialOffers { get; set; }
         public DbSet<AlumniSpeak> AlumnisSpeak { get; set; }

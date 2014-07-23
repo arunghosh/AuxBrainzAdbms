@@ -323,6 +323,23 @@ namespace Axb.ActiveAlumni.Nit.ViewModels
             }
         }
 
+        static List<string> _committePositions;
+        public static List<string> CommittePositions
+        {
+            get
+            {
+                if (_committePositions == null)
+                {
+                    using (var _db = new AlumniDbContext())
+                    {
+                        _committePositions = ReadFrom(Routes.CommittePosFile).ToList();
+                        _committePositions.RemoveAll(c => string.IsNullOrEmpty(c));
+                    }
+                }
+                return _committePositions;
+            }
+        }
+
         static List<string> _jobPositions;
         public static List<string> JobPositions
         {

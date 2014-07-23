@@ -18,10 +18,12 @@ namespace Axb.ActiveAlumni.Nit.Services
                 {
                     var services = new List<IDigestService>
                     {
+                        new DiscussionSrv(),
                         new NewsSrv(),
                         new EventSrv(),
+                        new BlogSrv(),
+                        new JobSrv(),
                         new MentorSrv(),
-                        new DiscussionSrv(),
                         new MessageSrv(),
                     };
                     var userSrv = new UserDigest(userId, services);

@@ -2,7 +2,7 @@
 {
     if (time != null)
     {
-        var code = time.Value.ToString("yyyy/MM/dd/HH/mm");
+        var code = time.Value.ToString("yyyy/MM/dd/HH/mm", System.Globalization.CultureInfo.InvariantCulture);
         <div data-format='@type.ToString()' class='time' data-utc='@code'></div>
     }
     else

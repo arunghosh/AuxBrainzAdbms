@@ -3,12 +3,26 @@
 @using Axb.ActiveAlumni.Nit.Services
 
 <style>
-    #mainContent
-    {
+    #mainContent {
         background: transparent;
         box-shadow: none;
-        border:none;
+        border: none;
     }
+
+    #sortCtnr a {
+        cursor: pointer;
+        color: #aaa;
+        font-weight: bold;
+        padding: 5px 10px 5px 4px;
+    }
+
+    #sortCtnr {
+        margin: 0 0 10px 4px;
+    }
+
+        #sortCtnr .sele {
+            color: #09f;
+        }
 </style>
 @{
     ViewBag.Title = "Discussions | NIT Calicut Alumni";
@@ -26,6 +40,13 @@
             <div class="text">New Discussion</div>
         </a>
     </div>
+    @if (Model != null)
+    {
+        <div class="disc-r-ctnr">
+            <div class="disc-lnk-head" style="color:#19f;"> <i class="icon-star"></i> Most Agreed Comments <i class="icon-star"></i> </div>
+            <div class="lazy-load" data-url="/Discussion/MostAgreed/@Model"></div>
+        </div>
+    }
     <div class="disc-r-ctnr">
         <div class="disc-lnk-head">Recent Discussions</div>
         <div class="lazy-load" data-url="/Discussion/Recent"></div>
@@ -71,15 +92,23 @@
             });
         });
 
-        function getComments() {
+        function getComments(sortBy) {
             $.ajax({
                 url: '/Discussion/Comments',
                 type: 'GET',
-                data: { id: '@Model' },
+                data: { id: '@Model', sortBy: sortBy },
                 success: function (result) {
                     $('#dis-cmts-ctnr').html(result);
                 }
             });
         }
+
+        $('#sortCtnr a').click(function () {
+            var $this = $(this);
+            $('#sortCtnr a').removeClass('sele');
+            $this.addClass('sele');
+            getComments($this.attr('data-id'));
+        });
+
     </script>
 }

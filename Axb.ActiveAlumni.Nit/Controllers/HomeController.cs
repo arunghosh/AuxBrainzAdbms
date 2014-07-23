@@ -91,6 +91,12 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         //[OutputCache(Duration = 600, VaryByParam = "none")]
         public ActionResult Index(string returnUrl)
         {
+
+            //using (var digestSrv = new DigestService())
+            //{
+            //        digestSrv.SendDigest(11);
+            //}
+
             CurrentPage = PageTypes.GuestHome;
             if (IsAuth && !CurrentUser.HasSeenTerms)
             {

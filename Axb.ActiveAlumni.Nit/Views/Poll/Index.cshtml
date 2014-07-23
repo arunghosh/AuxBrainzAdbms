@@ -1,0 +1,51 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Poll>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    .poll {
+        list-style-type: decimal;
+        padding: 0 0 0 20px;
+    }
+
+    .options {
+        list-style: square;
+        padding:0 0 0 20px;
+    }
+</style>
+<div class="p20">
+    <a class="new-obj btn" data-method="post" data-url="\poll\edit">Add Poll</a>
+    <ul class="poll">
+        @foreach (var poll in Model)
+        {
+            <li class="main">
+
+                @*<div class="lazy-load poll-ctnr" data-url="\poll\display\@poll.PollId" data-method="get"></div>*@
+
+                <div class="bld">
+                    @poll.Question
+                </div>
+                <a class="new-obj btn ft-r" data-method="post" data-url="\poll\edit\@poll.PollId">Edit</a>
+                <ul class="options">
+                    @foreach (var opt in poll.Options)
+                    {
+                        <li>@opt.Text</li>
+                        @*<li>@{Html.RenderAction("EditOption", new { id = opt.PollOptionId, pid = poll.PollId });}</li>*@
+                    }
+                </ul>
+                <div>
+                    @{Html.RenderAction("EditOption", new { pid = poll.PollId });}
+                </div>
+
+            </li>        
+        }
+    </ul>
+
+</div>
+
+@section Scripts{
+
+}

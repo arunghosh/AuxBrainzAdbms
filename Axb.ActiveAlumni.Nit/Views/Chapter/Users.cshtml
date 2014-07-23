@@ -1,0 +1,61 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.User>
+@{
+    var id = ViewBag.ChapterId;
+    var isAdmin = (bool)ViewData[Constants.IsAdminKey];
+}
+
+
+<div>
+    <h5>Members
+        @if(isAdmin)
+        {
+            <div class="action" id="c_@id">
+                <i data-url="/Message/New" data-title="New Message" title="Message" class="btn-dialog-act icon-envelope"></i>
+                <i data-url="/Discussion/New" data-title="New Discussion" title="Discussion" class="btn-dialog-act icon-comment"></i>
+                <i data-url="/Event/New" data-title="New Event" title="Event" class="btn-dialog-act icon-calendar"></i>
+            </div>
+        }
+    </h5>
+    <div class="list">
+        <table class="fs-s grp-acts" style="background: #fafafa;">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Batch</th>
+                <th>Branch</th>
+            </tr>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td class="f-td">@(Model.IndexOf(user) + 1)</td>
+                    <td><a target="_blank" href="@Routes.Profile(user.UserId)">@user.FullName</a></td>
+                    <td>@user.UserCourses[0].Batch</td>
+                    <td>@user.UserCourses[0].BranchName</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@{
+    var userIds = string.Join(",", Model.Select(u => u.UserId.ToString()));
+}
+<script>
+    $(function () {
+        $('.list').slimScroll({
+            height: 200
+        });
+        @if(isAdmin)
+        {
+            <text>
+                $('#c_@id .btn-dialog-act').each(function () {
+                    var $this = $(this);
+                    $this.unbind('click');
+                    $this.click(function () {
+                        showDialog($this, [@userIds]);
+                    })
+                });
+            </text>
+        }
+    });
+</script>

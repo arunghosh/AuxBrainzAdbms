@@ -52,7 +52,7 @@ namespace Axb.ActiveAlumni.Nit.Entities
         {
             var composer = new HtmlComposer();
             composer.AppendImg(Routes.NewsImg(AlumniNewsId))
-                    .AppendLinkHead(Title, Routes.NewsUrl(AlumniNewsId))
+                    .AppendLinkHead(Title, Routes.PageUrl(AlumniNewsId, NewsType == Entities.NewsType.News ? PageTypes.News : PageTypes.AlumniStory))
                     .AppendDiv(News.LetterLimited(120).Replace("\n", " "));
             return new HtmlComposer().AppendClearDiv(composer.Text).Text.ToString();
         }

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.DiscussionComment>
+<ul class="cmnt-links">
+    @foreach (var item in Model)
+    {
+        <li>
+            <div class="title">@item.Text</div>
+            <div class="cmnt-cnt">
+                <a class="user" href="@Routes.Profile(item.SenderId)">by @item.SenderName</a>
+                <span class="ft-r">
+                    <i class="icon-th-up"></i> <span class="dim"> @(item.AgreeCnt)</span>  @DisplayHelper.DateTime(item.Date, DateTypes.Short)
+                </span>
+            </div>
+        </li>
+    }
+</ul>

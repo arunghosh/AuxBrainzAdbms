@@ -1,0 +1,63 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Poll
+
+<div class="title">@Model.Question</div>
+<ul class="poll-disp">
+    @{
+        double sum = Model.Options.Sum(v => v.Votes.Count());
+    }
+    @foreach (var opt in Model.Options)
+    {
+        double cnt = opt.Votes.Count;
+        var per = Math.Round((opt.Votes.Count * 100) / sum, 2);
+        
+        <li data-id="@opt.PollOptionId">
+            <div class="name">@opt.Text  - <span class="dim-v">@cnt Votes</span></div>
+            <div class="g-ctnr">
+                <div class="graph" style="width:@(3 * per)px"><div class="txt">@(per)%</div> </div> 
+            </div>
+        </li>
+    }
+</ul>
+<form class="addOptfrm">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.PollId)
+    <input type="text" name="Text" placeholder="Add Option" />
+    <a class="btn btn-primary" ">Vote</a>
+</form>
+<script>
+    $('.poll-disp li').click(function () {
+        var $this = $(this);
+        $this.find('.graph').html('<img src="/Content/images/busy_tw.gif"/>');
+        $.ajax({
+            url: "/poll/addvote",
+            type: "POST",
+            data: { id: $this.attr('data-id') },
+            success: function (result) {
+                $this.parents('.poll-ctnr').html(result);
+            }
+        });
+    });
+
+    $('.addOptfrm').each(function () {
+        var $this = $(this);
+
+        $this.find('a').click(function () {
+            $this.submit();
+        });
+    });
+
+    $('.addOptfrm').submit(function () {
+        var $this = $(this);
+        $this.find('a').html('<img src="/Content/images/busy_tw.gif"/>');
+        $.ajax({
+            url: "/poll/AddOptionAndVote",
+            type: "POST",
+            data: $this.serialize(),
+            success: function (result) {
+                $this.parents('.poll-ctnr').html(result);
+            }
+        });
+        return false;
+    });
+</script>
+

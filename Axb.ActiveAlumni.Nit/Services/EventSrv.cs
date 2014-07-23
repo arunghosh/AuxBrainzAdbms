@@ -119,6 +119,7 @@ namespace Axb.ActiveAlumni.Nit.Services
 
         public Event CreateOrUpdateEvent(Event info)
         {
+            info.RemoveOffset();
             List<int> newUserIds = info.AcSeleUserIds;
             var currUser = _db.Users.Find(UserSession.CurrentUserId);
             newUserIds.Add(currUser.UserId);

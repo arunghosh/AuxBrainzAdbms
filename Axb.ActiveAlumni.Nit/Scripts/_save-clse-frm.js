@@ -35,12 +35,12 @@
         $this.unbind('submit');
         $this.submit(function () {
             showFrmBusy($this);
-            $this.find(".dtpicker").each(function () {
-                var $date = $(this);
-                var utc = new Date($date.val());
-                utc.setMinutes(utc.getMinutes() + utc.getTimezoneOffset());
-                $date.val(utc.toLocaleString());
-            });
+            //$this.find(".dtpicker").each(function () {
+            //    var $date = $(this);
+            //    var utc = new Date($date.val());
+            //    utc.setMinutes(utc.getMinutes() + utc.getTimezoneOffset());
+            //    $date.val(utc.toLocaleString());
+            //});
             $.ajax({
                 url: this.action,
                 type: this.method,
@@ -59,6 +59,12 @@
                         }
                     }
                     else {
+                        //$this.find(".dtpicker").each(function () {
+                        //    var $date = $(this);
+                        //    var utc = new Date($date.val());
+                        //    utc.setMinutes(utc.getMinutes() - utc.getTimezoneOffset());
+                        //    $date.val(utc.toLocaleString());
+                        //});
                         var errMsg = result.errMsg;
                         var $val = $this.find('.validation-summary-errors');
                         $val.show().text(errMsg);

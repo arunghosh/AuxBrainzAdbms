@@ -1,0 +1,234 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Chapter>
+
+@{
+    ViewBag.Title = "NITCAA Chapters";
+    Layout = Routes.Layout;
+}
+
+<style>
+    #grpList .summary:hover {
+        background: #666;
+    }
+
+    #grpList .details {
+        display: none;
+    }
+
+    .list td, .list th {
+        border-top: none;
+        border-bottom: 1px dotted #ddd;
+    }
+
+    #grpList li {
+        list-style-type: none;
+    }
+
+    .summary i {
+        opacity: .6;
+        margin: 0 6px;
+    }
+
+    .summary > div {
+width: 140px;
+display: inline-block;
+text-transform: uppercase;
+letter-spacing: 1px;
+font-size: 11px;
+    }
+
+    #grpList .summary a {
+        color: #bbb;
+    }
+
+    #grpList .summary {
+border-top: 1px solid rgba(255,255,255,.2);
+cursor: pointer;
+padding: 6px 0 3px 0;
+background: #369;
+color: #eee;
+border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+    /*#grpList td {
+        padding:2px 4px;
+    }*/
+    .action {
+        display: inline-block;
+        float: right;
+    }
+
+        .action i {
+            margin: 1px 10px 5px 10px;
+            opacity: .8;
+        }
+
+    .head {
+        background: #eee;
+    }
+
+        .head div {
+            font-weight: bold;
+            padding: 5px;
+        }
+
+    .details h5 {
+        font-size: 11px;
+        color: #444;
+        margin-top: 7px;
+        margin-bottom: 0px;
+        text-transform: uppercase;
+        padding: 2px 10px;
+        background: #e5e5e5;
+        border-top: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    .details img {
+        margin: 2px 0 4px 0;
+        box-shadow: 1px 1px 3px 0px rgba(0,0,0,.3);
+    }
+
+    .grp-acts .time {
+        color: #777;
+    }
+
+    .grp-acts {
+        width: 100%;
+        background: #fafafa;
+    }
+
+        .grp-acts td {
+            padding: 4px 0px 3px 10px;
+            line-height: 16px;
+            font-size: 11px;
+            border-color: #e0e0e0;
+            color: #555;
+            border-width: 0 0 1px 0;
+            border-style: dotted;
+        }
+
+        .grp-acts .f-td {
+            width: 37px;
+        }
+
+    .user-lst input[type="text"] {
+        margin: 0px!important;
+        padding: 3px 5px;
+        width: 200px;
+        background: #fff;
+    }
+
+    label {
+        font-weight: bold;
+    }
+</style>
+
+@{
+    var isAdmin = (bool)ViewData[Constants.IsAdminKey];
+}
+
+<div style="margin-top: -20px;">
+    <ul id="grpList" class="table">
+        @foreach (var item in Model)
+        {
+            <li data-id="@item.ChapterId">
+                <div class="summary">
+                    <div><i class="icon-map-marker icon-white"></i>@item.Name</div>
+                    <div><i class="icon-user icon-white"></i>@item.Users.Count()</div>
+                    <div><i class="icon-calendar icon-white"></i>@item.Events.Count()</div>
+                    @if (isAdmin)
+                    {
+                        <div><a class="new-obj" data-url="/chapter/edithead?cid=@item.ChapterId" data-method="get" data-title="Committee Member">Add Committee</a></div>
+                        <div><a class="new-obj" data-url="/chapter/edit?id=@item.ChapterId" data-method="get" data-title="Committee Member"><i class="icon-edit"></i></a></div>
+                    }
+                </div>
+
+                <div class="details">
+                    @if (item.ActiveHeads.Any())
+                    {
+                        <h5>Committee</h5>
+                        <table class="grp-acts fs-s">
+                            @foreach (var mbr in item.ActiveHeads)
+                            {
+                                <tr>
+
+                                    <td class="f-td">
+                                        @if (mbr.UserId != 0)
+                                        { 
+                                            <img src='@Routes.Img35Pic(mbr.UserId)'/>
+                                        }
+                                    </td>
+                                    <td>
+                                        <div>
+                                            @if (mbr.UserId == 0)
+                                            {
+                                                <b>@mbr.UserName</b>
+                                            }
+                                            else
+                                            {
+                                                <a class="bld" href="@Routes.Profile(mbr.UserId)" target="_blank">@mbr.UserName</a>
+                                            }
+                                            <span class="dim">| @mbr.Batch Batch, @mbr.Branch</span>
+                                        </div>
+                                        <b>@mbr.Position</b>
+                                    </td>
+                                    <td>
+                                        @if (isAdmin)
+                                        {
+                                            <a class="new-obj" data-title="Committee Member" data-url="/chapter/edithead/@mbr.ChapterHeadId?cid=@item.ChapterId" data-method="get"><i class="icon-edit"></i></a>
+                                        }
+                                    </td>
+                                </tr>    
+                            }
+                        </table>
+                    }
+                    @if (item.Events.Any())
+                    {
+                        <h5>Events</h5>
+                        <table class="grp-acts">
+                            @foreach (var evt in item.Events)
+                            {
+                                <tr>
+                                    <td class="f-td">
+                                        @DisplayHelper.DateTime(evt.FromDate, DateTypes.Medium)
+                                    </td>
+                                    <td>
+                                        <a href="http://@Routes.EventsUrl(evt.EventId)">@evt.EventName</a>
+                                    </td>
+
+                                </tr>    
+                            }
+                        </table>
+                    }
+                    <h5>News</h5>
+                    <div class="lazy-load fs-s" data-url="/chapter/chapternews/@item.ChapterId"></div>
+
+                    <div class="lazy-load" data-url="/chapter/users/@item.ChapterId"></div>
+                    <br />
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+@if (isAdmin)
+{
+    <div>
+        <a class="new-obj btn" data-url="/chapter/edit" data-method="post">Add Chapter</a>
+    </div>
+}
+@section Scripts
+{
+    <script>
+        $(function () {
+            $('#grpList .summary').click(function () {
+                var $this = $(this);
+                $this.next('.details').toggle();
+
+            });
+
+            $('.list').slimScroll({
+                height: 200
+            });
+
+        });
+    </script>
+}

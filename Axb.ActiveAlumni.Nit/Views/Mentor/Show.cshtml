@@ -14,7 +14,7 @@
         <tr>
             <td class="bdr-r">
                 <div class="ft-r">
-                    <img src='@Url.Action("ProfileImage", new { id = item.StudentId })' alt=""/>
+                    <img src='@Routes.SearchPic(item.StudentId)' alt=""/>
                 </div>
             </td>
             <td>
@@ -23,7 +23,7 @@
                 </div>
             </td>
             <td class="bdr-l">
-                <img src='@Url.Action("ProfileImage", new { id = item.AlumniId })' alt=""/>
+                <img src='@Routes.SearchPic(item.AlumniId)' alt=""/>
             </td>
         </tr>
         <tr>

@@ -32,7 +32,7 @@ namespace Axb.ActiveAlumni.Nit.Entities
         public string GetDisgest()
         {
             var composer = new HtmlComposer();
-            composer.AppendImg(Routes.ImageUrl("msg.png"))
+            composer.AppendImg(Routes.ImageUrl("msg.png"))  
                     .AppendLinkHead(SenderName, Routes.MessageUrl(MessageThreadId))
                     .AppendDiv(Text.LetterLimited(80).Replace("\n", " "));
             return composer.Text.ToString();

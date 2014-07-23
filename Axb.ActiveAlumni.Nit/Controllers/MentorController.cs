@@ -15,6 +15,16 @@ namespace Axb.ActiveAlumni.Nit.Controllers
     {
         MentorSrv _srv = new MentorSrv();
 
+        [HttpGet]
+        public PartialViewResult AssignAlumni(int id)
+        {
+            var mentor = _db.MentorShips.Find(id);
+            var model = new MentorStatusUpdateVm{
+                Id = id,
+                Status = mentor.Status
+            };
+            return PartialView(model);
+        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -24,14 +34,12 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         }
 
         [HttpGet]
-        public ActionResult MentorRequest(int id)
+        public ActionResult MentorRequest()
         {
             var studentId = CurrentUserId;
             var model = new MentorRequestVm
             {
-                AlumniId = id,
                 StudentId = studentId,
-                Alumni = GetUserByIdOrCurrent(id)
             };
             return View(model);
         }
@@ -46,9 +54,9 @@ namespace Axb.ActiveAlumni.Nit.Controllers
                 var mentor = new MentorShip
                 {
                     StartDate = DateTime.UtcNow,
-                    AlumniId = model.AlumniId,
+                    AlumniId = 0,
                     StudentId = model.StudentId,
-                    AlumniName = GetUserByIdOrCurrent(model.AlumniId).FullName,
+                    AlumniName = "NA",
                     StudentName = student.FullName,
                 };
                 var message = new MentorMessage
@@ -160,7 +168,7 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         {
             var user = CurrentUser;
             var mentor = _db.MentorShips.Include(m => m.Messages).Single(m => m.MentorShipId == model.Id);
-            if (!user.IsAdmin() && mentor.AlumniId != user.UserId && mentor.StudentId != mentor.AlumniId)
+            if (!user.IsAdmin() && mentor.AlumniId != user.UserId && mentor.StudentId != user.UserId)
             {
                 LogUnAuth();
                 throw new Exception(Strings.UnAuthAccess);
@@ -169,8 +177,24 @@ namespace Axb.ActiveAlumni.Nit.Controllers
             {
                 if (mentor.Status != model.Status)
                 {
+                    if (model.Status == MentorStatusType.AdminApproved)
+                    {
+                        if (model.AcUserId == 0)
+                        {
+                            ModelState.AddModelError("", "Select Mentor");
+                            return null;
+                        }
+                        else
+                        {
+                            var mentorUser = _db.Users.Find(model.AcUserId);
+                            mentor.AlumniId = mentorUser.UserId;
+                            mentor.AlumniName = mentorUser.FullName;
+                            //MailSrv.SendMailAsync(mentorUser, "You have new mentoring request.", "NITCAA - Mentoring Request", null);
+                        }
+                    }
+
                     mentor.Status = model.Status == MentorStatusType.Message ? mentor.Status : model.Status;
-                    var msg = " #" + GetUserMsg(model.Status) + "# ";
+                    var msg = GetUserMsg(model.Status);
                     var message = new MentorMessage
                     {
                         MentorShipId = mentor.MentorShipId,
@@ -195,23 +219,23 @@ namespace Axb.ActiveAlumni.Nit.Controllers
             switch (type)
             {
                 case MentorStatusType.RequestSend:
-                    return "Student send mentoring request";
+                    return "Student requested mentoring";
                 case MentorStatusType.AdminApproved:
-                    return "The mentoring request was approved by Admin";
+                    return "The mentoring request was approved by Admin and send to Mentor for approval";
                 case MentorStatusType.AdminRejected:
                     return "The metoring request was rejected by Admin";
                 case MentorStatusType.AlumniApproved:
-                    return "The request was approved by Alumni.";
+                    return "The request was approved by Alumni";
                 case MentorStatusType.AlumniRejected:
-                    return "The request was rejected by Alumni.";
+                    return "The request was rejected by Alumni";
                 case MentorStatusType.StudentInfo:
-                    return "The student is asked to provide more infomation about the project";
+                    return "The student is requested to provide more infomation";
                 case MentorStatusType.AlumniInfo:
                     return "The request was end to Alumni for more Info";
                 case MentorStatusType.AdminInfo:
                     return "The request was send to Admin for more Info";
                 case MentorStatusType.SuccessfullyCompleted:
-                    return "SuccessfullyCompleted";
+                    return "Successfully Completed";
                 case MentorStatusType.Terminated:
                 default:
                     return type.ToString();

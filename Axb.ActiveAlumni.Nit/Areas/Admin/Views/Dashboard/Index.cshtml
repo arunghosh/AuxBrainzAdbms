@@ -5,54 +5,76 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <style>
-    #adminNotfy a
-    {
+    .admin-dash a {
         display: block;
     }
 
-    #adminNotfy .name
-    {
-width: 170px;
-display: inline-block;
-text-align: right;
-background: #e0e0e0;
-float: left;
-padding: 0 4px;
-color: #444;
+    .admin-dash .name {
+        width: 170px;
+        display: inline-block;
+        text-align: right;
+        background: #e0e0e0;
+        float: left;
+        padding: 0 4px;
+        color: #444;
     }
 
-        #adminNotfy .cnt
-    {
-width: 20px;
-display: inline-block;
-text-align: left;
-background: #e9e9e9;
-color: #888;
-padding: 0 7px 0 4px;
-font-size: 11px;
-font-weight: bold;
+    .admin-dash .cnt {
+        width: 20px;
+        display: inline-block;
+        text-align: left;
+        background: #e9e9e9;
+        color: #888;
+        padding: 0 7px 0 4px;
+        font-size: 11px;
+        font-weight: bold;
     }
-    #adminNotfy .cnt.emph
-    {
-        color:#d72;
-    }
-    #adminNotfy li
-    {
+
+        .admin-dash .cnt.emph {
+            color: #d72;
+        }
+
+    .admin-dash li {
         border-bottom: 1px solid #fff;
     }
-    #adminNotfy
-    {
+
+    .admin-dash {
         list-style-type: none;
+        vertical-align:top;
     }
 </style>
-<ul id="adminNotfy">
-    @foreach (var item in Model.DashItems)
-    {
-        <li><a href="@item.Url">
-            <div class="name">@item.Name</div>
-            <div class='cnt @(item.Count > 0 ? "emph" : "")'>@item.Count</div>
-        </a></li>    
-    }
-</ul>
+<div class="m10">
+    <div class="d-ib" style="width: 40%">
+        <h5>Notifications</h5>
+        <ul class="admin-dash">
+            @foreach (var item in Model.DashItems)
+            {
+                <li><a href="@item.Url">
+                    <div class="name">@item.Name</div>
+                    <div class='cnt @(item.Count > 0 ? "emph" : "")'>@item.Count</div>
+                </a></li>    
+            }
+        </ul>
+    </div>
+    <div class="d-ib" style="width: 40%">
+        <h5>User Statistics</h5>
+        <ul class="admin-dash">
+            <li>
+                <div class="name">Total Users</div>
+                <div class="cnt emp">@Model.TotalUsers</div>
+            </li>
+            <li>
+                <div class="name">Registred Users</div>
+                <div class="cnt emp">@Model.RegisteredUsers</div>
+            </li>
+            <li>
+                <div class="name">Auto registerd Users</div>
+                <div class="cnt emp">@Model.AutoRegUsers</div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
 
 @section Scripts{}

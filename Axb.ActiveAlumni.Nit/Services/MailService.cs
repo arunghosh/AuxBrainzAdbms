@@ -50,7 +50,7 @@ namespace Axb.ActiveAlumni.Nit.Services
                 MailType = MailType.EmailConfirmation,
                 Subject = "NITCAA Email Verification",
                 IsHtml = true,
-                Message = @"<a href='" + Routes.Root + @"Register/Confirm/{0}'>Click here to verify your email address</a>"
+                Message = @"<a href='" + Routes.Root + @"Register/Confirm/{0}'>Click here to verify your email address</a><br><div><br>If you're having trouble with the link above, copy/paste this link into your browser: " + Routes.Root + @"Register/Confirm/{0}</div>"
             });
 
             AddMailContent(new MailContent
@@ -58,7 +58,7 @@ namespace Axb.ActiveAlumni.Nit.Services
                 MailType = MailType.ForgotPassword,
                 Subject = "You request for new NITCAA Password",
                 IsHtml = true,
-                Message = @"<div>You recently requested to reset your NITCAA password. </div><div><a href='" + Routes.Root + @"Settings/ResetPassword/{0}'>Click this link to set new password</a></div><br/><div>Due to security reason, this link will expire in 2 hours.</div>"
+                Message = @"<div>You recently requested to reset your NITCAA password. </div><div><a href='" + Routes.Root + @"Settings/ResetPassword/{0}'>Click this link to set new password</a></div><br/><div>If you're having trouble with the link above, copy/paste this link into your browser: " + Routes.Root + @"Settings/ResetPassword/{0}<br>Due to security reason, this link will expire in 2 hours.</div>"
             });
         }
 

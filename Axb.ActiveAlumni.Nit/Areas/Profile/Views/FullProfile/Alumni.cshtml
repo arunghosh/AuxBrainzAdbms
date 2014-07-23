@@ -21,6 +21,10 @@
             @{Html.RenderAction("Show", "BasicProfile", new { area = "Profile", id = Model.ReqUserId });}
         </div>
         @Html.Partial("ConnectBtn", Model)
+        @if (Model.ReqUserId == Model.CurrUserId && Model.ReqUser.IsStudent())
+        {
+            <a class="btn-primary" href="/mentor/MentorRequest">Request Mentor</a>
+        }
     </div>
     @if (Model.ReqUser.IsAlumni() || Model.ReqUser.IsStudent() || Model.ReqUser.IsTest() || Model.ReqUser.IsAdmin())
     {

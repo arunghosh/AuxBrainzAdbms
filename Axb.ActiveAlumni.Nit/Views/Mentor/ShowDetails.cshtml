@@ -26,11 +26,12 @@
             }
             else
             {
-                <a class="status-btn btn-primary" data-status="@MentorStatusType.Message">Send</a>
+                <a class="status-btn btn-primary hide" data-status="@MentorStatusType.Message">Send</a>
             }
         </div>
     }
 </div>
+<br />
 <div class="msg-thread">
     <ul>
         @foreach (var msg in Model.Messages)
@@ -38,7 +39,7 @@
             <li>
                 <div class="span">
                     <a href="@Routes.Profile(msg.SenderId)">
-                        <img src='@Routes.ProfilePic(msg.SenderId)' alt="Pic"/>
+                        <img src='@Routes.Img40Pic(msg.SenderId)' alt="Pic"/>
                     </a>
                 </div>
                 <div class="span msg">
@@ -53,6 +54,11 @@
         }
     </ul>
 </div>
-
-
 <script src="~/Scripts/_ajax-form.js"></script>
+<script src="~/Scripts/_time.js"></script>
+<script>
+    $('#threadNewMsg textarea').click(function () {
+        $(this).css('height', '60px');
+        $('#threadNewMsg a').show();
+    });
+</script>

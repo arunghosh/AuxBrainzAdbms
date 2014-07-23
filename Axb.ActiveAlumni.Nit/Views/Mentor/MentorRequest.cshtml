@@ -5,55 +5,36 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <style>
-    #mntrCtnr a
-    {
+    #mntrCtnr a {
         font-size: 16px;
         font-weight: bold;
     }
 
-    #mntrCtnr h4
-    {
+    #mntrCtnr h4 {
         display: none;
     }
 </style>
 <div class="p20">
+    <h4>Mentoring Request</h4>
     @if (Model.IsDone)
     {
-        <h5>Your mentoring request has been send to the concerned person.</h5>
+        <h5>Your mentoring request has been send to Alumni Mentoring for processing.</h5>
     }
     else
     {
 
-        
-        <div id="mntrCtnr">
-            <div class="ft-l span">
-                <img src='@Url.Action("ProfileImage", new { id = Model.AlumniId })' alt="" style="width:124px; height:124px;"/>
-            </div>
-            <div class="span pl20">
-                <div>
-                    @Html.ActionLink(@Model.Alumni.FullName, "Index", "FullProfile", new { area = "Profile", id = Model.AlumniId }, null)
-                </div>
-                <div>
-                    <div class="span" style="width: 250px">
-                        @{Html.RenderAction("List", "Course", new { area = "Profile", id = Model.AlumniId });}
-                    </div>
-                    <div class="span" style="width: 250px">
-                        @{Html.RenderAction("List", "Address", new { area = "Profile", id = Model.AlumniId });}
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="clrb">
-            @{Html.RenderAction("Show", "SkillProfile", new { area = "Profile", id = Model.AlumniId });}
-        </div>
-        <br />
         <div>
             @using (Html.BeginForm("MentorRequest", "Mentor", FormMethod.Post, new { @class = "form-horizontal" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.StudentId)
-                @Html.HiddenFor(m => m.AlumniId)
+                <div id="skillIp">
+                    <input type="text" placeholder="Enter desired skill for the mentor" name="newSkill" data-autocomplete-source='@Url.Action(Routes.AcJoinedSkills)' />
+                    <button class="btn-primary" style="background: #369">Add</button>
+                </div>
+                <ul id="skillList" class="ltype-none" style="">
+                </ul>
+                <br />
                 <div class="clrb">
                     <textarea name="Message" placeholder="Mentoring Request Messsage" style="width: 450px; height: 150px"></textarea>
                     <div class="dim ft-sl-i">Note: In the message specific your areas on interest and your expectation from the mentor.</div>
@@ -70,4 +51,47 @@
     }
 </div>
 @section Scripts
-{}
+{
+    <script type="text/javascript">
+        $("#skillIp input").autocomplete({
+            select: function (a, b) {
+                addSkill(b.item.value);
+                this.value = '';
+                return false;
+            }
+        });
+
+        $("#skillIp button").click(function () {
+            debugger;
+            var input = $('#skillIp input');
+            if (input.val().length > 0) {
+                var skills = input.val().split(',');
+                for (var i = 0; i < skills.length; i++) {
+                    addSkill(skills[i]);
+                }
+                input.val('');
+            }
+            return false;
+        });
+
+        function addSkill(skill) {
+            var $ctnr = $('<li>')
+            $('#skillList').append($ctnr);
+            $('<span>')
+                .addClass('value')
+                .text(skill)
+                .appendTo($ctnr);
+            $('<input>')
+                .attr({ type: 'hidden', value: skill, name: 'SeleSkills' })
+                .appendTo($ctnr);
+            $('<span>')
+                .addClass('close')
+                .text('X')
+                .click(function () {
+                    $(this).parent().remove();
+                })
+                .appendTo($ctnr);
+            $("#skillIp input").focus();
+        }
+    </script>
+}

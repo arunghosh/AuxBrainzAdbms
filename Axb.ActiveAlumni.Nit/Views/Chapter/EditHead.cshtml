@@ -1,0 +1,50 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.ChapterHead
+
+@using (Html.BeginForm("EditHead", "Chapter", FormMethod.Post, new { @class = "save-clse-frm", data_refresh = "true" }))
+{
+    @Html.HiddenFor(m => m.ChapterId)
+    @Html.HiddenFor(m => m.ChapterHeadId)
+    @Html.HiddenFor(m => m.UserId)
+    @Html.AntiForgeryToken()
+
+    @Html.Bootstrap().ControlGroup().DropDownListFor(m => m.Position, ViewBag.Positions as SelectList)
+    <div style="margin: 0 0 0 21px;">
+        @Html.Bootstrap().ControlGroup().CheckBoxFor(m => m.IsDeleted)
+    </div>
+    
+    <em>If user is there in Alumni DB</em>
+    <div>
+        <label>User</label>
+        @Html.Partial(Routes.UserSelector, new List<Axb.ActiveAlumni.Nit.Entities.User> { })
+    </div>
+    <hr />
+    <em>If user is NOT there in Alumni DB fill the following..</em>
+    @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.UserName)
+    @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Batch)
+    @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Branch)
+    
+
+    <hr />
+    <div class="sav-can">
+        <a class="btn btn-cancel">Cancel</a>
+        @if (Model.IsNew)
+        {
+            <button class="submit btn-primary">Create Committee</button>
+        }
+        else
+        {
+            <button class="submit btn-primary">Update Committee</button>
+        }
+        <img src="~/Content/images/busy.gif" class="frm-busy" />
+
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/_save-clse-frm.js"></script>
+

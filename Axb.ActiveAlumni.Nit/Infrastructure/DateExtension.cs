@@ -8,6 +8,11 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
     public static class DateExtension
     {
 
+        public static string Tommddyyhm(this DateTime date)
+        {
+            return date.ToString("MM/dd/yyyy hh:mm", System.Globalization.CultureInfo.InvariantCulture);
+        }
+
         //public static string _DisplayMedium(this DateTime obj)
         //{
         //    return Display(obj).Replace(" ago", "");

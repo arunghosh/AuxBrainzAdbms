@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Axb.ActiveAlumni.Nit.Infrastructure;
+using Axb.ActiveAlumni.Nit.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +9,7 @@ using System.Web;
 
 namespace Axb.ActiveAlumni.Nit.Entities
 {
-    public class JobOpening : UserOwnedEntity
+    public class JobOpening : UserOwnedEntity, IDigestEntity
     {
         [Key]
         public int JobPostId { get; set; }
@@ -135,6 +137,15 @@ namespace Axb.ActiveAlumni.Nit.Entities
                 exp.Add(i + " years");
             }
             return exp;
+        }
+
+        public string GetDisgest()
+        {
+            var composer = new HtmlComposer();
+            composer.AppendImg(Routes.ImageUrl("jobs.png"))
+                    .AppendLinkHead(Title, Routes.JobSearchUrl())
+                    .AppendDiv(Description.LetterLimited(120).Replace("\n", " "));
+            return new HtmlComposer().AppendClearDiv(composer.Text).Text.ToString();
         }
     }
 }

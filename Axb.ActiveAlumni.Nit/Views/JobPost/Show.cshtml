@@ -75,7 +75,7 @@ font-weight:normal;
         }
         else
         {
-            <div>To apply send your resumes to <b>@(Model.SendToAdmin ? "info@nitcalumni.com" : Model.SendYourResumesTo)</b> . In the mail subject specify job code <b>Job#@Model.JobPostId</b> </div>
+            <div>To apply send your resumes to <b>@(Model.SendToAdmin ? "info@nitcalumni.com" : Model.SendYourResumesTo)</b></div>
             @*<a class="btn" data-url='/JobPost/Apply/@Model.JobPostId'>Apply</a>*@
         }
         <div class="fs-s">Posted @DisplayHelper.DateTime(Model.PostedOn, DateTypes.Medium)</div>

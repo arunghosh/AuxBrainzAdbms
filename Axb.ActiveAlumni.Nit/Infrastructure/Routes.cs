@@ -47,6 +47,10 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
         {
             return Root + PageTypes.News.ToString() + "/" + id;
         }
+        public static string PageUrl(int id, PageTypes type)
+        {
+            return Root + type.ToString() + "/" + id;
+        }
 
         public static string AlumniSpeakUrl(int id)
         {
@@ -56,6 +60,11 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
         public static string MentorUrl(int id)
         {
             return Root + PageTypes.Mentors.ToString() + "/" + id;
+        }
+
+        public static string JobSearchUrl()
+        {
+            return Root + PageTypes.JobSearch.ToString();
         }
 
         public static string Layout
@@ -74,6 +83,15 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
             get
             {
                 var path = HttpContext.Current.Server.MapPath(@"~\App_Data\cities.txt");
+                return path;
+            }
+        }
+
+        public static string CommittePosFile
+        {
+            get
+            {
+                var path = HttpContext.Current.Server.MapPath(@"~\App_Data\chapterpos.txt");
                 return path;
             }
         }
@@ -145,6 +163,7 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
         public const string ViewDataMsgView = "ViewDataMsg";
         public const string UnAuthView = @"UnAuth";
         public const string UserSelector = @"UserSelector";
+        public const string SingleUserSelector = @"SingleUserSelector";
         public const string Login = @"~/Authentication/Login";
         public const string RootHome = @"~/";
         const string _profileUrl = @"/Home/ProfileImage/";
@@ -253,8 +272,8 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
             AddCommonRoute(new NavigationItem
             {
                 DisplayText = "Chapters",
-                Controller = "AlumniOrg",
-                Action = "Chapters",
+                Controller = "Chapter",
+                Action = "Index",
                 PageType = PageTypes.Chapters,
                 Titile = "Alumni Chapters"
             });

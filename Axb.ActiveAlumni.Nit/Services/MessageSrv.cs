@@ -14,7 +14,7 @@ namespace Axb.ActiveAlumni.Nit.Services
 
         public string GetDigestTitle()
         {
-            return "New Messages";
+            return "Messages";
         }
 
         public IEnumerable<IDigestEntity> GetDigest(int userId)

@@ -1,0 +1,9 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.PollOption
+
+<form class="option" action="\poll\editoption\" method="post">
+    @Html.HiddenFor(m => m.PollOptionId)
+    @Html.HiddenFor(m => m.PollId)
+    @Html.TextBoxFor(m => m.Text)
+    <button class="btn btn-primary" type="submit">Add Option</button>
+</form>
+

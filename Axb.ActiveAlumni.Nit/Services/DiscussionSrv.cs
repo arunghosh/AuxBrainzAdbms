@@ -45,7 +45,7 @@ namespace Axb.ActiveAlumni.Nit.Services
 
         public string GetDigestTitle()
         {
-            return "Active Discussions";
+            return "Discussions";
         }
 
         public IEnumerable<IDigestEntity> GetDigest(int userId)

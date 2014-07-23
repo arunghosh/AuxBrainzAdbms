@@ -19,19 +19,18 @@ else
                     var isStd = UserSession.CurrentUserId == item.StudentId;
                     <tr class="a-sele-item va-t @(item.MentorShipId == Model.SelectedId ? "seleted" : "")" data-id="@item.MentorShipId">
                         <td>
-                            <img src='@Routes.ProfilePic(isStd ? item.AlumniId : item.StudentId)' class="ntfy-uimg"/>
-                            <div class="ntfy-msg">
-                                <div><b class="sender">@(isStd ? item.AlumniName : item.StudentName)</b><span class="time">@DisplayHelper.DateTime(item.StartDate, DateTypes.Medium)</span></div>
-                                @MentorStatusFilter.GetStatusMsg(item.Status.ToString())
-                            </div>
+                            <img src='@Routes.Img40Pic(isStd ? item.AlumniId : item.StudentId)'/>
+                        </td>
+                        <td class="ntfy-msg">
+                            <div><b class="sender">@(isStd ? item.AlumniName : item.StudentName)</b><span class="time">@DisplayHelper.DateTime(item.StartDate, DateTypes.Medium)</span></div>
+                            @MentorStatusFilter.GetStatusMsg(item.Status.ToString())
                         </td>
                     </tr>
                 }
             </table>
         </div>
     </div>
-    <div class="a-frm-ctnr right-lstSele" data-id="@Model.SelectedId" data-url="/Mentor/ShowDetails">
-        @{Html.RenderAction("ShowDetails", new { id = Model.SelectedId });}
+    <div class="a-frm-ctnr right-lstSele lazy-load" data-id="@Model.SelectedId" data-url="/Mentor/ShowDetails/@Model.SelectedId">
     </div>
 }
 @section Scripts

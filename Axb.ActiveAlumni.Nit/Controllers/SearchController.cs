@@ -97,9 +97,22 @@ namespace Axb.ActiveAlumni.Nit.Controllers
 
 
         [HttpPost]
-        public ActionResult AdminSearch(AdminSearchVm model)
+        public ActionResult AdminSearch(AdminSearchVm model, string output)
         {
             model.ApplyFilters(Request.Form);
+            if (output == "excel")
+            {
+                StringBuilder csvData = new StringBuilder();
+                csvData.AppendLine(("Name,Batch,Course,Degree,Mobile,Email"));
+                foreach (var item in model.FilteredItems)
+                {
+                    var uc = item.UserCourses.Any() ? item.UserCourses[0] : new UserCourse { Batch = "--", BranchName = "--", CourseName = "--" };
+                    csvData.AppendLine(string.Format("{0},{1},{2},{3},{4},{5}", item.FullName, uc.Batch, uc.BranchName, uc.CourseName, item.MobileNumber, item.Email));
+                }
+                var byteArray = Encoding.ASCII.GetBytes(csvData.ToString());
+                var stream = new MemoryStream(byteArray);
+                return File(stream, "text/plain", "NITCAA_ProfDetails_" + DateTime.Now.ToString("MMM_dd") + ".csv");
+            }
             return View(Routes.ControllerIndex, model);
         }
         

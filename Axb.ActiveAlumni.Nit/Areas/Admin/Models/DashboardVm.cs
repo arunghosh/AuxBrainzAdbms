@@ -15,6 +15,12 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Models
         public string Url { get; set; }
     }
 
+    public class StatItem
+    {
+        public int Count { get; set; }
+        public string Name { get; set; }
+    }
+
     public class DashboardVm
     {
         public int JoinReqCnt { get; set; }
@@ -24,6 +30,11 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Models
         public int LogCount { get; set; }
         public int FailedLoginCnt { get; set; }
         public int GuestPostCnt { get; set; }
+
+        public int TotalUsers { get; set; }
+        public int RegisteredUsers { get; set; }
+        public int AutoRegUsers { get; set; }
+        public int AutoUsers { get; set; }
 
         public List<DashNotifyItem> DashItems { get; set; }
 

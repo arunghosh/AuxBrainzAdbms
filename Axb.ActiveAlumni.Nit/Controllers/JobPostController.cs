@@ -21,6 +21,7 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ViewResult Search()
         {
             CurrentPage = PageTypes.JobSearch;
@@ -30,6 +31,7 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ViewResult Search(JobSearchVm model)
         {
             model.ApplyFilters(Request.Form);
@@ -56,6 +58,7 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public PartialViewResult Show(int id)
         {
             var job = _db.JobOpenings.Find(id);

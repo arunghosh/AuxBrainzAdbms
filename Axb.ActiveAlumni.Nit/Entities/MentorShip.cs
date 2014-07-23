@@ -11,7 +11,9 @@ namespace Axb.ActiveAlumni.Nit.Entities
     {
         [Key]
         public int MentorShipId { get; set; }
+
         public int AlumniId { get; set; }
+        
         public int StudentId { get; set; }
 
         [FullNameLength]

@@ -35,10 +35,13 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Controllers
                                  .Take(model.EndIndex - model.StartIndex).ToList();
             using (var digestSrv = new DigestService())
             {
+                var cnt = 1;
+                var maxCnt = users.Count;
                 foreach (var user in users)
                 {
                     digestSrv.SendDigest(user.UserId);
                     Thread.Sleep(900);
+                    Debug.WriteLine(cnt++ + "/" + maxCnt);
                 }
             }
             var msg = string.Format("Send Newsletters to {0} - {1}. Count: {2}", users.First().UserId, users.Last().UserId, users.Count);
