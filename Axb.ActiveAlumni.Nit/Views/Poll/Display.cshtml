@@ -1,6 +1,7 @@
 ﻿@model Axb.ActiveAlumni.Nit.Entities.Poll
 
 <div class="title">@Model.Question</div>
+<div style="font-style:italic;font-size:12px;padding:8px 0">Note: To cast your vote click on the option or add option</div>
 <ul class="poll-disp">
     @{
         double sum = Model.Options.Sum(v => v.Votes.Count());

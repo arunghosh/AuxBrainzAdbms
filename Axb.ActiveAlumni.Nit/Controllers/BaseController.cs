@@ -148,11 +148,11 @@ namespace Axb.ActiveAlumni.Nit.Controllers
                     }
                     else if (roles.Contains(Constants.RoleAdmin))
                     {
-                        url = Routes.NavigationItems[PageTypes.AdminDashboard].TinyUrl;
+                        url = Routes.NavigationItems[PageTypes.GuestHome].TinyUrl;
                     }
                     else
                     {
-                        url = Routes.NavigationItems[PageTypes.User].TinyUrl;
+                        url = Routes.NavigationItems[PageTypes.GuestHome].TinyUrl;
                     }
                 }
             }

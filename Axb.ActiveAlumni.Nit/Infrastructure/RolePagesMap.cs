@@ -120,13 +120,14 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
             var userRoot = routes[PageTypes.AdminDashboard];
             var user = new NavigationItem
             {
-                DisplayText = "Users-Adm",
+                DisplayText = "Admin-Admin",
                 Area = userRoot.Area,
                 Action = userRoot.Action,
                 Controller = userRoot.Controller,
                 PageType = PageTypes.AdminDashboard,
             };
             user.NavivationItems.Add(routes[PageTypes.AdminDashboard]);
+            user.NavivationItems.Add(routes[PageTypes.Activities]);
             user.NavivationItems.Add(routes[PageTypes.ManageUsers]);
             user.NavivationItems.Add(routes[PageTypes.UserStat]);
             user.NavivationItems.Add(routes[PageTypes.MetoringPending]);

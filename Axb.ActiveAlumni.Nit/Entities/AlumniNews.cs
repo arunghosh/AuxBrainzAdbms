@@ -51,9 +51,9 @@ namespace Axb.ActiveAlumni.Nit.Entities
         public string GetDisgest()
         {
             var composer = new HtmlComposer();
-            composer.AppendImg(Routes.NewsImg(AlumniNewsId))
+            composer.AppendImg(Routes.NewsThumbImg(AlumniNewsId))
                     .AppendLinkHead(Title, Routes.PageUrl(AlumniNewsId, NewsType == Entities.NewsType.News ? PageTypes.News : PageTypes.AlumniStory))
-                    .AppendDiv(News.LetterLimited(120).Replace("\n", " "));
+                    .AppendDiv(NewsType == Entities.NewsType.News ? News.LetterLimited(120).Replace("\n", " ") : SubTitle);
             return new HtmlComposer().AppendClearDiv(composer.Text).Text.ToString();
         }
     }

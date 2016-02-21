@@ -7,9 +7,9 @@ namespace Axb.ActiveAlumni.Nit.Entities
 {
     public enum TaskStatus
     {
-        Assigned,
-        Started,
-        Delayed,
-        Completed
+        Open,
+        Hold,
+        Close,
+        Abandon
     }
 }

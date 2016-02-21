@@ -365,7 +365,10 @@
         </div>  
         <div>
             @Html.Bootstrap().LabelFor(m => m.FromDate)
-            @Html.TextBoxFor(m => m.FromDate,  new { @class = "dtpicker" })
+            @Html.TextBoxFor(m => m.FromDate, new { @class = "dtpicker" })
+            <div style="vertical-align: top; margin: 2px 0 0 3px; display: inline-block;">
+                Input Format: <b>mm/dd/yyyy HH:MM</b>
+            </div>
         </div>  
         <div>
             @Html.Bootstrap().LabelFor(m => m.ToDate)
@@ -402,11 +405,11 @@
                 <button class="submit btn-primary">Update Event</button>
                 if (Model.IsDeleted)
                 {
-                <a class="btn-unhide">Activate Event</a>
+                <a class="btn-unhide ft-l">Activate Event</a>
                 }
                 else
                 {
-                <a class="btn btn-hide">Cancel Event</a>
+                <a class="btn btn-hide ft-l">Cancel Event</a>
                 }
             }
             <img src="~/Content/images/busy.gif" class="frm-busy" />
@@ -421,15 +424,15 @@
     
     }
 </div>
-<script src="~/Scripts/jquery.simple-dtpicker.js"></script>
-<script src="~/Scripts/_timePicker.js"></script>
+@*<script src="~/Scripts/jquery.simple-dtpicker.js"></script>
+<script src="~/Scripts/_timePicker.js"></script>*@
 <script src="~/Scripts/_save-clse-frm.js"></script>
 <script>
     $(function () {
 
-        $(".dtpicker").appendDtpicker({
-            "dateFormat": "DD/MM/YYYY h:m"
-        });
+        //$(".dtpicker").appendDtpicker({
+        //    "dateFormat": "MM/DD/YYYY h:m"
+        //});
 
         //$(".dtpicker").each(function () {
         //    var $this = $(this);

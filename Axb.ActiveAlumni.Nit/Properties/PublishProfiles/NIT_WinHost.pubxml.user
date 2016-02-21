@@ -29,7 +29,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/18/2013 13:28:56</publishTime>
     </File>
     <File Include="App_Data/chapterpos.txt">
-      <publishTime>07/05/2014 09:53:59</publishTime>
+      <publishTime>07/30/2014 19:12:16</publishTime>
     </File>
     <File Include="App_Data/cities.txt">
       <publishTime>12/03/2013 17:56:38</publishTime>
@@ -53,7 +53,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/26/2014 08:35:42</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniKnow/Index.cshtml">
-      <publishTime>02/09/2014 17:38:48</publishTime>
+      <publishTime>07/23/2014 22:31:26</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniKnow/NonAdmin.cshtml">
       <publishTime>12/07/2013 19:57:16</publishTime>
@@ -74,13 +74,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2014 14:58:28</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniNews/BlogSummary.cshtml">
-      <publishTime>04/30/2014 14:20:48</publishTime>
+      <publishTime>07/23/2014 23:21:32</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniNews/Edit.cshtml">
       <publishTime>12/16/2013 14:40:58</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniNews/Index.cshtml">
-      <publishTime>04/30/2014 16:52:14</publishTime>
+      <publishTime>08/07/2014 13:41:58</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniNews/Index.Mobile.cshtml">
       <publishTime>02/09/2014 19:56:22</publishTime>
@@ -89,16 +89,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/09/2014 11:11:46</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniNews/Show.cshtml">
-      <publishTime>04/30/2014 14:53:44</publishTime>
+      <publishTime>08/07/2014 13:14:02</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniNews/Summary.cshtml">
-      <publishTime>06/01/2014 10:29:57</publishTime>
+      <publishTime>03/23/2015 19:57:40</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniSpeak/Edit.cshtml">
       <publishTime>01/30/2014 12:03:54</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniSpeak/Index.cshtml">
-      <publishTime>02/20/2014 10:38:10</publishTime>
+      <publishTime>07/23/2014 16:56:39</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniSpeak/Index.Mobile.cshtml">
       <publishTime>02/09/2014 19:45:30</publishTime>
@@ -110,13 +110,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2014 22:37:08</publishTime>
     </File>
     <File Include="Areas/Admin/Views/AlumniSpeak/Summary.cshtml">
-      <publishTime>03/14/2014 16:24:28</publishTime>
+      <publishTime>08/07/2014 12:46:08</publishTime>
     </File>
     <File Include="Areas/Admin/Views/CrowdFunding/Index.cshtml">
       <publishTime>12/04/2013 15:23:36</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Dashboard/Index.cshtml">
-      <publishTime>06/03/2014 16:16:04</publishTime>
+      <publishTime>10/18/2014 18:20:56</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Feedback/Index.cshtml">
       <publishTime>12/21/2013 10:47:36</publishTime>
@@ -248,10 +248,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/17/2014 15:07:10</publishTime>
     </File>
     <File Include="Areas/Profile/Views/FullProfile/Alumni.cshtml">
-      <publishTime>06/06/2014 18:21:10</publishTime>
+      <publishTime>08/18/2014 14:19:55</publishTime>
     </File>
     <File Include="Areas/Profile/Views/FullProfile/Alumni.Mobile.cshtml">
-      <publishTime>02/10/2014 14:13:44</publishTime>
+      <publishTime>08/18/2014 14:19:14</publishTime>
     </File>
     <File Include="Areas/Profile/Views/FullProfile/ConnectBtn.cshtml">
       <publishTime>11/05/2013 12:45:00</publishTime>
@@ -317,7 +317,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2013 12:18:40</publishTime>
     </File>
     <File Include="bin/Axb.ActiveAlumni.Nit.dll">
-      <publishTime>07/19/2014 20:18:50</publishTime>
+      <publishTime>03/23/2015 20:05:43</publishTime>
     </File>
     <File Include="bin/Elmah.dll">
       <publishTime>09/10/2013 15:15:12</publishTime>
@@ -448,11 +448,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/WebGrease.dll">
       <publishTime>08/08/2013 12:18:42</publishTime>
     </File>
+    <File Include="Content/blog/JIshnu Article.jpg">
+      <publishTime>07/25/2014 08:18:51</publishTime>
+    </File>
+    <File Include="Content/blog/jishnu.jpg">
+      <publishTime>07/25/2014 08:18:51</publishTime>
+    </File>
     <File Include="Content/blog/m.pdf">
       <publishTime>07/18/2014 11:35:07</publishTime>
     </File>
+    <File Include="Content/blog/Ravi1.jpg">
+      <publishTime>07/31/2014 11:34:55</publishTime>
+    </File>
+    <File Include="Content/blog/Ravi2.jpg">
+      <publishTime>07/31/2014 11:35:20</publishTime>
+    </File>
+    <File Include="Content/blog/Ravi3.jpg">
+      <publishTime>07/31/2014 11:35:38</publishTime>
+    </File>
+    <File Include="Content/blog/Ravi4.jpg">
+      <publishTime>07/31/2014 11:35:57</publishTime>
+    </File>
+    <File Include="Content/blog/wz.jpg">
+      <publishTime>08/04/2014 12:52:35</publishTime>
+    </File>
+    <File Include="Content/blog/wz.pdf">
+      <publishTime>08/04/2014 12:52:35</publishTime>
+    </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>04/30/2014 12:48:32</publishTime>
+      <publishTime>07/23/2014 16:56:46</publishTime>
     </File>
     <File Include="Content/font/BEBAS___.ttf">
       <publishTime>06/04/2013 13:52:54</publishTime>
@@ -499,6 +523,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/images/alumni_speak.png">
       <publishTime>04/30/2014 13:03:34</publishTime>
     </File>
+    <File Include="Content/images/arrow.png">
+      <publishTime>08/07/2014 15:08:43</publishTime>
+    </File>
     <File Include="Content/images/ban.jpg">
       <publishTime>12/21/2013 12:26:32</publishTime>
     </File>
@@ -540,6 +567,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/images/brdr.png">
       <publishTime>12/27/2013 16:07:22</publishTime>
+    </File>
+    <File Include="Content/images/browser.png">
+      <publishTime>08/19/2014 21:26:37</publishTime>
     </File>
     <File Include="Content/images/busy.gif">
       <publishTime>12/11/2013 15:48:40</publishTime>
@@ -821,10 +851,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/10/2014 14:55:30</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>07/15/2014 20:24:11</publishTime>
+      <publishTime>10/21/2014 14:38:58</publishTime>
     </File>
     <File Include="Content/Site.Mobile.css">
-      <publishTime>03/12/2014 11:11:38</publishTime>
+      <publishTime>07/23/2014 16:56:24</publishTime>
     </File>
     <File Include="Content/themes/base/images/animated-overlay.gif">
       <publishTime>08/27/2013 16:17:08</publishTime>
@@ -1220,7 +1250,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/16/2014 16:13:36</publishTime>
     </File>
     <File Include="Scripts/_common.js">
-      <publishTime>07/10/2014 15:28:20</publishTime>
+      <publishTime>08/18/2014 14:13:45</publishTime>
     </File>
     <File Include="Scripts/_connect-req.js">
       <publishTime>11/21/2013 18:00:06</publishTime>
@@ -1244,7 +1274,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/27/2013 16:17:10</publishTime>
     </File>
     <File Include="Scripts/_save-clse-frm.js">
-      <publishTime>07/10/2014 15:24:13</publishTime>
+      <publishTime>07/30/2014 19:06:23</publishTime>
     </File>
     <File Include="Scripts/_search.js">
       <publishTime>02/17/2014 12:01:56</publishTime>
@@ -1261,6 +1291,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="T4MVC.tt.settings.xml">
       <publishTime>08/14/2013 10:30:28</publishTime>
     </File>
+    <File Include="Views/Activity/ActivityIndex.cshtml">
+      <publishTime>10/21/2014 14:40:02</publishTime>
+    </File>
+    <File Include="Views/Activity/Edit.cshtml">
+      <publishTime>10/18/2014 22:55:03</publishTime>
+    </File>
+    <File Include="Views/Activity/EditTask.cshtml">
+      <publishTime>10/18/2014 22:55:17</publishTime>
+    </File>
+    <File Include="Views/Activity/Index.cshtml">
+      <publishTime>10/21/2014 14:36:10</publishTime>
+    </File>
     <File Include="Views/AlumniOrg/Chapters.cshtml">
       <publishTime>01/31/2014 16:24:36</publishTime>
     </File>
@@ -1268,7 +1310,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/02/2013 13:03:06</publishTime>
     </File>
     <File Include="Views/AlumniOrg/Parent.cshtml">
-      <publishTime>01/01/2014 00:48:42</publishTime>
+      <publishTime>10/15/2014 13:05:41</publishTime>
     </File>
     <File Include="Views/Authentication/Login.cshtml">
       <publishTime>04/22/2014 17:28:30</publishTime>
@@ -1289,13 +1331,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/07/2014 19:59:46</publishTime>
     </File>
     <File Include="Views/Chapter/Edit.cshtml">
-      <publishTime>07/06/2014 10:46:45</publishTime>
+      <publishTime>08/19/2014 20:29:15</publishTime>
     </File>
     <File Include="Views/Chapter/EditHead.cshtml">
-      <publishTime>07/07/2014 11:54:05</publishTime>
+      <publishTime>07/30/2014 20:20:59</publishTime>
     </File>
     <File Include="Views/Chapter/Index.cshtml">
-      <publishTime>07/16/2014 10:02:13</publishTime>
+      <publishTime>10/18/2014 15:57:45</publishTime>
     </File>
     <File Include="Views/Chapter/Users.cshtml">
       <publishTime>07/15/2014 20:42:25</publishTime>
@@ -1334,7 +1376,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/14/2014 12:22:00</publishTime>
     </File>
     <File Include="Views/Discussion/MostAgreed.cshtml">
-      <publishTime>07/19/2014 19:12:22</publishTime>
+      <publishTime>07/23/2014 12:33:35</publishTime>
     </File>
     <File Include="Views/Discussion/New.cshtml">
       <publishTime>02/04/2014 12:30:52</publishTime>
@@ -1352,7 +1394,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2013 12:33:00</publishTime>
     </File>
     <File Include="Views/Event/Index.cshtml">
-      <publishTime>07/10/2014 15:27:25</publishTime>
+      <publishTime>08/07/2014 11:38:43</publishTime>
     </File>
     <File Include="Views/Event/Index.Mobile.cshtml">
       <publishTime>02/09/2014 19:46:38</publishTime>
@@ -1361,13 +1403,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2014 12:21:46</publishTime>
     </File>
     <File Include="Views/Event/New.cshtml">
-      <publishTime>07/10/2014 19:55:32</publishTime>
+      <publishTime>09/15/2014 17:10:45</publishTime>
     </File>
     <File Include="Views/Event/SearchEvents.cshtml">
       <publishTime>06/08/2014 20:33:54</publishTime>
     </File>
     <File Include="Views/Event/Show.cshtml">
-      <publishTime>07/10/2014 16:03:20</publishTime>
+      <publishTime>09/15/2014 16:55:12</publishTime>
     </File>
     <File Include="Views/Event/Show.Mobile.cshtml">
       <publishTime>02/09/2014 19:53:44</publishTime>
@@ -1376,7 +1418,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2013 13:18:12</publishTime>
     </File>
     <File Include="Views/Event/Upcoming.cshtml">
-      <publishTime>03/18/2014 20:12:44</publishTime>
+      <publishTime>08/07/2014 15:33:55</publishTime>
     </File>
     <File Include="Views/Group/Index.cshtml">
       <publishTime>06/09/2014 11:04:32</publishTime>
@@ -1385,7 +1427,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/04/2014 14:11:04</publishTime>
     </File>
     <File Include="Views/Home/Common.cshtml">
-      <publishTime>07/18/2014 11:56:30</publishTime>
+      <publishTime>08/18/2014 14:41:58</publishTime>
     </File>
     <File Include="Views/Home/Common.Mobile.cshtml">
       <publishTime>03/12/2014 10:30:54</publishTime>
@@ -1403,7 +1445,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/04/2014 16:17:52</publishTime>
     </File>
     <File Include="Views/Home/ragam-gallery.cshtml">
-      <publishTime>02/27/2014 17:50:30</publishTime>
+      <publishTime>07/23/2014 08:15:45</publishTime>
     </File>
     <File Include="Views/Home/ragam-invite.cshtml">
       <publishTime>02/27/2014 15:18:36</publishTime>
@@ -1436,13 +1478,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/19/2013 17:42:02</publishTime>
     </File>
     <File Include="Views/JobPost/Result.cshtml">
-      <publishTime>02/02/2014 11:30:26</publishTime>
+      <publishTime>07/23/2014 16:56:44</publishTime>
     </File>
     <File Include="Views/JobPost/Search.cshtml">
       <publishTime>07/19/2014 20:22:07</publishTime>
     </File>
     <File Include="Views/JobPost/Show.cshtml">
-      <publishTime>07/19/2014 15:43:22</publishTime>
+      <publishTime>07/23/2014 17:02:05</publishTime>
     </File>
     <File Include="Views/Mentor/AssignAlumni.cshtml">
       <publishTime>06/05/2014 12:35:43</publishTime>
@@ -1454,7 +1496,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2014 15:30:37</publishTime>
     </File>
     <File Include="Views/Mentor/MentorRequest.cshtml">
-      <publishTime>06/04/2014 19:38:32</publishTime>
+      <publishTime>07/30/2014 19:06:29</publishTime>
     </File>
     <File Include="Views/Mentor/MentorSearch.cshtml">
       <publishTime>06/06/2014 15:51:19</publishTime>
@@ -1496,7 +1538,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/10/2013 11:05:42</publishTime>
     </File>
     <File Include="Views/Poll/Display.cshtml">
-      <publishTime>07/10/2014 17:12:19</publishTime>
+      <publishTime>09/15/2014 17:04:18</publishTime>
     </File>
     <File Include="Views/Poll/Edit.cshtml">
       <publishTime>07/10/2014 16:02:55</publishTime>
@@ -1621,8 +1663,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/ViewDataMsg.cshtml">
       <publishTime>11/10/2013 19:09:38</publishTime>
     </File>
+    <File Include="Views/Shared/_Footer.cshtml">
+      <publishTime>08/18/2014 14:32:47</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/24/2014 14:08:40</publishTime>
+      <publishTime>08/07/2014 12:38:20</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.Mobile.cshtml">
       <publishTime>03/07/2014 10:27:44</publishTime>
@@ -1631,7 +1676,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/05/2014 14:33:48</publishTime>
     </File>
     <File Include="Views/Shared/_UserLayout.cshtml">
-      <publishTime>06/24/2014 14:08:55</publishTime>
+      <publishTime>08/07/2014 12:38:12</publishTime>
     </File>
     <File Include="Views/Shared/_UserLayout.Mobile.cshtml">
       <publishTime>02/15/2014 11:39:18</publishTime>
@@ -1646,7 +1691,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/10/2013 15:56:26</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/19/2014 20:22:51</publishTime>
+      <publishTime>03/23/2015 20:06:14</publishTime>
     </File>
   </ItemGroup>
 </Project>

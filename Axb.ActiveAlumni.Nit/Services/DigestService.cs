@@ -18,13 +18,13 @@ namespace Axb.ActiveAlumni.Nit.Services
                 {
                     var services = new List<IDigestService>
                     {
-                        new DiscussionSrv(),
                         new NewsSrv(),
+                        new DiscussionSrv(),
+                        //new BlogSrv(),
                         new EventSrv(),
-                        new BlogSrv(),
-                        new JobSrv(),
-                        new MentorSrv(),
-                        new MessageSrv(),
+                        //new JobSrv(),
+                        //new MentorSrv(),
+                        //new MessageSrv(),
                     };
                     var userSrv = new UserDigest(userId, services);
                     MailSrv.SendNewsletterAsync(user, userSrv.GetDigest(), "NITCAA Newsletter", null);

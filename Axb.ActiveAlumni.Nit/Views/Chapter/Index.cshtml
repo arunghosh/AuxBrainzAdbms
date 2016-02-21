@@ -29,11 +29,11 @@
     }
 
     .summary > div {
-width: 140px;
-display: inline-block;
-text-transform: uppercase;
-letter-spacing: 1px;
-font-size: 11px;
+        width: 140px;
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 11px;
     }
 
     #grpList .summary a {
@@ -41,12 +41,12 @@ font-size: 11px;
     }
 
     #grpList .summary {
-border-top: 1px solid rgba(255,255,255,.2);
-cursor: pointer;
-padding: 6px 0 3px 0;
-background: #369;
-color: #eee;
-border-bottom: 1px solid rgba(0,0,0,.1);
+        border-top: 1px solid rgba(255,255,255,.2);
+        cursor: pointer;
+        padding: 6px 0 3px 0;
+        background: #369;
+        color: #eee;
+        border-bottom: 1px solid rgba(0,0,0,.1);
     }
     /*#grpList td {
         padding:2px 4px;
@@ -82,7 +82,7 @@ border-bottom: 1px solid rgba(0,0,0,.1);
         font-weight: bold;
     }
 
-    .details img {
+    .committe img {
         margin: 2px 0 4px 0;
         box-shadow: 1px 1px 3px 0px rgba(0,0,0,.3);
     }
@@ -120,6 +120,16 @@ border-bottom: 1px solid rgba(0,0,0,.1);
     label {
         font-weight: bold;
     }
+
+    .url {
+        font-size: 11px;
+    }
+
+        .url img {
+            width: 16px;
+            vertical-align: top;
+            margin-right: 5px;
+        }
 </style>
 
 @{
@@ -143,10 +153,28 @@ border-bottom: 1px solid rgba(0,0,0,.1);
                 </div>
 
                 <div class="details">
+                    <table class="grp-acts url">
+                        @if (!string.IsNullOrEmpty(item.FacebookUrl))
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/fb.png" />
+                                    <a href="@item.FacebookUrl" target="_blank">@item.FacebookUrl</a>
+                                </td>
+                            </tr>}
+                        @if (!string.IsNullOrEmpty(item.WebsiteUrl))
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/browser.png" />
+                                    <a href="@item.WebsiteUrl" target="_blank">@item.WebsiteUrl</a>
+                                </td>
+                            </tr>}
+                    </table>
                     @if (item.ActiveHeads.Any())
                     {
                         <h5>Committee</h5>
-                        <table class="grp-acts fs-s">
+                        <table class="grp-acts fs-s committe">
                             @foreach (var mbr in item.ActiveHeads)
                             {
                                 <tr>

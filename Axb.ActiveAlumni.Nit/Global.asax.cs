@@ -34,6 +34,9 @@ namespace Axb.ActiveAlumni.Nit
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             BundleMobileConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(DateTime), new MyDateTimeModelBinder());
+            ModelBinders.Binders.Add(typeof(DateTime?), new MyDateTimeModelBinder());
+            //ModelBinders.Binders.Add(typeof(DateTime), new DateTimeModelBinder());
 
             //ControllerBuilder.Current.SetControllerFactory(new ActiveAlumniControlFactory());
             //if (Request.IsLocal)

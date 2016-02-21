@@ -17,6 +17,7 @@ namespace Axb.ActiveAlumni.Nit.Controllers
         {
             var model = id == null ? new ChapterHead() : _db.ChapterHeads.Find(id);
             model.ChapterId = cid;
+            model.Name = model.UserName;
             ViewBag.Positions = new SelectList(DbCache.CommittePositions);
             return PartialView(model);
         }
@@ -36,18 +37,17 @@ namespace Axb.ActiveAlumni.Nit.Controllers
                 {
                     _db.Entry(model).State = System.Data.EntityState.Modified;
                 }
-
+                model.UserName = model.Name;
                 User user;
-
                 if (model.AcSeleUserIds != null && model.AcSeleUserIds.Any())
                 {
                     user = _db.Users.Find(model.AcSeleUserIds[0]);
+                    model.SetUser(user);
                 }
-                else
-                {
-                    user = _db.Users.Find(model.UserId);
-                }
-                model.SetUser(user);
+                //else
+                //{
+                //    user = _db.Users.Find(model.UserId);
+                //}
 
                 _db.SaveChanges();
             }

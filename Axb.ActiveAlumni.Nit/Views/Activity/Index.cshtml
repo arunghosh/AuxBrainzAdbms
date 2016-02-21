@@ -1,0 +1,40 @@
+﻿@model List<Axb.ActiveAlumni.Nit.Entities.Activity>
+
+@{
+    ViewBag.Title = "Activities";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="p20">
+    <h4>Activities</h4>
+    <br />
+    <br />
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Activity Name</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+         @foreach (var act in Model)
+         {
+             <tr>
+                 <td>@(Model.IndexOf(act) + 1)</td>
+                 <td><a href="/activities/@(act.ActivityId)">@act.Title</a></td>
+                 <td>@act.DueDate.ToString("ddd, dd MMM yyyy")</td>
+                 <td>@act.Status</td>
+                 <td><a class="new-obj" data-method="get" data-title="New Activity" data-url='/Activity/Edit/@act.ActivityId'><i class="icon-edit"></i></a></td>
+             </tr>
+         }
+        <tr>
+            <td colspan="5">
+                <a class="new-obj text-btn" data-method="get" data-title="New Activity" data-url='/Activity/Edit'>Add New Activity</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@section Scripts{
+
+}

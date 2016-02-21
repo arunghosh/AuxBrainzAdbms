@@ -33,6 +33,11 @@ namespace Axb.ActiveAlumni.Nit.Entities
         [StringLength(32)]
         public string Longitute { get; set; }
 
+        [StringLength(128)]
+        public string FacebookUrl { get; set; }
+
+        [StringLength(128)]
+        public string WebsiteUrl { get; set; }
 
         [StringLength(64)]
         [EmailAddress]

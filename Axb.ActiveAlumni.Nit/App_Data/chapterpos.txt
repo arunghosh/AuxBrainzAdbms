@@ -1,2 +1,6 @@
-﻿Secretary
-President
+﻿President
+Vice President
+Secretary
+Joint Secretary
+Treasurer
+Editor

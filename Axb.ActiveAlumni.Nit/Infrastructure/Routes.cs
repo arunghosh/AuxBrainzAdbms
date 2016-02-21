@@ -23,9 +23,18 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
         {
             return RootwithP + "Admin/AlumniNews/NewsImage/" + eventId;
         }
+        public static string NewsThumbImg(int eventId)
+        {
+            return RootwithP + "Admin/AlumniNews/NewsThumb/" + eventId;
+        }
         public static string EventsUrl(int eventId)
         {
             return Root + PageTypes.Events.ToString() + "/" + eventId;
+        }
+
+        public static string ActivityUrl(int id)
+        {
+            return RootwithP + PageTypes.Activities.ToString() + "/" + id;
         }
 
         public static string ImageUrl(string name)
@@ -392,6 +401,14 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
                 Controller = "BloodSearch",
                 Action = "Index",
                 PageType = PageTypes.BloodBank
+            });
+
+            AddCommonRoute(new NavigationItem
+            {
+                DisplayText = "Activities",
+                Controller = "Activity",
+                Action = "Index",
+                PageType = PageTypes.Activities
             });
 
             #region mentoring

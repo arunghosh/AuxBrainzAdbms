@@ -10,7 +10,7 @@ namespace Axb.ActiveAlumni.Nit.Services
     {
         public IEnumerable<IDigestEntity> GetDigest(int userId)
         {
-            var news = _db.AlumniNewss.Where(n => n.Status == PostStatusType.Approved && n.NewsType == NewsType.News).OrderByDescending(n => n.Date).ToList().Take(3);
+            var news = _db.AlumniNewss.Where(n => n.Status == PostStatusType.Approved && n.NewsType == NewsType.News).OrderByDescending(n => n.Date).ToList().Take(4);
             return news;
         }
 

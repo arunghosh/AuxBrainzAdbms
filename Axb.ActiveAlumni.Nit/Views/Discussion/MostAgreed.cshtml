@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.DiscussionComment>
 <ul class="cmnt-links">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Take(3))
     {
         <li>
             <div class="title">@item.Text</div>

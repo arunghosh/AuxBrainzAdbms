@@ -42,7 +42,7 @@ word-break: break-all;
     }
 </style>
 @{var isAdmin = (bool)ViewData[Constants.IsAdminKey];}
-<div class="left-lst w-brdr" style="width: 300px;">
+<div class="left-lst w-brdr">
     @if ((bool)ViewData[Constants.IsAuthKey] && (bool)ViewData[Constants.IsAdminKey])
     {
         <div style="margin: 1px;">
@@ -70,8 +70,8 @@ word-break: break-all;
             <ul class="news-lst">
                 @foreach (var item in Model.Items)
                 {
-                    <li class="news-li a-sele-item @(item.EntityKey == Model.SelectedId ? "seleted" : "")" data-id="@item.EntityKey">
-                        <div class="title trim">@item.Title</div>
+                    <li class="news-li @(item.EntityKey == Model.SelectedId ? "seleted" : "")" data-id="@item.EntityKey">
+                        <a href="/News/@item.AlumniNewsId" class="slim-head d-ib w100 trim">@item.Title</a>
                         <div>
                             <div class="time-ctnr">
                                 @DisplayHelper.DateTime(item.Date, DateTypes.DateOnly)

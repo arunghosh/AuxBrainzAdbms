@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Axb.ActiveAlumni.Nit
 {
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class AxbAuthorizeAttribute : AuthorizeAttribute
     {

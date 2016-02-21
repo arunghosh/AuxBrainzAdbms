@@ -50,6 +50,7 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
         NewsLetters,
         UserRegStat,
         AlumniStory,
-        AdminFind
+        AdminFind,
+        Activities
     }
 }

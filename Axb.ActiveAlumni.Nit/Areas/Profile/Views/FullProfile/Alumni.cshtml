@@ -32,12 +32,12 @@
             @{Html.RenderAction("List", "Course", new { area = "Profile", id = Model.ReqUserId });}
         </div>
     }
-    <div id="contactprofileCtnr" class="lazy-load prof-box" data-url="\Profile\ContactProfile\Show\@Model.ReqUserId">
+    <div id="contactprofileCtnr" class="lazy-load prof-box" data-url="/Profile/ContactProfile/Show/@Model.ReqUserId">
         <h4>Contact Information</h4>
         <br />
     </div>
-    <div id="addressListCtnr" class="lazy-load prof-box" data-url="\Profile\Address\List\@Model.ReqUserId"></div>
-    <div id="relativeListCtnr" class="lazy-load prof-box" data-url="\Profile\Relative\List\@Model.ReqUserId"></div>
+    <div id="addressListCtnr" class="lazy-load prof-box" data-url="/Profile/Address/List/@Model.ReqUserId"></div>
+    <div id="relativeListCtnr" class="lazy-load prof-box" data-url="/Profile/Relative/List/@Model.ReqUserId"></div>
 </div>
 
 <div id="prfRight">
@@ -54,17 +54,17 @@
     <div style="clear: both; padding-top: 1px;">
         <hr class="clrb" />
     </div>*@
-    <div id="skillprofileCtnr" class="lazy-load prof-box" data-url="\Profile\SkillProfile\Show\@Model.ReqUserId" >
+    <div id="skillprofileCtnr" class="lazy-load prof-box" data-url="/Profile/SkillProfile/Show/@Model.ReqUserId" >
         <h4>Skills</h4>
         <br />
     </div>
-    <div id="educationListCtnr" class="lazy-load prof-box" data-url="\Profile\Education\List\@Model.ReqUserId" >
+    <div id="educationListCtnr" class="lazy-load prof-box" data-url="/Profile/Education/List/@Model.ReqUserId" >
         <h4>Education</h4>
         <br />
     </div>
     @if (Model.ReqUser.IsAlumni())
     {
-        <div id="interestprofileCtnr" class="lazy-load prof-box" data-url="\Profile\InterestProfile\Show\@Model.ReqUserId"></div>
+        <div id="interestprofileCtnr" class="lazy-load prof-box" data-url="/Profile/InterestProfile/Show/@Model.ReqUserId"></div>
     }
 </div>
 @section Scripts

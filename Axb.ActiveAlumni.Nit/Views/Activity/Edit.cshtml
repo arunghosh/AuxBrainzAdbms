@@ -1,0 +1,43 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Activity
+
+<form action="/activity/edit" method="post" class="save-clse-frm m10" id="newFrm" data-refresh="true">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ActivityId)
+    @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Title)
+
+    <div class="control-group">
+        <label class="control-label" for="Title">Status</label>
+        <div class="controls">
+            @Html.DropDownList("Status")
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="Title">Due Date (mm/dd/yyyy)</label>
+        <div class="controls">
+            <input type="text" value="@Model.DueDate.Tommddyy()" name="DueDate"/>
+        </div>
+    </div>
+    <hr />
+    <div class="sav-can">
+        <a class="btn btn-cancel">Cancel</a>
+        @if (Model.IsNew)
+        {
+            <button class="submit btn-primary">Create Activity</button>
+        }
+        else
+        {
+            <button class="submit btn-primary">Update Activity</button>
+        }
+        <img src="~/Content/images/busy.gif" class="frm-busy" />
+
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/_save-clse-frm.js"></script>
+

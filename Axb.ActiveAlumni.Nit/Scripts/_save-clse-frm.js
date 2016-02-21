@@ -47,7 +47,6 @@
                 data: $(this).serialize(),
                 success: function (result) {
                     if (result.errMsg === undefined || result.errMsg === null) {
-                        debugger;
                         if (result.url !== undefined) {
                             location.assign(result.url);
                         }

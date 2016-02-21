@@ -1,0 +1,61 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.ActivityTask
+
+<form action="/activity/edittask" method="post" class="save-clse-frm m10" id="newFrm" data-refresh="true" style="width:500px;">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ActivityId)
+    @Html.HiddenFor(m => m.ActivityTaskId)
+    @Html.HiddenFor(m => m.UserId)
+
+    @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Title)
+
+    <div class="control-group">
+        <label class="control-label" for="Title">Responsible</label>
+        <div class="controls">
+            @if (Model.UserId != 0)
+            {
+                <div>@Model.UserName</div>
+            }
+            <div style="border:1px solid #ddd;display:inline-block">
+                @Html.Partial(Routes.UserSelector, new List<Axb.ActiveAlumni.Nit.Entities.User> { })
+            </div>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="Title">Status</label>
+        <div class="controls">
+            @Html.DropDownList("Status")
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label" for="Title">Due Date (mm/dd/yyyy)</label>
+        <div class="controls">
+            <input type="text" value="@Model.DueDate.Tommddyy()" name="DueDate"/>
+        </div>
+    </div>
+    <hr />
+    <div class="sav-can">
+        <a class="btn btn-cancel">Cancel</a>
+        @if (Model.IsNew)
+        {
+            <button class="submit btn-primary">Create Task</button>
+        }
+        else
+        {
+            <button class="submit btn-primary">Update Task</button>
+        }
+        <img src="~/Content/images/busy.gif" class="frm-busy" />
+
+        <p>
+            @Html.ValidationSummary()
+        </p>
+
+        <div class="server-vald-msg validation-summary-errors" data-valmsg-summary="true">
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/_save-clse-frm.js"></script>
+
+

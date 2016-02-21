@@ -101,7 +101,7 @@ namespace Axb.ActiveAlumni.Nit.Services
 
         public List<Event> PastEvents()
         {
-            var events = MyEvents.Where(m => m.FromDate < DateTime.UtcNow && !m.IsDeleted).OrderByDescending(e => e.FromDate).Take(3).ToList();
+            var events = MyEvents.Where(m => m.FromDate < DateTime.UtcNow && !m.IsDeleted).OrderByDescending(e => e.FromDate).Take(5).ToList();
             return events;
         }
 

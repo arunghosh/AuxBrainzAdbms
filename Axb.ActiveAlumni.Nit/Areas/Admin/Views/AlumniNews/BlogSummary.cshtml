@@ -5,16 +5,16 @@
         <li>
             <a class="news-summ" href="/AlumniStory/@item.AlumniNewsId">
                 <div>
-                    <p>
-                        @if (item.ImageData != null && item.ImageData.Length > 100)
-                        {
+                    @if (item.ImageData != null && item.ImageData.Length > 100)
+                    {
+                        <p>
                             <img src="/Admin/AlumniNews/NewsImage/@item.AlumniNewsId" style="width:100%" />
-                        }
-                    </p>
+                        </p>
+                    }
 
                     <div class="slim-head title">@item.Title</div>
                     <div class="dim">@item.SubTitle</div>
-@*                    <div class="dim-v">
+                    @*                    <div class="dim-v">
                         @DisplayHelper.DateTime(item.Date, DateTypes.DateOnly)
                     </div>*@
                 </div>

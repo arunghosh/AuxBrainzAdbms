@@ -12,6 +12,7 @@ namespace Axb.ActiveAlumni.Nit.Entities
         public int ActivityId { get; set; }
 
         [StringLength(256)]
+        [Required]
         public string Title { get; set; }
 
         [StringLength(2048)]
@@ -19,10 +20,16 @@ namespace Axb.ActiveAlumni.Nit.Entities
 
         public int OwnerId { get; set; }
 
-        public int DeputyOwnerId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DueDate { get; set; }
+
+        public DateTime StartedOn { get; set; }
 
         public virtual List<ActivityTask> Tasks { get; set; }
         public virtual List<ActivityComment> Comments { get; set; }
+
+        [Required]
+        public ActivityStatus Status { get; set; }
 
         public override int EntityKey
         {
@@ -37,6 +44,22 @@ namespace Axb.ActiveAlumni.Nit.Entities
         public override IEnumerable<EntityUserMap> EntityUserMaps
         {
             get { return Tasks.Select(t => t as EntityUserMap); }
+        }
+
+        public Activity()
+        {
+            Status = ActivityStatus.Open;
+            DueDate = StartedOn = DateTime.Now;
+        }
+
+        public void AddComment(string data)
+        {
+            var comment = new ActivityComment
+            {
+                ActivityId = ActivityId,
+                Date = DateTime.Now,
+                Text = data,
+            };
         }
     }
 }

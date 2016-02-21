@@ -1,0 +1,62 @@
+﻿@model Axb.ActiveAlumni.Nit.Entities.Activity
+
+@{
+    ViewBag.Title = @Model.Title + " | Activity";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<div class="p20">
+    <h4><a href="/activities/">Activities</a> > @Model.Title</h4>
+    <br />
+    <br />
+    <table class="table" id="activities">
+        <tr>
+            <th>#</th>
+            <th>Activity Name</th>
+            <th>Responsible</th>
+            <th>Due Date</th>
+            <th>Days Remaining</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+         @foreach (var task in Model.Tasks)
+         {
+             <tr class="@task.DueStatus">
+                 <td>@(Model.Tasks.IndexOf(task) + 1)</td>
+                 <td>@task.Title</td>
+                 <td><a href="@Routes.Profile(task.UserId)" target="_blank">@task.UserName</a></td>
+                 <td>@task.DueDate.ToString("ddd, dd MMM yyyy")</td>
+                 <td>@task.DaysRemaining</td>
+                 <td>@task.Status</td>
+                 <td><a class="new-obj" title="Edit" data-method="get" data-title="Edit Task" data-url='/Activity/EditTask/@task.ActivityTaskId'><i class="icon-edit"></i></a></td>
+                 <td><a title="Send Reminder" data-id="@task.ActivityTaskId" class="remind"><i class="icon-time"></i></a></td>
+             </tr>
+         }
+        <tr>
+            <td colspan="15">
+                <a class="new-obj text-btn" data-method="get" data-title="New Task" data-url='/Activity/AddTask/@Model.ActivityId'>Add Task</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@section Scripts{
+<script>
+    $(function () {
+        $("#activities .remind").each(function () {
+            console.log();
+            $(this).click(function () {
+                $.ajax({
+                    url: "/activity/remind/" + $(this).attr('data-id'),
+                    type: "GET",
+                    success: function () {
+                        alert("Reminder Send");
+                    }
+                });
+            });
+        });
+    });
+</script>
+}

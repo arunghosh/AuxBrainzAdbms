@@ -19,9 +19,11 @@
     </div>
     <hr />
     <em>If user is NOT there in Alumni DB fill the following..</em>
-    @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.UserName)
-    @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Batch)
-    @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Branch)
+    <div>
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Name)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Batch)
+        @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Branch)
+    </div>
     
 
     <hr />

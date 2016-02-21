@@ -17,10 +17,10 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Controllers
             var users = _db.Users.ToList();
             var model = new DashboardVm
             {
-                RegisteredUsers = users.Count(u => u.UserSessions.Any()),
-                AutoUsers = users.Count(u => u.CreateType == UserCreateTypes.Auto),
-                AutoRegUsers = users.Count(u => u.UserSessions.Any() && u.CreateType == UserCreateTypes.Auto),
-                TotalUsers = users.Count()
+                //RegisteredUsers = users.Count(u => u.UserSessions.Any()),
+                //AutoUsers = users.Count(u => u.CreateType == UserCreateTypes.Auto),
+                //AutoRegUsers = users.Count(u => u.UserSessions.Any() && u.CreateType == UserCreateTypes.Auto),
+                //TotalUsers = users.Count()
             };
 
             model.DashItems.Add(new DashNotifyItem

@@ -94,7 +94,7 @@ namespace Axb.ActiveAlumni.Nit.Controllers
 
             //using (var digestSrv = new DigestService())
             //{
-            //        digestSrv.SendDigest(11);
+            //    digestSrv.SendDigest(11);
             //}
 
             CurrentPage = PageTypes.GuestHome;

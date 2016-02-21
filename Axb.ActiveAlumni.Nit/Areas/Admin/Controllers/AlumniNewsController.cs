@@ -97,7 +97,7 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Controllers
         public PartialViewResult Summary()
         {
             var news = _db.AlumniNewss.Where(n => n.Status == PostStatusType.Approved && n.NewsType == NewsType.News).OrderByDescending(n => n.Date).ToList();
-            return PartialView(news.Take(4));
+            return PartialView(news.Take(5));
         }
 
         [HttpGet]
@@ -105,7 +105,7 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Controllers
         public PartialViewResult BlogSummary()
         {
             var news = _db.AlumniNewss.Where(n => n.Status == PostStatusType.Approved && n.NewsType == NewsType.AlumniStory).OrderByDescending(n => n.Date).ToList();
-            return PartialView(news.Take(4));
+            return PartialView(news.Take(6));
         }
 
         //[HttpGet]
@@ -140,7 +140,7 @@ namespace Axb.ActiveAlumni.Nit.Areas.Admin.Controllers
                 var offer = _db.AlumniNewss.Find(id);
                 if (offer.ImageData != null && offer.ImageData.Length > 0)
                 {
-                    var imgRslt = ImageSrv.ThumbnailCrop(Image.FromStream(new MemoryStream(offer.ImageData)), 70, 70);
+                    var imgRslt = ImageSrv.Thumbnail(Image.FromStream(new MemoryStream(offer.ImageData)), 70, 70);
                     return imgRslt;
                 }
             }

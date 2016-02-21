@@ -29,7 +29,7 @@
         });
 
         $('#tweekLst').slimScroll({
-            height: 360
+            height: 800
         });
     }
 });
@@ -65,7 +65,7 @@ function refreshTweeks() {
 
                 var $info = $('<div>').addClass('tw-info').append($time)
                                 .append($('<a>').attr('href', '/user/' + id).html(artc.UserName))
-                                .append($('<span>').html(', ' + artc.Batch + ' batch'))
+                                .append($('<span>').addClass('dim-v').html(artc.Batch == undefined || artc.Batch == "null" ? ", Staff" : (', ' + artc.Batch + ' batch')))
                                 .append($('<div>').addClass('tw-txt').html(artc.Tweek));
                 var $div = $('<div>').append($left).append($info);
                 $tweek.append($('<li>').append($div));
@@ -78,7 +78,6 @@ function refreshTweeks() {
 }
 
 function updateTwAff($this, status) {
-    debugger;
     var $par = $this.parents('.tw-left');
     var id = $par.attr('data-id');
     $.ajax({

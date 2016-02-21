@@ -1,18 +1,16 @@
 ﻿<style>
-    #mainBk
-    {
+    #mainBk {
         background: #fff;
     }
 
-    #mainContent
-    {
+    #mainContent {
         padding-bottom: 0px;
         box-shadow: none;
         border: none;
     }
 </style>
 <div id="bannImg">
-    <img src="~/Content/images/22.jpg" />
+    <img src="~/Content/images/22.jpg" style="width: 100%" />
 </div>
 <div id="profBanCtnr">
     <div class="lazy-load" data-url="/Home/ProfileBanner"></div>
@@ -23,33 +21,26 @@
     <div id="hmeLeft">
         <div id="hmeLeftL">
             <div class="box-sd">
-                <a class="slip-head" href="/AlumniStory">Blogs</a>
+                <a class="home-sp-h6" href="/AlumniStory">Blogs<img src="~/Content/images/arrow.png" /></a>
                 @{Html.RenderAction("BlogSummary", "AlumniNews", new { area = "Admin" });}
             </div>
             <br />
             <div class="box-sd">
-                <a class="slip-head" href="/AlumniSpeaks">Alumni Speak</a>
+                <a class="home-sp-h6" href="/AlumniSpeaks">Alumni Speak<img src="~/Content/images/arrow.png" /></a>
                 @{Html.RenderAction("Summary", "AlumniSpeak", new { area = "Admin" });}
             </div>
             <br />
-
-            <div class="box-sd">
-                <a class="slip-head" href="/Events">Alumni Events</a>
-                <div class="hme-cover">
-                    @{Html.RenderAction("Upcoming", "Event", null);}
-                    @{Html.RenderAction("Past", "Event", null);}
-                </div>
-            </div>
         </div>
         <div class="vt-sep"></div>
         <div id="hmeLeftR">
+            @*<iframe width="420" height="315" src="//www.youtube.com/embed/eDkpzBPGZm8" frameborder="0" allowfullscreen></iframe>*@
             @*            <div style="margin:36px 10px -15px 10px">
                 <iframe id="ytplayer" type="text/html" width="470" height="240"
                     src="http://www.youtube.com/embed/1GmHRscNl6I?autoplay=0&origin=http://www.nitcalumni.com/"
                     frameborder="0"></iframe>
             </div>*@
             <div class="box-sd">
-                <a class="home-sp-h6" href="/News">Alumni News</a>
+                <a class="home-sp-h6" href="/News">Alumni News<img src="~/Content/images/arrow.png" /></a>
                 <div class="hme-cover">
                     @{Html.RenderAction("Summary", "AlumniNews", new { area = "Admin" });}
                 </div>
@@ -57,14 +48,11 @@
             <br class="hme-br" />
 
             <div class="box-sd">
-                <a class="home-sp-h6" href="/AlumniToKnow">Alumni Tweets
-                    <img src="~/Content/images/speaker25.png" /></a>
+                <a class="home-sp-h6" href="/AlumniToKnow">Alumni Tweets<img src="~/Content/images/arrow.png" /></a>
                 <div class="hme-cover">
                     @{Html.RenderAction("Summary", "AlumniKnow", new { area = "Admin" });}
                 </div>
             </div>
-            <br />
-
         </div>
     </div>
     <div id="hmeRight">
@@ -79,9 +67,15 @@
                 <div>www.suviregroup.com</div>
             </a>
         </div>
-        <br />
+        <div style="background: #fff; padding: 20px 0; border: 0px solid #ccc; border-width: 0 0;">
+            <a class="home-sp-h6" href="/Events">Alumni Events<img src="~/Content/images/arrow.png" /></a>
+            <div class="hme-cover">
+                @{Html.RenderAction("Upcoming", "Event", null);}
+                @{Html.RenderAction("Past", "Event", null);}
+            </div>
+        </div>
         <div id="shrCtnr">
-            <div class="home-h6"><i class="icon-share "></i>Share this page on</div>
+            <div class="home-sp-h6">Share this page<img src="~/Content/images/arrow.png" /></div>
             <div class="social-ctnr hme-cover share">
                 <div class="fb-btn">
                     <a title="facebook" class="facebook" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href='http://www.facebook.com/sharer.php?s=100&p[title]=NIT Calicut Alumni&p[summary]=Online line portal for NIT Calicut Alumni&p[url]=@Routes.Root&p[images[0]=@Routes.ImageUrl("logo.jpg")'>
@@ -99,7 +93,6 @@
             </div>
         </div>
         <br />
-
         <a href="http://reccaaclub.in/">
             <img src="~/Content/images/recclub.png" />
         </a>

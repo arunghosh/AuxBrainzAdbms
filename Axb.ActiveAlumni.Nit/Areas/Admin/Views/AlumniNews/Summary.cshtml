@@ -1,9 +1,13 @@
-﻿@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+﻿@using System.Text.RegularExpressions;
+@model IEnumerable<Axb.ActiveAlumni.Nit.Entities.AlumniNews>
+@{
+    Regex rgx = new Regex("<[^>]*(>|$)");
+}
 <ul class="alm-know-summ">
     @foreach (var item in Model)
     {
         <li>
-            @if (item.Title.Contains("2014 Grad"))
+            @if (item.Title.Contains("Onam"))
             {
                 <a class="news-summ" href="/News/@item.AlumniNewsId">
                     <img src="/Admin/AlumniNews/NewsImage/@item.AlumniNewsId" class="w100"/>
@@ -17,19 +21,29 @@
             {
                 <a class="news-summ" href="/News/@item.AlumniNewsId">
                     <div>
-                        <div class="slim-head title">@item.Title</div>
-                        <div>
-                            @DisplayHelper.DateTime(item.Date, DateTypes.DateOnly)
+                        <div class="slim-head title">@item.Title
+                            <span>
+                                @DisplayHelper.DateTime(item.Date, DateTypes.DateOnly)
+                            </span>
                         </div>
                     </div>
 
-                    <p>
+                    <div>
                         @if (item.ImageData != null && item.ImageData.Length > 100)
                         {
-                            <img src="/Admin/AlumniNews/NewsThumb/@item.AlumniNewsId" style="margin:3px 6px 0px 1px" />
+                            <img src="/Admin/AlumniNews/NewsThumb/@item.AlumniNewsId" style="margin:-1px 6px 0px 1px;position:absolute;clip:rect(4px,70px,64px,0px);" />
+                            <div style="display: inline-block; width: 80%; padding-left: 80px;">
+                                @rgx.Replace(item.News.LetterLimited(170), "")
+                            </div>
+
                         }
-                        @item.News.LetterLimited(180)
-                    </p>
+                        else{
+                            <div>
+                                @rgx.Replace(item.News.LetterLimited(170), "")
+                            </div>
+                        }
+
+                    </div>
                 </a>
             }
         </li>    

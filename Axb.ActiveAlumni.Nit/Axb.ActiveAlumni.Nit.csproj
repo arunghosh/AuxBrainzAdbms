@@ -206,11 +206,17 @@
     <Compile Include="Areas\Admin\Controllers\NewsLetterController.cs" />
     <Compile Include="Areas\Admin\Controllers\SpecialFormController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserTrackingController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ChapterController.cs" />
+    <Compile Include="Controllers\JsonController.cs" />
+    <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Controllers\PollController.cs" />
     <Compile Include="Entities\Chapter.cs" />
     <Compile Include="Entities\ChapterHead.cs" />
+    <Compile Include="Entities\Enum\ActivityStatus.cs" />
+    <Compile Include="Entities\EventMinutes.cs" />
     <Compile Include="Entities\Poll.cs" />
+    <Compile Include="Infrastructure\DateTimeModelBinder.cs" />
     <Compile Include="Migrations\201406151035228_added_poll.cs" />
     <Compile Include="Migrations\201406151035228_added_poll.Designer.cs">
       <DependentUpon>201406151035228_added_poll.cs</DependentUpon>
@@ -239,6 +245,15 @@
     <Compile Include="Migrations\201407091337141_updated_chapter_10.Designer.cs">
       <DependentUpon>201407091337141_updated_chapter_10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408191453044_chapter_added_fburl.cs" />
+    <Compile Include="Migrations\201408191453044_chapter_added_fburl.Designer.cs">
+      <DependentUpon>201408191453044_chapter_added_fburl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410181048202_added_activity.cs" />
+    <Compile Include="Migrations\201410181048202_added_activity.Designer.cs">
+      <DependentUpon>201410181048202_added_activity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Axb\ActiveAlumni\NitContext.cs" />
     <Compile Include="Services\AuthenticationSrvBase.cs" />
     <Compile Include="Services\AuthFacebookSrv.cs" />
     <Compile Include="ViewModels\AdminSearchVm.cs" />
@@ -1093,8 +1108,16 @@
     <Content Include="App_Data\courses.txt" />
     <Content Include="App_Data\jobpos.txt" />
     <Content Include="App_Data\welcome.txt" />
+    <Content Include="Content\blog\jishnu.jpg" />
+    <Content Include="Content\blog\Ravi1.jpg" />
+    <Content Include="Content\blog\Ravi2.jpg" />
+    <Content Include="Content\blog\Ravi3.jpg" />
+    <Content Include="Content\blog\Ravi4.jpg" />
+    <Content Include="Content\blog\wz.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\images\alumni_speak.png" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\browser.png" />
     <Content Include="Content\images\event_mail.jpg" />
     <Content Include="Content\guest.css" />
     <Content Include="Content\images\22.jpg" />
@@ -1451,6 +1474,7 @@
     <Content Include="Views\Chapter\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AlumniNews\SearchNews.cshtml" />
     <Content Include="Content\blog\m.pdf" />
+    <Content Include="Content\blog\wz.pdf" />
     <None Include="Properties\PublishProfiles\NIT_WinHost.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Content\images\busy_b.gif" />
@@ -1603,6 +1627,11 @@
     <Content Include="Views\Chapter\EditHead.cshtml" />
     <Content Include="Views\Chapter\Users.cshtml" />
     <Content Include="Views\Chapter\ChapterNews.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Activity\Index.cshtml" />
+    <Content Include="Views\Activity\Edit.cshtml" />
+    <Content Include="Views\Activity\ActivityIndex.cshtml" />
+    <Content Include="Views\Activity\EditTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Alumni\Views\Shared\" />
@@ -2089,6 +2118,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407091337141_updated_chapter_10.resx">
       <DependentUpon>201407091337141_updated_chapter_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408191453044_chapter_added_fburl.resx">
+      <DependentUpon>201408191453044_chapter_added_fburl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410181048202_added_activity.resx">
+      <DependentUpon>201410181048202_added_activity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>

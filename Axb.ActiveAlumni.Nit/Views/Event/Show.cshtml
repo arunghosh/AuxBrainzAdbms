@@ -18,7 +18,7 @@
     <hr class="bs-dot" />
     <div>
 
-        @if (isAuth && Model.CreatedUserId == UserSession.CurrentUserId && Model.FromDate > DateTime.Now)
+        @if (isAuth && Model.CreatedUserId == UserSession.CurrentUserId)
         {
             <div class="ft-r">
                 <a class="new-obj btn-gray" data-method="post" data-title="Event Poll" data-url="\poll\edit?eid=@Model.EventId"><i class="icon-list"></i> Add Poll</a>
@@ -85,10 +85,12 @@
             <div class="d-ib va-t bld c-red">Date Tentative</div>
         </div>
     }
-    @foreach (var poll in Model.Polls)
-    {
-        <hr class="bs-dot" />
-        <div class="lazy-load poll-ctnr" data-url="\poll\display\@poll.PollId " data-method="get"></div>
+    @if(System.Web.HttpContext.Current.Request.IsAuthenticated){
+        foreach (var poll in Model.Polls)
+        {
+            <hr class="bs-dot" />
+            <div class="lazy-load poll-ctnr" data-url="\poll\display\@poll.PollId " data-method="get"></div>
+        }
     }
     <hr class="bs-dot" />
     <div>

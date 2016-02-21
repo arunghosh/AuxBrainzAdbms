@@ -49,6 +49,12 @@ namespace Axb.ActiveAlumni.Nit.Entities
         public DbSet<Chapter> Chapters { get; set; }
         public DbSet<ChapterHead> ChapterHeads { get; set; }
 
+
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivityComment> ActivityComments { get; set; }
+        public DbSet<ActivityTask> ActivityTask { get; set; }
+
+
         public DbSet<SpecialOffer> SpecialOffers { get; set; }
         public DbSet<AlumniSpeak> AlumnisSpeak { get; set; }
         public DbSet<AlumniToKnow> AlumnisToKnow { get; set; }

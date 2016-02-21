@@ -52,7 +52,6 @@ h5
     display: inline-block;
     font-style: normal;
     padding: 2px 10px;
-    font-family: segoe ui, sans-serif;
     margin-bottom: 0;
     font-size: 13px;
     line-height: 20px;
@@ -395,7 +394,6 @@ body
     font-weight: bold;
     padding: 18px 10px 0 15px;
     color: #b0b0b0;
-    font-family: Arial, 'Segoe UI';
     display: inline-block;
 }
 
@@ -508,7 +506,6 @@ body
     clear: both;
     font-size: 12px;
     line-height: 17px;
-    font-family: Segoe UI,Tahoma,sans-serif;
     word-wrap: break-word;
     margin-top: 2px;
 }
@@ -519,7 +516,6 @@ body
     padding: 2px 0px 0px 8px;
     display: inline-block;
     color: #777;
-    font-family: Segoe UI,Tahoma,sans-serif;
     line-height: 16px;
     font-size: 11px;
 }
@@ -623,7 +619,6 @@ display: inline-block;
     color: #444;
     font-size: 11px;
     line-height: 14px;
-    font-family: Segoe UI, Tahoma, sans-serif;
 }
 
 .evt-stat
@@ -842,7 +837,6 @@ display: inline-block;
     word-spacing: 0px;
     text-transform: uppercase;
     font-weight: normal;
-    font-family: Arial, 'Segoe UI';
     padding: 3px 0 1px 40px;
 }
 
@@ -906,7 +900,6 @@ font-weight: normal;
 font-size: 17px;
 padding: 6px 0px 3px 6px;
 background: #08d;
-font-family: Arial, 'Segoe UI';
 font-weight: bold;
 margin: 11px 0px 7px 0px;
 text-decoration: none;
@@ -920,7 +913,6 @@ text-decoration: none;
     font-size: 15px;
     padding: 7px 0px 1px 11px;
     word-spacing: 1px;
-    font-family: Arial, 'Segoe UI';
     margin: -1px -7px -1px -8px;
     background: #fff;
     border: 1px solid rgba(0,0,0,.2);
@@ -954,14 +946,12 @@ text-decoration: none;
     font-size: 14px;
     padding: 15px 0px 2px 1px;
     word-spacing: 1px;
-    font-family: Arial, 'Segoe UI';
     border-bottom: 1px solid #aaa;
     margin: 0 0 0 5px;
 }
 
 .read
 {
-    font-family: 'Segoe UI', sans-serif;
     color: #303030;
     font-size:13px;
     line-height: 19px;
@@ -970,7 +960,7 @@ text-decoration: none;
 pre
 {
     white-space: pre-wrap;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: sans-serif;
     margin: 0;
     line-height: 19px;
     font-size:13px;
@@ -1277,7 +1267,6 @@ a.btn-hide, a.btn-unhide
     font-size: 11px;
     padding: 2px 3px;
     margin: 10px 0 10px 0;
-    font-family: 'Segoe UI', sans-serif;
 }
 
     .disc-foot a:hover
@@ -1355,7 +1344,6 @@ a.btn-hide, a.btn-unhide
     list-style-type: none;
     line-height: 20px;
     padding: 6px 0 12px 0;
-    font-family: segoe ui, sans-serif;
 }
 
 
@@ -1398,7 +1386,6 @@ a.btn-hide, a.btn-unhide
     min-height: 700px;
     margin: -17px 0 0 0;
     float: right;
-    font-family: 'Segoe UI';
 }
 
 #disc-thread .fir-cmt
@@ -1422,7 +1409,6 @@ a.btn-hide, a.btn-unhide
     color: #06a;
     padding: 0;
     font-size: 13px;
-    font-family: Segoe UI;
     border-radius: 2px;
     border: 1px solid rgba(0,0,0,.25);
     font-weight: bold;
@@ -1727,7 +1713,6 @@ a.btn-hide, a.btn-unhide
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3)!important;
     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3)!important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3)!important;
-    font-family: 'Segoe UI';
 }
 
 .ui-state-hover,
@@ -1830,7 +1815,6 @@ a.btn-hide, a.btn-unhide
 {
     width: 650px;
     margin: 0;
-    font-family: 'Segoe UI',sans-serif;
     display: inline-block;
 }
 
@@ -1878,7 +1862,6 @@ body, html
     padding: 0;
     border-right: 1px solid #ccc;
     overflow: auto;
-    font-family: 'Segoe UI', sans-serif;
 }
 
     .left-lst.w-brdr
@@ -1960,7 +1943,6 @@ body, html
     font-size: 13px;
     text-transform: uppercase;
     color: #18e;
-    font-family: Arial, 'Segoe UI';
     margin: 3px 0;
 }
 
@@ -2049,7 +2031,6 @@ body, html
     overflow: auto;
     background: #fff;
     color: #444;
-    font-family: segoe ui, sans-serif;
     /*line-height: 15px;*/
 }
 
@@ -2251,7 +2232,6 @@ body, html
     min-height: 600px;
     float: left;
     border-right: 1px solid #ddd;
-    font-family: 'Segoe UI',sans-serif;
 }
 
 h4 i
@@ -2267,7 +2247,6 @@ h4 i
     display: block;
     background: #fff;
     margin: 23px 10px 0px -4px;
-    font-family: segoe ui, sans-serif;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -2286,7 +2265,6 @@ h4 i
     float: right;
     min-height: 600px;
     display: inline-block;
-    font-family: 'Segoe UI',sans-serif;
 }
 
 .right-ctnt
@@ -3441,7 +3419,6 @@ legend
 #advt p
 {
     padding: 15px 0 0 0;
-    font-family: Arial,'Segoe UI';
     color: #555;
     font-size: 14px;
     font-weight: normal;
@@ -3593,7 +3570,6 @@ legend
     width: 90%;
     height: 62px;
     overflow: auto;
-    font-family: Segoe UI, sans-serif;
 }
 
 #tweekLst img
@@ -3608,7 +3584,6 @@ legend
 
 #tweekLst
 {
-    font-family: Segoe UI,Tahoma, sans-serif;
     list-style-type: none;
 }
 
@@ -3722,7 +3697,6 @@ legend
 .nav-tabs > li > a
 {
     text-transform: uppercase;
-    font-family: Arial, 'Segoe UI';
     font-size: 15px;
     font-weight:bold;
     padding: 0;

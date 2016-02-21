@@ -13,6 +13,16 @@ namespace Axb.ActiveAlumni.Nit.Infrastructure
             return date.ToString("MM/dd/yyyy hh:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
+        public static string Tommddyy(this DateTime date)
+        {
+            return date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public static string Toddmmyy(this DateTime date)
+        {
+            return date.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        }
+
         //public static string _DisplayMedium(this DateTime obj)
         //{
         //    return Display(obj).Replace(" ago", "");

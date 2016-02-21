@@ -16,6 +16,7 @@
         <meta name="description" content="@ViewBag.MetaD" />
         <meta name="og:image" content="@ViewBag.OgImg" />
     }
+    @*<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>*@
     <meta name="keywords" content="NIT Calicut Alumni Association, NIT Alumni, NIT Calicut, NIT, Calicut, Alumni, NITCAA, REC, RECAA, National Institute of Technology, Kozhikode, Regional Engineering College, REC Calicut" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
@@ -73,14 +74,7 @@
         @{Html.RenderPartial("Overlay");}
         @{Html.RenderPartial("DialogView");}
     </div>
-    <div class="footer-bk">
-        <div class="main-align footer">
-            <div class="ft-l d-ib">
-                Powered by <b>AuxBrains</b> | &copy; 2013-2014 Copyright NIT Calicut Alumni Association
-            </div>
-            @{Html.RenderPartial("FeedButton");}
-        </div>
-    </div>
+    @{Html.RenderPartial("_Footer");}
     @Scripts.Render("~/bundles/jqueryAndAxb")
     @RenderSection("Scripts")
 </body>

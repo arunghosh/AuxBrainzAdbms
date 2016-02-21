@@ -38,12 +38,12 @@ namespace Axb.ActiveAlumni.Nit.Entities
 
         [Display(Name = "Event starts at")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime FromDate { get; set; }
 
         [Display(Name = "Events ends at")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime ToDate { get; set; }
 
         [StringLength(512)]
@@ -75,6 +75,8 @@ namespace Axb.ActiveAlumni.Nit.Entities
         public virtual List<EventComment> Comments { get; set; }
 
         public virtual List<EventInvitee> Invitees { get; set; }
+
+        //public virtual List<EventMinute> Minutes { get; set; }
 
         #region Groups
 
@@ -328,7 +330,7 @@ namespace Axb.ActiveAlumni.Nit.Entities
             var composer = new HtmlComposer();
             composer.AppendImg(Routes.ImageUrl("event_mail.jpg"))
                     . AppendLinkHead(EventName, Routes.EventsUrl(EventId))
-                    .AppendDiv(Location)
+                    .AppendDiv(Location.Replace("\n", " "))
                     .AppendDiv(from);
             return composer.Text.ToString();
         }

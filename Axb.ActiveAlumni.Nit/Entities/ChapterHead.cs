@@ -20,6 +20,10 @@ namespace Axb.ActiveAlumni.Nit.Entities
         [FullNameLength]
         public string UserName { get; set; }
 
+        [FullNameLength]
+        [NotMapped]
+        public string Name { get; set; }
+
         [StringLength(10)]
         public string Batch { get; set; }
 

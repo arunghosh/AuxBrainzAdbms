@@ -2,17 +2,14 @@
 <ul class="alm-know-summ">
     @foreach (var item in Model)
     {
-        <li class="w100">
+        <li class="speak-summ">
+            <img src="@Routes.ProfilePic(item.AlumniId)" alt=""/>
             <div>
-                <img src="@Routes.ProfilePic(item.AlumniId)" alt=""/>
-                <a class="speak" href="/AlumniSpeaks/@item.AlumniToKnowId">
+                <a href="/AlumniSpeaks/@item.AlumniToKnowId">
                     <div>
                         <div class="slim-head">@item.AlumniName</div>
-                        <div>
-                            @item.Course
-                        </div>
-                        <div>
-                            @item.Batch Batch
+                        <div class="dim-v">
+                            @item.Course | @item.Batch Batch
                         </div>
                     </div>
                 </a>

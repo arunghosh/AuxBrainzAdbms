@@ -53,7 +53,7 @@ namespace Axb.ActiveAlumni.Nit.Services
             var user = _db.Users.Find(userId);
             var discussions = GetDiscussions(userId)
                                     .Where(d => d.Comments.Last().Date > user.TsMailDigest)
-                                    .Take(4)
+                                    .Take(3)
                                     .ToList();
             return discussions;
         }
@@ -238,8 +238,8 @@ namespace Axb.ActiveAlumni.Nit.Services
             var discussions = _db.Discussions
                                 .Include(d => d.UserMap)
                                 .Include(d => d.Comments)
-                                .Where(mt => (!mt.IsDeleted && mt.DiscusionType == DiscusionTypes.Discussion && ((mt.DiscussionCrowd & code) != 0 || mt.UserMap.Any(mp => mp.UserId == userId))))
                                 .ToList()
+                                .Where(mt => (!mt.IsDeleted && mt.DiscusionType == DiscusionTypes.Discussion && ((mt.DiscussionCrowd & code) != 0 || mt.UserMap.Any(mp => mp.UserId == userId) || user.IsAdmin())))
                                 .OrderByDescending(t => t.Comments.Last().Date)
                                 .ToList();
             return discussions;
